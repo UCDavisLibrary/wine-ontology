@@ -1,0 +1,2261 @@
+ <rdf:RDF xmlns="http://ontolingua.stanford.edu/doc/chimaera/ontologies/wines.daml#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:daml="http://www.daml.org/2001/03/daml+oil#">
+   <rdf:Property rdf:ID="COURSE">
+      <rdfs:domain rdf:resource="#MEAL"/>
+      <rdfs:range rdf:resource="#MEAL-COURSE"/>
+   </rdf:Property>
+   <rdf:Property rdf:ID="GRAPE-SLOT">
+      <rdfs:range rdf:resource="#WINE-GRAPE"/>
+      <rdfs:domain rdf:resource="#WINE"/>
+   </rdf:Property>
+   <rdf:Property rdf:ID="FOOD">
+      <rdf:type rdf:resource="http://www.daml.org/2001/03/daml+oil#UniqueProperty"/>
+      <rdfs:range rdf:resource="#EDIBLE-THING"/>
+      <rdfs:domain rdf:resource="#MEAL-COURSE"/>
+   </rdf:Property>
+   <rdf:Property rdf:ID="SUGAR">
+      <rdf:type rdf:resource="http://www.daml.org/2001/03/daml+oil#UniqueProperty"/>
+      <rdfs:range rdf:resource="#WINE-SUGAR"/>
+      <rdfs:domain rdf:resource="#WINE"/>
+   </rdf:Property>
+   <rdf:Property rdf:ID="BODY">
+      <rdf:type rdf:resource="http://www.daml.org/2001/03/daml+oil#UniqueProperty"/>
+      <rdfs:domain rdf:resource="#WINE"/>
+      <rdfs:range rdf:resource="#WINE-BODY"/>
+   </rdf:Property>
+   <rdf:Property rdf:ID="COLOR">
+      <rdf:type rdf:resource="http://www.daml.org/2001/03/daml+oil#UniqueProperty"/>
+      <rdfs:range rdf:resource="#WINE-COLOR"/>
+      <rdfs:domain rdf:resource="#WINE"/>
+   </rdf:Property>
+   <rdf:Property rdf:ID="DRINK">
+      <rdf:type rdf:resource="http://www.daml.org/2001/03/daml+oil#UniqueProperty"/>
+      <rdfs:domain rdf:resource="#MEAL-COURSE"/>
+      <rdfs:range rdf:resource="#WINE"/>
+   </rdf:Property>
+   <rdf:Property rdf:ID="REGION">
+      <rdf:type rdf:resource="http://www.daml.org/2001/03/daml+oil#UniqueProperty"/>
+      <rdfs:range rdf:resource="#WINE-REGION"/>
+      <rdfs:domain rdf:resource="#WINE"/>
+   </rdf:Property>
+   <rdf:Property rdf:ID="FLAVOR">
+      <rdf:type rdf:resource="http://www.daml.org/2001/03/daml+oil#UniqueProperty"/>
+      <rdfs:range rdf:resource="#WINE-FLAVOR"/>
+      <rdfs:domain rdf:resource="#WINE"/>
+   </rdf:Property>
+   <rdf:Property rdf:ID="MAKER">
+      <rdf:type rdf:resource="http://www.daml.org/2001/03/daml+oil#UniqueProperty"/>
+      <rdfs:range rdf:resource="#WINERY"/>
+      <rdfs:domain rdf:resource="#WINE"/>
+   </rdf:Property>
+
+   <daml:Restriction rdf:ID="WHITE-COLOR-RESTRICTION">
+      <daml:onProperty rdf:resource="#COLOR"/>
+      <daml:hasValue rdf:resource="#WHITE"/>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="RED-COLOR-RESTRICTION">
+      <daml:onProperty rdf:resource="#COLOR"/>
+      <daml:hasValue rdf:resource="#RED"/>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="ROSE-COLOR-RESTRICTION">
+      <daml:onProperty rdf:resource="#COLOR"/>
+      <daml:hasValue rdf:resource="#ROSE"/>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="SWEET-SUGAR-RESTRICTION">
+      <daml:onProperty rdf:resource="#SUGAR"/>
+      <daml:hasValue rdf:resource="#SWEET"/>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="OFF-DRY-SUGAR-RESTRICTION">
+      <daml:onProperty rdf:resource="#SUGAR"/>
+      <daml:hasValue rdf:resource="#OFF-DRY"/>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="DRY-SUGAR-RESTRICTION">
+      <daml:onProperty rdf:resource="#SUGAR"/>
+      <daml:hasValue rdf:resource="#DRY"/>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="SWEET-OR-OFF-DRY-SUGAR-TO-CLASS-RESTRICTION">
+      <daml:onProperty rdf:resource="#SUGAR"/>
+      <daml:toClass>
+      <rdfs:Class>
+            <daml:oneOf rdf:parseType="daml:collection">
+               <rdf:Description rdf:about="#OFF-DRY"/>
+               <rdf:Description rdf:about="#SWEET"/>
+            </daml:oneOf>
+         </rdfs:Class>
+      </daml:toClass>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="DRY-OR-OFF-DRY-SUGAR-HAS-CLASS-RESTRICTION">
+      <daml:onProperty rdf:resource="#SUGAR"/>
+      <daml:hasClass>
+         <rdfs:Class>
+            <daml:oneOf rdf:parseType="daml:collection">
+               <rdf:Description rdf:about="#DRY"/>
+               <rdf:Description rdf:about="#OFF-DRY"/>
+            </daml:oneOf>
+         </rdfs:Class>
+      </daml:hasClass>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="DRY-OR-OFF-DRY-SUGAR-TO-CLASS-RESTRICTION">
+      <daml:onProperty rdf:resource="#SUGAR"/>
+      <daml:toClass>
+         <rdfs:Class>
+            <daml:oneOf rdf:parseType="daml:collection">
+               <rdf:Description rdf:about="#DRY"/>
+               <rdf:Description rdf:about="#OFF-DRY"/>
+            </daml:oneOf>
+         </rdfs:Class>
+      </daml:toClass>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="LIGHT-BODY-RESTRICTION">
+      <daml:onProperty rdf:resource="#BODY"/>
+      <daml:hasValue rdf:resource="#LIGHT"/>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="MEDIUM-BODY-RESTRICTION">
+      <daml:onProperty rdf:resource="#BODY"/>
+      <daml:hasValue rdf:resource="#MEDIUM"/>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="FULL-BODY-RESTRICTION">
+      <daml:onProperty rdf:resource="#BODY"/>
+      <daml:hasValue rdf:resource="#FULL"/>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="LIGHT-OR-MEDIUM-BODY-TO-CLASS-RESTRICTION">
+      <daml:onProperty rdf:resource="#BODY"/>
+      <daml:toClass>
+         <rdfs:Class>
+            <daml:oneOf rdf:parseType="daml:collection">
+               <rdf:Description rdf:about="#LIGHT"/>
+               <rdf:Description rdf:about="#MEDIUM"/>
+            </daml:oneOf>
+         </rdfs:Class>
+      </daml:toClass>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="MEDIUM-OR-FULL-BODY-TO-CLASS-RESTRICTION">
+      <daml:onProperty rdf:resource="#BODY"/>
+      <daml:toClass>
+         <rdfs:Class>
+            <daml:oneOf rdf:parseType="daml:collection">
+	       <rdf:Description rdf:about="#FULL"/>
+	       <rdf:Description rdf:about="#MEDIUM"/>
+            </daml:oneOf>
+         </rdfs:Class>
+      </daml:toClass>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="DELICATE-OR-MODERATE-FLAVOR-TO-CLASS-RESTRICTION">
+      <daml:onProperty rdf:resource="#FLAVOR"/>
+      <daml:toClass>
+         <rdfs:Class>
+            <daml:oneOf rdf:parseType="daml:collection">
+               <rdf:Description rdf:about="#MODERATE"/>
+               <rdf:Description rdf:about="#DELICATE"/>
+            </daml:oneOf>
+         </rdfs:Class>
+      </daml:toClass>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="DELICATE-FLAVOR-RESTRICTION">
+      <daml:onProperty rdf:resource="#FLAVOR"/>
+      <daml:hasValue rdf:resource="#DELICATE"/>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="STRONG-FLAVOR-RESTRICTION">
+      <daml:onProperty rdf:resource="#FLAVOR"/>
+      <daml:hasValue rdf:resource="#STRONG"/>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="MODERATE-FLAVOR-RESTRICTION">
+      <daml:onProperty rdf:resource="#FLAVOR"/>
+      <daml:hasValue rdf:resource="#MODERATE"/>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="MODERATE-OR-STRONG-FLAVOR-TO-CLASS-RESTRICTION">
+      <daml:onProperty rdf:resource="#FLAVOR"/>
+      <daml:toClass>
+         <rdfs:Class>
+            <daml:oneOf rdf:parseType="daml:collection">
+	       <rdf:Description rdf:about="#MODERATE"/>
+	       <rdf:Description rdf:about="#STRONG"/>
+            </daml:oneOf>
+         </rdfs:Class>
+      </daml:toClass>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="GRAPE-SLOT-MAX-CARDINALITY-1-RESTRICTION">
+      <daml:onProperty rdf:resource="#GRAPE-SLOT"/>
+      <daml:maxCardinality>
+	 1
+      </daml:maxCardinality>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="GAMAY-INDIVIDUAL-GRAPE-SLOT-RESTRICTION">
+      <daml:onProperty rdf:resource="#GRAPE-SLOT"/>
+      <daml:hasValue rdf:resource="#GAMAY-INDIVIDUAL"/>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="MERLOT-INDIVIDUAL-GRAPE-SLOT-RESTRICTION">
+      <daml:onProperty rdf:resource="#GRAPE-SLOT"/>
+      <daml:hasValue rdf:resource="#MERLOT-INDIVIDUAL"/>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="PINOT-BLANC-INDIVIDUAL-GRAPE-SLOT-RESTRICTION">
+      <daml:onProperty rdf:resource="#GRAPE-SLOT"/>
+      <daml:hasValue rdf:resource="#PINOT-BLANC-INDIVIDUAL"/>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="PINOT-NOIR-INDIVIDUAL-GRAPE-SLOT-RESTRICTION">
+      <daml:onProperty rdf:resource="#GRAPE-SLOT"/>
+      <daml:hasValue rdf:resource="#PINOT-NOIR-INDIVIDUAL"/>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="SEMILLON-INDIVIDUAL-GRAPE-SLOT-RESTRICTION">
+      <daml:onProperty rdf:resource="#GRAPE-SLOT"/>
+      <daml:hasValue rdf:resource="#SEMILLON-INDIVIDUAL"/>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="SAUVIGNON-BLANC-INDIVIDUAL-GRAPE-SLOT-RESTRICTION">
+      <daml:onProperty rdf:resource="#GRAPE-SLOT"/>
+      <daml:hasValue rdf:resource="#SAUVIGNON-BLANC-INDIVIDUAL"/>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="CHARDONNAY-INDIVIDUAL-GRAPE-SLOT-RESTRICTION">
+      <daml:onProperty rdf:resource="#GRAPE-SLOT"/>
+      <daml:hasValue rdf:resource="#CHARDONNAY-INDIVIDUAL"/>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="CHENIN-BLANC-INDIVIDUAL-GRAPE-SLOT-RESTRICTION">
+      <daml:onProperty rdf:resource="#GRAPE-SLOT"/>
+      <daml:hasValue rdf:resource="#CHENIN-BLANC-INDIVIDUAL"/>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="CABERNET-SAUVIGNON-INDIVIDUAL-GRAPE-SLOT-RESTRICTION">
+      <daml:onProperty rdf:resource="#GRAPE-SLOT"/>
+      <daml:hasValue rdf:resource="#CABERNET-SAUVIGNON-INDIVIDUAL"/>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="SEMILLON-INDIVIDUAL-OR-SAUVIGNON-BLANC-INDIVIDUAL-GRAPE-SLOT-HAS-CLASS-RESTRICTION">
+      <daml:onProperty rdf:resource="#GRAPE-SLOT"/>
+      <daml:hasClass>
+         <rdfs:Class>
+            <daml:oneOf rdf:parseType="daml:collection">
+               <rdf:Description rdf:about="#SEMILLON-INDIVIDUAL"/>
+               <rdf:Description rdf:about="#SAUVIGNON-BLANC-INDIVIDUAL"/>
+            </daml:oneOf>
+         </rdfs:Class>
+      </daml:hasClass>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="SEMILLON-INDIVIDUAL-OR-SAUVIGNON-BLANC-INDIVIDUAL-GRAPE-SLOT-TO-CLASS-RESTRICTION">
+      <daml:onProperty rdf:resource="#GRAPE-SLOT"/>
+      <daml:toClass>
+         <rdfs:Class>
+            <daml:oneOf rdf:parseType="daml:collection">
+               <rdf:Description rdf:about="#SEMILLON-INDIVIDUAL"/>
+               <rdf:Description rdf:about="#SAUVIGNON-BLANC-INDIVIDUAL"/>
+            </daml:oneOf>
+         </rdfs:Class>
+      </daml:toClass>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="DRINK-HAS-STRONG-FLAVOR-TO-CLASS-RESTRICTION">
+      <daml:onProperty rdf:resource="#DRINK"/>
+      <daml:toClass rdf:resource="#STRONG-FLAVOR-RESTRICTION"/>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="DRINK-HAS-MODERATE-FLAVOR-TO-CLASS-RESTRICTION">
+      <daml:onProperty rdf:resource="#DRINK"/>
+      <daml:toClass rdf:resource="#MODERATE-FLAVOR-RESTRICTION"/>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="DRINK-HAS-DELICATE-FLAVOR-TO-CLASS-RESTRICTION">
+      <daml:onProperty rdf:resource="#DRINK"/>
+      <daml:toClass rdf:resource="#DELICATE-FLAVOR-RESTRICTION"/>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="DRINK-HAS-MODERATE-OR-STRONG-FLAVOR-TO-CLASS-RESTRICTION">
+      <daml:onProperty rdf:resource="#DRINK"/>
+      <daml:toClass rdf:resource="#MODERATE-OR-STRONG-FLAVOR-TO-CLASS-RESTRICTION"/>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="DRINK-HAS-DRY-SUGAR-TO-CLASS-RESTRICTION">
+      <daml:onProperty rdf:resource="#DRINK"/>
+      <daml:toClass rdf:resource="#DRY-SUGAR-RESTRICTION"/>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="DRINK-HAS-OFF-DRY-SUGAR-TO-CLASS-RESTRICTION">
+      <daml:onProperty rdf:resource="#DRINK"/>
+      <daml:toClass rdf:resource="#OFF-DRY-SUGAR-RESTRICTION"/>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="DRINK-HAS-SWEET-SUGAR-TO-CLASS-RESTRICTION">
+      <daml:onProperty rdf:resource="#DRINK"/>
+      <daml:toClass rdf:resource="#SWEET-SUGAR-RESTRICTION"/>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="DRINK-HAS-WHITE-COLOR-TO-CLASS-RESTRICTION">
+      <daml:onProperty rdf:resource="#DRINK"/>
+      <daml:toClass rdf:resource="#WHITE-COLOR-RESTRICTION"/>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="DRINK-HAS-RED-COLOR-TO-CLASS-RESTRICTION">
+      <daml:onProperty rdf:resource="#DRINK"/>
+      <daml:toClass rdf:resource="#RED-COLOR-RESTRICTION"/>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="DRINK-HAS-LIGHT-BODY-TO-CLASS-RESTRICTION">
+      <daml:onProperty rdf:resource="#DRINK"/>
+      <daml:toClass rdf:resource="#LIGHT-BODY-RESTRICTION"/>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="DRINK-HAS-MEDIUM-BODY-TO-CLASS-RESTRICTION">
+      <daml:onProperty rdf:resource="#DRINK"/>
+      <daml:toClass rdf:resource="#MEDIUM-BODY-RESTRICTION"/>
+   </daml:Restriction>
+   <daml:Restriction rdf:ID="DRINK-HAS-FULL-BODY-TO-CLASS-RESTRICTION">
+      <daml:onProperty rdf:resource="#DRINK"/>
+      <daml:toClass rdf:resource="#FULL-BODY-RESTRICTION"/>
+   </daml:Restriction>
+
+   <rdfs:Class rdf:ID="ZINFANDEL">
+      <rdfs:subClassOf rdf:resource="#RED-COLOR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRY-SUGAR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#MEDIUM-OR-FULL-BODY-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#MODERATE-OR-STRONG-FLAVOR-TO-CLASS-RESTRICTION"/>
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#GRAPE-SLOT"/>
+            <daml:hasValue rdf:resource="#ZINFANDEL-INDIVIDUAL"/>
+         </daml:Restriction>
+         <daml:Restriction rdf:about="#GRAPE-SLOT-MAX-CARDINALITY-1-RESTRICTION"/>
+         <rdfs:Class rdf:about="#WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="WINERY">
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="WINE-SUGAR">
+      <rdfs:subClassOf rdf:resource="#WINE-PROPERTY"/>
+      <daml:oneOf rdf:parseType="daml:collection">
+         <rdf:Description rdf:about="#SWEET"/>
+         <rdf:Description rdf:about="#OFF-DRY"/>
+         <rdf:Description rdf:about="#DRY"/>
+      </daml:oneOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="WINE-REGION">
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="WINE-PROPERTY">
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="WINE-GRAPE">
+      <rdfs:subClassOf rdf:resource="#GRAPE"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="WINE-FLAVOR">
+      <rdfs:subClassOf rdf:resource="#WINE-PROPERTY"/>
+      <daml:oneOf rdf:parseType="daml:collection">
+         <rdf:Description rdf:about="#DELICATE"/>
+         <rdf:Description rdf:about="#MODERATE"/>
+         <rdf:Description rdf:about="#STRONG"/>
+      </daml:oneOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="WINE-COLOR">
+      <rdfs:subClassOf rdf:resource="#WINE-PROPERTY"/>
+      <daml:oneOf rdf:parseType="daml:collection">
+         <rdf:Description rdf:about="#WHITE"/>
+         <rdf:Description rdf:about="#ROSE"/>
+         <rdf:Description rdf:about="#RED"/>
+      </daml:oneOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="WINE-BODY">
+      <rdfs:subClassOf rdf:resource="#WINE-PROPERTY"/>
+      <daml:oneOf rdf:parseType="daml:collection">
+         <rdf:Description rdf:about="#LIGHT"/>
+         <rdf:Description rdf:about="#MEDIUM"/>
+         <rdf:Description rdf:about="#FULL"/>
+      </daml:oneOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="WINE">
+      <rdfs:subClassOf rdf:resource="#POTABLE-LIQUID"/>
+      <rdfs:subClassOf>
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#MAKER"/>
+            <daml:cardinality>
+               1
+            </daml:cardinality>
+         </daml:Restriction>
+      </rdfs:subClassOf>
+      <rdfs:subClassOf>
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#MAKER"/>
+            <daml:toClass rdf:resource="#WINERY"/>
+         </daml:Restriction>
+      </rdfs:subClassOf>
+      <rdfs:subClassOf>
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#GRAPE-SLOT"/>
+            <daml:minCardinality>
+               1
+            </daml:minCardinality>
+         </daml:Restriction>
+      </rdfs:subClassOf>
+      <rdfs:subClassOf>
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#GRAPE-SLOT"/>
+            <daml:toClass rdf:resource="#WINE-GRAPE"/>
+         </daml:Restriction>
+      </rdfs:subClassOf>
+      <rdfs:subClassOf>
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#REGION"/>
+            <daml:cardinality>
+               1
+            </daml:cardinality>
+         </daml:Restriction>
+      </rdfs:subClassOf>
+      <rdfs:subClassOf>
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#REGION"/>
+            <daml:toClass rdf:resource="#WINE-REGION"/>
+         </daml:Restriction>
+      </rdfs:subClassOf>
+      <rdfs:subClassOf>
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#SUGAR"/>
+            <daml:cardinality>
+               1
+            </daml:cardinality>
+         </daml:Restriction>
+      </rdfs:subClassOf>
+      <rdfs:subClassOf>
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#SUGAR"/>
+            <daml:toClass rdf:resource="#WINE-SUGAR"/>
+         </daml:Restriction>
+      </rdfs:subClassOf>
+      <rdfs:subClassOf>
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#FLAVOR"/>
+            <daml:cardinality>
+               1
+            </daml:cardinality>
+         </daml:Restriction>
+      </rdfs:subClassOf>
+      <rdfs:subClassOf>
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#FLAVOR"/>
+            <daml:toClass rdf:resource="#WINE-FLAVOR"/>
+         </daml:Restriction>
+      </rdfs:subClassOf>
+      <rdfs:subClassOf>
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#BODY"/>
+            <daml:cardinality>
+               1
+            </daml:cardinality>
+         </daml:Restriction>
+      </rdfs:subClassOf>
+      <rdfs:subClassOf>
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#BODY"/>
+            <daml:toClass rdf:resource="#WINE-BODY"/>
+         </daml:Restriction>
+      </rdfs:subClassOf>
+      <rdfs:subClassOf>
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#COLOR"/>
+            <daml:cardinality>
+               1
+            </daml:cardinality>
+         </daml:Restriction>
+      </rdfs:subClassOf>
+      <rdfs:subClassOf>
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#COLOR"/>
+            <daml:toClass rdf:resource="#WINE-COLOR"/>
+         </daml:Restriction>
+      </rdfs:subClassOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="WHITE-WINE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction rdf:about="#WHITE-COLOR-RESTRICTION"/>
+         <rdfs:Class rdf:about="#WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="WHITE-TABLE-WINE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction rdf:about="#WHITE-COLOR-RESTRICTION"/>
+         <rdfs:Class rdf:about="#TABLE-WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="WHITE-NON-SWEET-WINE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction rdf:about="#DRY-OR-OFF-DRY-SUGAR-HAS-CLASS-RESTRICTION"/>
+         <rdfs:Class rdf:about="#WHITE-WINE"/>
+      </daml:intersectionOf>
+      <rdfs:subClassOf rdf:resource="#DRY-OR-OFF-DRY-SUGAR-TO-CLASS-RESTRICTION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="WHITE-LOIRE">
+      <rdfs:subClassOf>
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#GRAPE-SLOT"/>
+            <daml:toClass>
+               <rdfs:Class>
+                  <daml:oneOf rdf:parseType="daml:collection">
+                     <rdf:Description rdf:about="#CHENIN-BLANC-INDIVIDUAL"/>
+                     <rdf:Description rdf:about="#PINOT-BLANC-INDIVIDUAL"/>
+                     <rdf:Description rdf:about="#SAUVIGNON-BLANC-INDIVIDUAL"/>
+                  </daml:oneOf>
+               </rdfs:Class>
+            </daml:toClass>
+         </daml:Restriction>
+      </rdfs:subClassOf>
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <rdfs:Class rdf:about="#LOIRE"/>
+         <rdfs:Class rdf:about="#WHITE-WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="WHITE-BURGUNDY">
+      <rdfs:subClassOf rdf:resource="#CHARDONNAY-INDIVIDUAL-GRAPE-SLOT-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#GRAPE-SLOT-MAX-CARDINALITY-1-RESTRICTION"/>
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <rdfs:Class rdf:about="#BURGUNDY"/>
+         <rdfs:Class rdf:about="#WHITE-WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="WHITE-BORDEAUX">
+      <rdfs:subClassOf rdf:resource="#SEMILLON-INDIVIDUAL-OR-SAUVIGNON-BLANC-INDIVIDUAL-GRAPE-SLOT-TO-CLASS-RESTRICTION"/>
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <rdfs:Class rdf:about="#BORDEAUX"/>
+         <rdfs:Class rdf:about="#WHITE-WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="US-REGION">
+      <rdfs:subClassOf rdf:resource="#WINE-REGION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="TOURS">
+      <rdfs:subClassOf rdf:resource="#CHENIN-BLANC-INDIVIDUAL-GRAPE-SLOT-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#GRAPE-SLOT-MAX-CARDINALITY-1-RESTRICTION"/>
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#REGION"/>
+            <daml:hasValue rdf:resource="#TOURS-INDIVIDUAL"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#LOIRE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="TABLE-WINE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction rdf:about="#DRY-SUGAR-RESTRICTION"/>
+         <rdfs:Class rdf:about="#WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="SWEET-WINE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction rdf:about="#SWEET-SUGAR-RESTRICTION"/>
+         <rdfs:Class rdf:about="#WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="SWEET-RIESLING">
+      <rdfs:subClassOf rdf:resource="#DESSERT-WINE"/>
+      <rdfs:subClassOf rdf:resource="#FULL-BODY-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#MODERATE-OR-STRONG-FLAVOR-TO-CLASS-RESTRICTION"/>
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction rdf:about="#SWEET-SUGAR-RESTRICTION"/>
+         <rdfs:Class rdf:about="#RIESLING"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="SWEET-FRUIT-COURSE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#FOOD"/>
+            <daml:hasClass rdf:resource="#SWEET-FRUIT"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#MEAL-COURSE"/>
+      </daml:intersectionOf>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-MODERATE-FLAVOR-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-SWEET-SUGAR-TO-CLASS-RESTRICTION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="SWEET-FRUIT">
+      <rdfs:subClassOf rdf:resource="#FRUIT"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="SWEET-DESSERT-COURSE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#FOOD"/>
+            <daml:hasClass rdf:resource="#SWEET-DESSERT"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#MEAL-COURSE"/>
+      </daml:intersectionOf>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-WHITE-COLOR-TO-CLASS-RESTRICTION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="SWEET-DESSERT">
+      <rdfs:subClassOf rdf:resource="#DESSERT"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="ST-EMILION">
+      <rdfs:subClassOf rdf:resource="#RED-COLOR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#STRONG-FLAVOR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#CABERNET-SAUVIGNON-INDIVIDUAL-GRAPE-SLOT-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#GRAPE-SLOT-MAX-CARDINALITY-1-RESTRICTION"/>
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#REGION"/>
+            <daml:hasValue rdf:resource="#ST-EMILION-INDIVIDUAL"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#BORDEAUX"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="SPICY-RED-MEAT-COURSE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#FOOD"/>
+            <daml:hasClass rdf:resource="#SPICY-RED-MEAT"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#MEAL-COURSE"/>
+      </daml:intersectionOf>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-RED-COLOR-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-FULL-BODY-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-MODERATE-FLAVOR-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-DRY-SUGAR-TO-CLASS-RESTRICTION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="SPICY-RED-MEAT">
+      <rdfs:subClassOf rdf:resource="#RED-MEAT"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="SHELLFISH-COURSE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#FOOD"/>
+            <daml:hasClass rdf:resource="#SHELLFISH"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#MEAL-COURSE"/>
+      </daml:intersectionOf>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-MODERATE-OR-STRONG-FLAVOR-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-FULL-BODY-TO-CLASS-RESTRICTION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="SHELLFISH">
+      <rdfs:subClassOf rdf:resource="#SEAFOOD"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="SEMILLON-OR-SAUVIGNON-BLANC">
+      <rdfs:subClassOf rdf:resource="#WHITE-COLOR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#MEDIUM-OR-FULL-BODY-TO-CLASS-RESTRICTION"/>
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction rdf:about="#SEMILLON-INDIVIDUAL-OR-SAUVIGNON-BLANC-INDIVIDUAL-GRAPE-SLOT-HAS-CLASS-RESTRICTION"/>
+         <rdfs:Class rdf:about="#WINE"/>
+      </daml:intersectionOf>
+      <rdfs:subClassOf rdf:resource="#SEMILLON-INDIVIDUAL-OR-SAUVIGNON-BLANC-INDIVIDUAL-GRAPE-SLOT-TO-CLASS-RESTRICTION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="SEMILLON">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction rdf:about="#SEMILLON-INDIVIDUAL-GRAPE-SLOT-RESTRICTION"/>
+         <daml:Restriction rdf:about="#GRAPE-SLOT-MAX-CARDINALITY-1-RESTRICTION"/>
+         <rdfs:Class rdf:about="#SEMILLON-OR-SAUVIGNON-BLANC"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="SEAFOOD-COURSE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#FOOD"/>
+            <daml:hasClass rdf:resource="#SEAFOOD"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#MEAL-COURSE"/>
+      </daml:intersectionOf>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-WHITE-COLOR-TO-CLASS-RESTRICTION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="SEAFOOD">
+      <rdfs:subClassOf rdf:resource="#EDIBLE-THING"/>
+      <daml:disjointWith rdf:resource="#DESSERT"/>
+      <daml:disjointWith rdf:resource="#FRUIT"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="SAUVIGNON-BLANC">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction rdf:about="#SAUVIGNON-BLANC-INDIVIDUAL-GRAPE-SLOT-RESTRICTION"/>
+         <daml:Restriction rdf:about="#GRAPE-SLOT-MAX-CARDINALITY-1-RESTRICTION"/>
+         <rdfs:Class rdf:about="#SEMILLON-OR-SAUVIGNON-BLANC"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="SAUTERNE">
+      <rdfs:subClassOf rdf:resource="#LATE-HARVEST"/>
+      <rdfs:subClassOf rdf:resource="#BORDEAUX"/>
+      <rdfs:subClassOf>
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#REGION"/>
+            <daml:hasValue rdf:resource="#SAUTERNE-INDIVIDUAL"/>
+         </daml:Restriction>
+      </rdfs:subClassOf>
+      <rdfs:subClassOf rdf:resource="#MEDIUM-BODY-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#WHITE-COLOR-RESTRICTION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="SANCERRE">
+      <rdfs:subClassOf rdf:resource="#MEDIUM-BODY-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#OFF-DRY-SUGAR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DELICATE-FLAVOR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#SAUVIGNON-BLANC-INDIVIDUAL-GRAPE-SLOT-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#GRAPE-SLOT-MAX-CARDINALITY-1-RESTRICTION"/>
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#REGION"/>
+            <daml:hasValue rdf:resource="#SANCERRE-INDIVIDUAL"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#LOIRE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="ROSE-WINE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction rdf:about="#ROSE-COLOR-RESTRICTION"/>
+         <rdfs:Class rdf:about="#WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="RIESLING">
+      <rdfs:subClassOf rdf:resource="#WHITE-COLOR-RESTRICTION"/>
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#GRAPE-SLOT"/>
+            <daml:hasValue rdf:resource="#RIESLING-INDIVIDUAL"/>
+         </daml:Restriction>
+         <daml:Restriction rdf:about="#GRAPE-SLOT-MAX-CARDINALITY-1-RESTRICTION"/>
+         <rdfs:Class rdf:about="#WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="RED-WINE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction rdf:about="#RED-COLOR-RESTRICTION"/>
+         <rdfs:Class rdf:about="#WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="RED-TABLE-WINE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction rdf:about="#RED-COLOR-RESTRICTION"/>
+         <rdfs:Class rdf:about="#TABLE-WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="RED-MEAT-COURSE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#FOOD"/>
+            <daml:hasClass rdf:resource="#RED-MEAT"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#MEAL-COURSE"/>
+      </daml:intersectionOf>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-RED-COLOR-TO-CLASS-RESTRICTION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="RED-MEAT">
+      <rdfs:subClassOf rdf:resource="#MEAT"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="RED-BURGUNDY">
+      <rdfs:subClassOf rdf:resource="#PINOT-NOIR-INDIVIDUAL-GRAPE-SLOT-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#GRAPE-SLOT-MAX-CARDINALITY-1-RESTRICTION"/>
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <rdfs:Class rdf:about="#BURGUNDY"/>
+         <rdfs:Class rdf:about="#RED-WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="RED-BORDEAUX">
+      <rdfs:subClassOf>
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#GRAPE-SLOT"/>
+            <daml:toClass>
+               <rdfs:Class>
+                  <daml:oneOf rdf:parseType="daml:collection">
+                     <rdf:Description rdf:about="#CABERNET-SAUVIGNON-INDIVIDUAL"/>
+                     <rdf:Description rdf:about="#MERLOT-INDIVIDUAL"/>
+                  </daml:oneOf>
+               </rdfs:Class>
+            </daml:toClass>
+         </daml:Restriction>
+      </rdfs:subClassOf>
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <rdfs:Class rdf:about="#BORDEAUX"/>
+         <rdfs:Class rdf:about="#RED-WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="POTABLE-LIQUID">
+      <rdfs:subClassOf rdf:resource="#CONSUMABLE-THING"/>
+      <daml:disjointWith rdf:resource="#EDIBLE-THING"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="PORT">
+      <rdfs:subClassOf rdf:resource="#RED-WINE"/>
+      <rdfs:subClassOf>
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#REGION"/>
+            <daml:hasValue rdf:resource="#PORTUGAL"/>
+         </daml:Restriction>
+      </rdfs:subClassOf>
+      <rdfs:subClassOf rdf:resource="#FULL-BODY-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#STRONG-FLAVOR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#SWEET-SUGAR-RESTRICTION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="PINOT-NOIR">
+      <rdfs:subClassOf rdf:resource="#RED-COLOR-RESTRICTION"/>
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction rdf:about="#PINOT-NOIR-INDIVIDUAL-GRAPE-SLOT-RESTRICTION"/>
+         <daml:Restriction rdf:about="#GRAPE-SLOT-MAX-CARDINALITY-1-RESTRICTION"/>
+         <rdfs:Class rdf:about="#WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="PINOT-BLANC">
+      <rdfs:subClassOf rdf:resource="#WHITE-COLOR-RESTRICTION"/>
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction rdf:about="#PINOT-BLANC-INDIVIDUAL-GRAPE-SLOT-RESTRICTION"/>
+         <daml:Restriction rdf:about="#GRAPE-SLOT-MAX-CARDINALITY-1-RESTRICTION"/>
+         <rdfs:Class rdf:about="#WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="PETITE-SYRAH">
+      <rdfs:subClassOf rdf:resource="#RED-COLOR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRY-SUGAR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#MODERATE-OR-STRONG-FLAVOR-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#MEDIUM-OR-FULL-BODY-TO-CLASS-RESTRICTION"/>
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#GRAPE-SLOT"/>
+            <daml:hasValue rdf:resource="#PETITE-SYRAH-INDIVIDUAL"/>
+         </daml:Restriction>
+         <daml:Restriction rdf:about="#GRAPE-SLOT-MAX-CARDINALITY-1-RESTRICTION"/>
+         <rdfs:Class rdf:about="#WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="PAUILLAC">
+      <rdfs:subClassOf rdf:resource="#FULL-BODY-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#STRONG-FLAVOR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#CABERNET-SAUVIGNON-INDIVIDUAL-GRAPE-SLOT-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#GRAPE-SLOT-MAX-CARDINALITY-1-RESTRICTION"/>
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#REGION"/>
+            <daml:hasValue rdf:resource="#PAUILLAC-INDIVIDUAL"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#MEDOC"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="PASTA-WITH-WHITE-SAUCE">
+      <rdfs:subClassOf rdf:resource="#PASTA"/>
+      <daml:disjointWith rdf:resource="#PASTA-WITH-RED-SAUCE"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="PASTA-WITH-SPICY-RED-SAUCE-COURSE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#FOOD"/>
+            <daml:hasClass rdf:resource="#PASTA-WITH-SPICY-RED-SAUCE"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#MEAL-COURSE"/>
+      </daml:intersectionOf>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-RED-COLOR-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-FULL-BODY-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-STRONG-FLAVOR-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-DRY-SUGAR-TO-CLASS-RESTRICTION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="PASTA-WITH-SPICY-RED-SAUCE">
+      <rdfs:subClassOf rdf:resource="#PASTA-WITH-RED-SAUCE"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="PASTA-WITH-RED-SAUCE">
+      <rdfs:subClassOf rdf:resource="#PASTA"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="PASTA-WITH-NON-SPICY-RED-SAUCE-COURSE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#FOOD"/>
+            <daml:hasClass rdf:resource="#PASTA-WITH-NON-SPICY-RED-SAUCE"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#MEAL-COURSE"/>
+      </daml:intersectionOf>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-RED-COLOR-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-MEDIUM-BODY-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-MODERATE-FLAVOR-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-DRY-SUGAR-TO-CLASS-RESTRICTION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="PASTA-WITH-NON-SPICY-RED-SAUCE">
+      <rdfs:subClassOf rdf:resource="#PASTA-WITH-RED-SAUCE"/>
+      <daml:disjointWith rdf:resource="#PASTA-WITH-SPICY-RED-SAUCE"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="PASTA-WITH-LIGHT-CREAM-SAUCE">
+      <rdfs:subClassOf rdf:resource="#PASTA-WITH-WHITE-SAUCE"/>
+      <daml:disjointWith rdf:resource="#PASTA-WITH-HEAVY-CREAM-SAUCE"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="PASTA-WITH-LIGHT-CREAM-COURSE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#FOOD"/>
+            <daml:hasClass rdf:resource="#PASTA-WITH-LIGHT-CREAM-SAUCE"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#MEAL-COURSE"/>
+      </daml:intersectionOf>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-WHITE-COLOR-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-LIGHT-BODY-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-DELICATE-FLAVOR-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-DRY-SUGAR-TO-CLASS-RESTRICTION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="PASTA-WITH-HEAVY-CREAM-SAUCE">
+      <rdfs:subClassOf rdf:resource="#PASTA-WITH-WHITE-SAUCE"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="PASTA-WITH-HEAVY-CREAM-COURSE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#FOOD"/>
+            <daml:hasClass rdf:resource="#PASTA-WITH-HEAVY-CREAM-SAUCE"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#MEAL-COURSE"/>
+      </daml:intersectionOf>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-WHITE-COLOR-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-MEDIUM-BODY-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-MODERATE-FLAVOR-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-DRY-SUGAR-TO-CLASS-RESTRICTION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="PASTA">
+      <rdfs:subClassOf rdf:resource="#EDIBLE-THING"/>
+      <daml:disjointWith rdf:resource="#MEAT"/>
+      <daml:disjointWith rdf:resource="#FOWL"/>
+      <daml:disjointWith rdf:resource="#SEAFOOD"/>
+      <daml:disjointWith rdf:resource="#DESSERT"/>
+      <daml:disjointWith rdf:resource="#FRUIT"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="OYSTER-SHELLFISH-COURSE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#FOOD"/>
+            <daml:hasClass rdf:resource="#OYSTER-SHELLFISH"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#MEAL-COURSE"/>
+      </daml:intersectionOf>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-SWEET-SUGAR-TO-CLASS-RESTRICTION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="OYSTER-SHELLFISH">
+      <rdfs:subClassOf rdf:resource="#SHELLFISH"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="OTHER-TOMATO-BASED-FOOD-COURSE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#FOOD"/>
+            <daml:hasClass rdf:resource="#OTHER-TOMATO-BASED-FOOD"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#MEAL-COURSE"/>
+      </daml:intersectionOf>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-RED-COLOR-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-MEDIUM-BODY-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-MODERATE-FLAVOR-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-DRY-SUGAR-TO-CLASS-RESTRICTION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="OTHER-TOMATO-BASED-FOOD">
+      <rdfs:subClassOf rdf:resource="#EDIBLE-THING"/>
+      <daml:disjointWith rdf:resource="#PASTA"/>
+      <daml:disjointWith rdf:resource="#MEAT"/>
+      <daml:disjointWith rdf:resource="#FOWL"/>
+      <daml:disjointWith rdf:resource="#SEAFOOD"/>
+      <daml:disjointWith rdf:resource="#DESSERT"/>
+      <daml:disjointWith rdf:resource="#FRUIT"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="NON-SWEET-FRUIT-COURSE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#FOOD"/>
+            <daml:hasClass rdf:resource="#NON-SWEET-FRUIT"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#MEAL-COURSE"/>
+      </daml:intersectionOf>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-DELICATE-FLAVOR-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-OFF-DRY-SUGAR-TO-CLASS-RESTRICTION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="NON-SWEET-FRUIT">
+      <rdfs:subClassOf rdf:resource="#FRUIT"/>
+      <daml:disjointWith rdf:resource="#SWEET-FRUIT"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="NON-SPICY-RED-MEAT-COURSE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#FOOD"/>
+            <daml:hasClass rdf:resource="#NON-SPICY-RED-MEAT"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#MEAL-COURSE"/>
+      </daml:intersectionOf>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-RED-COLOR-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-MEDIUM-BODY-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-DRY-SUGAR-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-MODERATE-OR-STRONG-FLAVOR-TO-CLASS-RESTRICTION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="NON-SPICY-RED-MEAT">
+      <rdfs:subClassOf rdf:resource="#RED-MEAT"/>
+      <daml:disjointWith rdf:resource="#SPICY-RED-MEAT"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="NON-RED-MEAT-COURSE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#FOOD"/>
+            <daml:hasClass rdf:resource="#NON-RED-MEAT"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#MEAL-COURSE"/>
+      </daml:intersectionOf>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-WHITE-COLOR-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-MEDIUM-BODY-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-STRONG-FLAVOR-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-DRY-SUGAR-TO-CLASS-RESTRICTION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="NON-RED-MEAT">
+      <rdfs:subClassOf rdf:resource="#MEAT"/>
+      <daml:disjointWith rdf:resource="#RED-MEAT"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="NON-OYSTER-SHELLFISH-COURSE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#FOOD"/>
+            <daml:hasClass rdf:resource="#NON-OYSTER-SHELLFISH"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#MEAL-COURSE"/>
+      </daml:intersectionOf>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-DRY-SUGAR-TO-CLASS-RESTRICTION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="NON-OYSTER-SHELLFISH">
+      <rdfs:subClassOf rdf:resource="#SHELLFISH"/>
+      <daml:disjointWith rdf:resource="#OYSTER-SHELLFISH"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="NON-BLAND-FISH-COURSE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#FOOD"/>
+            <daml:hasClass rdf:resource="#NON-BLAND-FISH"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#MEAL-COURSE"/>
+      </daml:intersectionOf>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-MODERATE-FLAVOR-TO-CLASS-RESTRICTION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="NON-BLAND-FISH">
+      <rdfs:subClassOf rdf:resource="#FISH"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="MUSCADET">
+      <rdfs:subClassOf rdf:resource="#LIGHT-BODY-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DELICATE-FLAVOR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRY-SUGAR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#PINOT-BLANC-INDIVIDUAL-GRAPE-SLOT-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#GRAPE-SLOT-MAX-CARDINALITY-1-RESTRICTION"/>
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#REGION"/>
+            <daml:hasValue rdf:resource="#MUSCADET-INDIVIDUAL"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#LOIRE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="MEURSAULT">
+      <rdfs:subClassOf rdf:resource="#FULL-BODY-RESTRICTION"/>
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#REGION"/>
+            <daml:hasValue rdf:resource="#MEURSAULT-INDIVIDUAL"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#WHITE-BURGUNDY"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="MERLOT">
+      <rdfs:subClassOf rdf:resource="#RED-COLOR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRY-SUGAR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DELICATE-OR-MODERATE-FLAVOR-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#LIGHT-OR-MEDIUM-BODY-TO-CLASS-RESTRICTION"/>
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction rdf:about="#MERLOT-INDIVIDUAL-GRAPE-SLOT-RESTRICTION"/>
+         <daml:Restriction rdf:about="#GRAPE-SLOT-MAX-CARDINALITY-1-RESTRICTION"/>
+         <rdfs:Class rdf:about="#WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="MERITAGE">
+      <rdfs:subClassOf rdf:resource="#RED-COLOR-RESTRICTION"/>
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#GRAPE-SLOT"/>
+            <daml:toClass>
+               <rdfs:Class>
+                  <daml:oneOf rdf:parseType="daml:collection">
+                     <rdf:Description rdf:about="#CABERNET-SAUVIGNON-INDIVIDUAL"/>
+                     <rdf:Description rdf:about="#CABERNET-FRANC-INDIVIDUAL"/>
+                     <rdf:Description rdf:about="#MALBEC"/>
+                     <rdf:Description rdf:about="#PETITE-VERDOT"/>
+                     <rdf:Description rdf:about="#MERLOT-INDIVIDUAL"/>
+                  </daml:oneOf>
+               </rdfs:Class>
+            </daml:toClass>
+         </daml:Restriction>
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#GRAPE-SLOT"/>
+            <daml:minCardinality>
+               2
+            </daml:minCardinality>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="MEDOC-REGION">
+      <rdfs:subClassOf rdf:resource="#BORDEAUX-REGION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="MEDOC">
+      <rdfs:subClassOf rdf:resource="#RED-COLOR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRY-SUGAR-RESTRICTION"/>
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#REGION"/>
+            <daml:hasClass rdf:resource="#MEDOC-REGION"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#BORDEAUX"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="MEAT">
+      <rdfs:subClassOf rdf:resource="#EDIBLE-THING"/>
+      <daml:disjointWith rdf:resource="#FOWL"/>
+      <daml:disjointWith rdf:resource="#SEAFOOD"/>
+      <daml:disjointWith rdf:resource="#DESSERT"/>
+      <daml:disjointWith rdf:resource="#FRUIT"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="MEAL-COURSE">
+      <rdfs:subClassOf rdf:resource="#CONSUMABLE-THING"/>
+      <rdfs:subClassOf>
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#FOOD"/>
+            <daml:cardinality>
+               1
+            </daml:cardinality>
+         </daml:Restriction>
+      </rdfs:subClassOf>
+      <rdfs:subClassOf>
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#FOOD"/>
+            <daml:toClass rdf:resource="#EDIBLE-THING"/>
+         </daml:Restriction>
+      </rdfs:subClassOf>
+      <rdfs:subClassOf>
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#DRINK"/>
+            <daml:cardinality>
+               1
+            </daml:cardinality>
+         </daml:Restriction>
+      </rdfs:subClassOf>
+      <rdfs:subClassOf>
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#DRINK"/>
+            <daml:toClass rdf:resource="#WINE"/>
+         </daml:Restriction>
+      </rdfs:subClassOf>
+      <daml:disjointWith rdf:resource="#POTABLE-LIQUID"/>
+      <daml:disjointWith rdf:resource="#EDIBLE-THING"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="MEAL">
+      <rdfs:subClassOf rdf:resource="#CONSUMABLE-THING"/>
+      <rdfs:subClassOf>
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#COURSE"/>
+            <daml:minCardinality>
+               1
+            </daml:minCardinality>
+         </daml:Restriction>
+      </rdfs:subClassOf>
+      <rdfs:subClassOf>
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#COURSE"/>
+            <daml:toClass rdf:resource="#MEAL-COURSE"/>
+         </daml:Restriction>
+      </rdfs:subClassOf>
+      <daml:disjointWith rdf:resource="#MEAL-COURSE"/>
+      <daml:disjointWith rdf:resource="#POTABLE-LIQUID"/>
+      <daml:disjointWith rdf:resource="#EDIBLE-THING"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="MARGAUX">
+      <rdfs:subClassOf rdf:resource="#DELICATE-FLAVOR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#MERLOT-INDIVIDUAL-GRAPE-SLOT-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#GRAPE-SLOT-MAX-CARDINALITY-1-RESTRICTION"/>
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#REGION"/>
+            <daml:hasValue rdf:resource="#MARGAUX-INDIVIDUAL"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#MEDOC"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="LOIRE-REGION">
+      <rdfs:subClassOf rdf:resource="#FRENCH-REGION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="LOIRE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#REGION"/>
+            <daml:hasClass rdf:resource="#LOIRE-REGION"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="LIGHT-MEAT-FOWL-COURSE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#FOOD"/>
+            <daml:hasClass rdf:resource="#LIGHT-MEAT-FOWL"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#MEAL-COURSE"/>
+      </daml:intersectionOf>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-WHITE-COLOR-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-MEDIUM-BODY-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-MODERATE-FLAVOR-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-DRY-SUGAR-TO-CLASS-RESTRICTION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="LIGHT-MEAT-FOWL">
+      <rdfs:subClassOf rdf:resource="#FOWL"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="LATE-HARVEST">
+      <rdfs:subClassOf rdf:resource="#WINE"/>
+      <daml:disjointWith rdf:resource="#EARLY-HARVEST"/>
+      <rdfs:subClassOf rdf:resource="#SWEET-SUGAR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#MODERATE-OR-STRONG-FLAVOR-TO-CLASS-RESTRICTION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="ITALIAN-WINE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#REGION"/>
+            <daml:hasClass rdf:resource="#ITALIAN-REGION"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="ITALIAN-REGION">
+      <rdfs:subClassOf rdf:resource="#WINE-REGION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="ICE-WINE">
+      <rdfs:subClassOf rdf:resource="#MEDIUM-OR-FULL-BODY-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#MODERATE-OR-STRONG-FLAVOR-TO-CLASS-RESTRICTION"/>
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <rdfs:Class rdf:about="#LATE-HARVEST"/>
+         <rdfs:Class rdf:about="#DESSERT-WINE"/>
+         <daml:Restriction rdf:about="#WHITE-COLOR-RESTRICTION"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="GRAPE">
+      <rdfs:subClassOf rdf:resource="#SWEET-FRUIT"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="GERMAN-WINE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#REGION"/>
+            <daml:hasValue rdf:resource="#GERMANY"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="GAMAY">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction rdf:about="#GAMAY-INDIVIDUAL-GRAPE-SLOT-RESTRICTION"/>
+         <daml:Restriction rdf:about="#GRAPE-SLOT-MAX-CARDINALITY-1-RESTRICTION"/>
+         <rdfs:Class rdf:about="#WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="FULL-BODIED-WINE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction rdf:about="#FULL-BODY-RESTRICTION"/>
+         <rdfs:Class rdf:about="#WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="FRUIT-COURSE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#FOOD"/>
+            <daml:hasClass rdf:resource="#FRUIT"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#MEAL-COURSE"/>
+      </daml:intersectionOf>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-WHITE-COLOR-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-MEDIUM-BODY-TO-CLASS-RESTRICTION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="FRUIT">
+      <rdfs:subClassOf rdf:resource="#EDIBLE-THING"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="FRENCH-REGION">
+      <rdfs:subClassOf rdf:resource="#WINE-REGION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="FOWL">
+      <rdfs:subClassOf rdf:resource="#EDIBLE-THING"/>
+      <daml:disjointWith rdf:resource="#SEAFOOD"/>
+      <daml:disjointWith rdf:resource="#DESSERT"/>
+      <daml:disjointWith rdf:resource="#FRUIT"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="FISH-COURSE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#FOOD"/>
+            <daml:hasClass rdf:resource="#FISH"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#MEAL-COURSE"/>
+      </daml:intersectionOf>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-MEDIUM-BODY-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-DRY-SUGAR-TO-CLASS-RESTRICTION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="FISH">
+      <rdfs:subClassOf rdf:resource="#SEAFOOD"/>
+      <daml:disjointWith rdf:resource="#SHELLFISH"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="EDIBLE-THING">
+      <rdfs:subClassOf rdf:resource="#CONSUMABLE-THING"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="EATING-GRAPE">
+      <rdfs:subClassOf rdf:resource="#GRAPE"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="EARLY-HARVEST">
+      <rdfs:subClassOf rdf:resource="#WINE"/>
+      <rdfs:subClassOf rdf:resource="#DRY-OR-OFF-DRY-SUGAR-TO-CLASS-RESTRICTION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="DRY-WINE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction rdf:about="#DRY-SUGAR-RESTRICTION"/>
+         <rdfs:Class rdf:about="#WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="DRY-WHITE-WINE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <rdfs:Class rdf:about="#DRY-WINE"/>
+         <rdfs:Class rdf:about="#WHITE-WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="DRY-RIESLING">
+      <rdfs:subClassOf rdf:resource="#WHITE-COLOR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DELICATE-FLAVOR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#LIGHT-OR-MEDIUM-BODY-TO-CLASS-RESTRICTION"/>
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction rdf:about="#DRY-SUGAR-RESTRICTION"/>
+         <rdfs:Class rdf:about="#RIESLING"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="DRY-RED-WINE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <rdfs:Class rdf:about="#DRY-WINE"/>
+         <rdfs:Class rdf:about="#RED-WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="DESSERT-WINE">
+      <rdfs:subClassOf rdf:resource="#WINE"/>
+      <rdfs:subClassOf rdf:resource="#SWEET-OR-OFF-DRY-SUGAR-TO-CLASS-RESTRICTION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="DESSERT-COURSE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#FOOD"/>
+            <daml:hasClass rdf:resource="#DESSERT"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#MEAL-COURSE"/>
+      </daml:intersectionOf>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-FULL-BODY-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-STRONG-FLAVOR-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-SWEET-SUGAR-TO-CLASS-RESTRICTION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="DESSERT">
+      <rdfs:subClassOf rdf:resource="#EDIBLE-THING"/>
+      <daml:disjointWith rdf:resource="#FRUIT"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="DARK-MEAT-FOWL-COURSE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#FOOD"/>
+            <daml:hasClass rdf:resource="#DARK-MEAT-FOWL"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#MEAL-COURSE"/>
+      </daml:intersectionOf>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-RED-COLOR-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-LIGHT-BODY-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-DELICATE-FLAVOR-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-DRY-SUGAR-TO-CLASS-RESTRICTION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="DARK-MEAT-FOWL">
+      <rdfs:subClassOf rdf:resource="#FOWL"/>
+      <daml:disjointWith rdf:resource="#LIGHT-MEAT-FOWL"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="COTES-D-OR">
+      <rdfs:subClassOf rdf:resource="#MODERATE-FLAVOR-RESTRICTION"/>
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#REGION"/>
+            <daml:hasValue rdf:resource="#COTES-D-OR-INDIVIDUAL"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#RED-BURGUNDY"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="CONSUMABLE-THING"/>
+   <rdfs:Class rdf:ID="CHIANTI">
+      <rdfs:subClassOf rdf:resource="#ITALIAN-WINE"/>
+      <rdfs:subClassOf>
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#REGION"/>
+            <daml:hasValue rdf:resource="#CHIANTI-INDIVIDUAL"/>
+         </daml:Restriction>
+      </rdfs:subClassOf>
+      <rdfs:subClassOf rdf:resource="#RED-COLOR-RESTRICTION"/>
+      <rdfs:subClassOf>
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#GRAPE-SLOT"/>
+            <daml:hasValue rdf:resource="#SANGIOVESE"/>
+         </daml:Restriction>
+      </rdfs:subClassOf>
+      <rdfs:subClassOf rdf:resource="#MODERATE-FLAVOR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRY-SUGAR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#LIGHT-OR-MEDIUM-BODY-TO-CLASS-RESTRICTION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="CHENIN-BLANC">
+      <rdfs:subClassOf rdf:resource="#WHITE-COLOR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#MODERATE-FLAVOR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#MEDIUM-OR-FULL-BODY-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRY-OR-OFF-DRY-SUGAR-TO-CLASS-RESTRICTION"/>
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction rdf:about="#CHENIN-BLANC-INDIVIDUAL-GRAPE-SLOT-RESTRICTION"/>
+         <daml:Restriction rdf:about="#GRAPE-SLOT-MAX-CARDINALITY-1-RESTRICTION"/>
+         <rdfs:Class rdf:about="#WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="CHEESE-NUTS-DESSERT-COURSE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#FOOD"/>
+            <daml:hasClass rdf:resource="#CHEESE-NUTS-DESSERT"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#MEAL-COURSE"/>
+      </daml:intersectionOf>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-RED-COLOR-TO-CLASS-RESTRICTION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="CHEESE-NUTS-DESSERT">
+      <rdfs:subClassOf rdf:resource="#DESSERT"/>
+      <daml:disjointWith rdf:resource="#SWEET-DESSERT"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="CHARDONNAY">
+      <rdfs:subClassOf rdf:resource="#WHITE-COLOR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#MEDIUM-OR-FULL-BODY-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#MODERATE-OR-STRONG-FLAVOR-TO-CLASS-RESTRICTION"/>
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction rdf:about="#CHARDONNAY-INDIVIDUAL-GRAPE-SLOT-RESTRICTION"/>
+         <daml:Restriction rdf:about="#GRAPE-SLOT-MAX-CARDINALITY-1-RESTRICTION"/>
+         <rdfs:Class rdf:about="#WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="CALIFORNIAN-REGION">
+      <rdfs:subClassOf rdf:resource="#US-REGION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="CALIFORNIA-WINE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#REGION"/>
+            <daml:hasClass rdf:resource="#CALIFORNIAN-REGION"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="CABERNET-SAUVIGNON">
+      <rdfs:subClassOf rdf:resource="#RED-COLOR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRY-SUGAR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#MODERATE-OR-STRONG-FLAVOR-TO-CLASS-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#MEDIUM-OR-FULL-BODY-TO-CLASS-RESTRICTION"/>
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction rdf:about="#CABERNET-SAUVIGNON-INDIVIDUAL-GRAPE-SLOT-RESTRICTION"/>
+         <daml:Restriction rdf:about="#GRAPE-SLOT-MAX-CARDINALITY-1-RESTRICTION"/>
+         <rdfs:Class rdf:about="#WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="CABERNET-FRANC">
+      <rdfs:subClassOf rdf:resource="#RED-COLOR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#MODERATE-FLAVOR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#MEDIUM-BODY-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRY-SUGAR-RESTRICTION"/>
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#GRAPE-SLOT"/>
+            <daml:hasValue rdf:resource="#CABERNET-FRANC-INDIVIDUAL"/>
+         </daml:Restriction>
+         <daml:Restriction rdf:about="#GRAPE-SLOT-MAX-CARDINALITY-1-RESTRICTION"/>
+         <rdfs:Class rdf:about="#WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="BURGUNDY">
+      <rdfs:subClassOf rdf:resource="#DRY-SUGAR-RESTRICTION"/>
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#REGION"/>
+            <daml:hasClass rdf:resource="#BOURGOGNE-REGION"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="BOURGOGNE-REGION">
+      <rdfs:subClassOf rdf:resource="#FRENCH-REGION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="BORDEAUX-REGION">
+      <rdfs:subClassOf rdf:resource="#FRENCH-REGION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="BORDEAUX">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#REGION"/>
+            <daml:hasClass rdf:resource="#BORDEAUX-REGION"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="BLAND-FISH-COURSE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#FOOD"/>
+            <daml:hasClass rdf:resource="#BLAND-FISH"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#MEAL-COURSE"/>
+      </daml:intersectionOf>
+      <rdfs:subClassOf rdf:resource="#DRINK-HAS-DELICATE-FLAVOR-TO-CLASS-RESTRICTION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="BLAND-FISH">
+      <rdfs:subClassOf rdf:resource="#FISH"/>
+      <daml:disjointWith rdf:resource="#NON-BLAND-FISH"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="BEAUJOLAIS">
+      <rdfs:subClassOf rdf:resource="#RED-COLOR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#LIGHT-BODY-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DRY-SUGAR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DELICATE-FLAVOR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#GAMAY-INDIVIDUAL-GRAPE-SLOT-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#GRAPE-SLOT-MAX-CARDINALITY-1-RESTRICTION"/>
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#REGION"/>
+            <daml:hasValue rdf:resource="#BEAUJOLAIS-INDIVIDUAL"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="AUSTRALIAN-REGION">
+      <rdfs:subClassOf rdf:resource="#WINE-REGION"/>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="ANJOU">
+      <rdfs:subClassOf rdf:resource="#ROSE-COLOR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#LIGHT-BODY-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#DELICATE-FLAVOR-RESTRICTION"/>
+      <rdfs:subClassOf rdf:resource="#OFF-DRY-SUGAR-RESTRICTION"/>
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#REGION"/>
+            <daml:hasValue rdf:resource="#ANJOU-INDIVIDUAL"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#LOIRE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="AMERICAN-WINE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#REGION"/>
+            <daml:hasClass rdf:resource="#US-REGION"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdfs:Class rdf:ID="ALSATIAN-WINE">
+      <daml:intersectionOf rdf:parseType="daml:collection">
+         <daml:Restriction>
+            <daml:onProperty rdf:resource="#REGION"/>
+            <daml:hasValue rdf:resource="#ALSACE"/>
+         </daml:Restriction>
+         <rdfs:Class rdf:about="#WINE"/>
+      </daml:intersectionOf>
+   </rdfs:Class>
+   <rdf:Description rdf:ID="FULL">
+      <rdf:type rdf:resource="#WINE-BODY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="MEDIUM">
+      <rdf:type rdf:resource="#WINE-BODY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="LIGHT">
+      <rdf:type rdf:resource="#WINE-BODY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="RED">
+      <rdf:type rdf:resource="#WINE-COLOR"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="ROSE">
+      <rdf:type rdf:resource="#WINE-COLOR"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="WHITE">
+      <rdf:type rdf:resource="#WINE-COLOR"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="STRONG">
+      <rdf:type rdf:resource="#WINE-FLAVOR"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="MODERATE">
+      <rdf:type rdf:resource="#WINE-FLAVOR"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="DELICATE">
+      <rdf:type rdf:resource="#WINE-FLAVOR"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="DRY">
+      <rdf:type rdf:resource="#WINE-SUGAR"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="OFF-DRY">
+      <rdf:type rdf:resource="#WINE-SUGAR"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="SWEET">
+      <rdf:type rdf:resource="#WINE-SUGAR"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="ALSACE">
+      <rdf:type rdf:resource="#FRENCH-REGION"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="ANJOU-INDIVIDUAL">
+      <rdf:type rdf:resource="#LOIRE-REGION"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="APPLES">
+      <rdf:type rdf:resource="#NON-SWEET-FRUIT"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="ARROYO-GRANDE">
+      <rdf:type rdf:resource="#CALIFORNIAN-REGION"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="BANANAS">
+      <rdf:type rdf:resource="#SWEET-FRUIT"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="BANCROFT">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="BANCROFT-CHARDONNAY">
+      <rdf:type rdf:resource="#CHARDONNAY"/>
+      <REGION rdf:resource="#NAPA"/>
+      <MAKER rdf:resource="#BANCROFT"/>
+      <SUGAR rdf:resource="#DRY"/>
+      <FLAVOR rdf:resource="#MODERATE"/>
+      <BODY rdf:resource="#MEDIUM"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="BEAUJOLAIS-INDIVIDUAL">
+      <rdf:type rdf:resource="#FRENCH-REGION"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="BEEF-CURRY">
+      <rdf:type rdf:resource="#SPICY-RED-MEAT"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CABERNET-FRANC-INDIVIDUAL">
+      <rdf:type rdf:resource="#WINE-GRAPE"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CABERNET-SAUVIGNON-INDIVIDUAL">
+      <rdf:type rdf:resource="#WINE-GRAPE"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CAKE">
+      <rdf:type rdf:resource="#SWEET-DESSERT"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CENTRAL-COAST">
+      <rdf:type rdf:resource="#CALIFORNIAN-REGION"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CHARDONNAY-INDIVIDUAL">
+      <rdf:type rdf:resource="#WINE-GRAPE"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CHATEAU-CHEVAL-BLANC">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CHATEAU-CHEVAL-BLANC-ST-EMILION">
+      <rdf:type rdf:resource="#ST-EMILION"/>
+      <MAKER rdf:resource="#CHATEAU-CHEVAL-BLANC"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CHATEAU-D-YCHEM">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CHATEAU-D-YCHEM-SAUTERNE">
+      <rdf:type rdf:resource="#SAUTERNE"/>
+      <GRAPE-SLOT rdf:resource="#SAUVIGNON-BLANC-INDIVIDUAL"/>
+      <GRAPE-SLOT rdf:resource="#SEMILLON-INDIVIDUAL"/>
+      <FLAVOR rdf:resource="#STRONG"/>
+      <MAKER rdf:resource="#CHATEAU-D-YCHEM"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CHATEAU-DE-MEURSAULT">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CHATEAU-DE-MEURSAULT-MEURSAULT">
+      <rdf:type rdf:resource="#MEURSAULT"/>
+      <FLAVOR rdf:resource="#MODERATE"/>
+      <MAKER rdf:resource="#CHATEAU-DE-MEURSAULT"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CHATEAU-LAFITE-ROTHSCHILD">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CHATEAU-LAFITE-ROTHSCHILD-PAUILLAC">
+      <rdf:type rdf:resource="#PAUILLAC"/>
+      <MAKER rdf:resource="#CHATEAU-LAFITE-ROTHSCHILD"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CHATEAU-MARGAUX">
+      <rdf:type rdf:resource="#MARGAUX"/>
+      <MAKER rdf:resource="#CHATEAU-MARGAUX-WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CHATEAU-MARGAUX-WINERY">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CHATEAU-MORGON">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CHATEAU-MORGON-BEAUJOLAIS">
+      <rdf:type rdf:resource="#BEAUJOLAIS"/>
+      <MAKER rdf:resource="#CHATEAU-MORGON"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CHEESE">
+      <rdf:type rdf:resource="#CHEESE-NUTS-DESSERT"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CHENIN-BLANC-INDIVIDUAL">
+      <rdf:type rdf:resource="#WINE-GRAPE"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CHIANTI-CLASSICO">
+      <rdf:type rdf:resource="#CHIANTI"/>
+      <BODY rdf:resource="#MEDIUM"/>
+      <MAKER rdf:resource="#MCGUINNESSO"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CHIANTI-INDIVIDUAL">
+      <rdf:type rdf:resource="#ITALIAN-REGION"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CHICKEN">
+      <rdf:type rdf:resource="#LIGHT-MEAT-FOWL"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CLAMS">
+      <rdf:type rdf:resource="#NON-OYSTER-SHELLFISH"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CLOS-DE-LA-POUSSIE">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CLOS-DE-LA-POUSSIE-SANCERRE">
+      <rdf:type rdf:resource="#SANCERRE"/>
+      <MAKER rdf:resource="#CLOS-DE-LA-POUSSIE"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CLOS-DE-VOUGEOT">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CLOS-DE-VOUGEOT-COTES-D-OR">
+      <rdf:type rdf:resource="#COTES-D-OR"/>
+      <MAKER rdf:resource="#CLOS-DE-VOUGEOT"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CONGRESS-SPRINGS">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CONGRESS-SPRINGS-SEMILLON">
+      <rdf:type rdf:resource="#SEMILLON"/>
+      <MAKER rdf:resource="#CONGRESS-SPRINGS"/>
+      <SUGAR rdf:resource="#DRY"/>
+      <FLAVOR rdf:resource="#MODERATE"/>
+      <BODY rdf:resource="#MEDIUM"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CORBANS">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CORBANS-DRY-WHITE-RIESLING">
+      <rdf:type rdf:resource="#RIESLING"/>
+      <REGION rdf:resource="#NEW-ZEALAND"/>
+      <MAKER rdf:resource="#CORBANS"/>
+      <SUGAR rdf:resource="#OFF-DRY"/>
+      <FLAVOR rdf:resource="#MODERATE"/>
+      <BODY rdf:resource="#MEDIUM"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CORBANS-PRIVATE-BIN-SAUVIGNON-BLANC">
+      <rdf:type rdf:resource="#SAUVIGNON-BLANC"/>
+      <REGION rdf:resource="#NEW-ZEALAND"/>
+      <MAKER rdf:resource="#CORBANS"/>
+      <SUGAR rdf:resource="#DRY"/>
+      <FLAVOR rdf:resource="#STRONG"/>
+      <BODY rdf:resource="#FULL"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CORBANS-SAUVIGNON-BLANC">
+      <rdf:type rdf:resource="#SAUVIGNON-BLANC"/>
+      <REGION rdf:resource="#NEW-ZEALAND"/>
+      <MAKER rdf:resource="#CORBANS"/>
+      <SUGAR rdf:resource="#DRY"/>
+      <FLAVOR rdf:resource="#STRONG"/>
+      <BODY rdf:resource="#MEDIUM"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CORTON-MONTRACHET">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CORTON-MONTRACHET-WHITE-BURGUNDY">
+      <rdf:type rdf:resource="#WHITE-BURGUNDY"/>
+      <MAKER rdf:resource="#CORTON-MONTRACHET"/>
+      <SUGAR rdf:resource="#DRY"/>
+      <FLAVOR rdf:resource="#STRONG"/>
+      <BODY rdf:resource="#FULL"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="COTES-D-OR-INDIVIDUAL">
+      <rdf:type rdf:resource="#BOURGOGNE-REGION"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="COTTURI">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="COTTURI-ZINFANDEL">
+      <rdf:type rdf:resource="#ZINFANDEL"/>
+      <REGION rdf:resource="#SONOMA"/>
+      <MAKER rdf:resource="#COTTURI"/>
+      <SUGAR rdf:resource="#DRY"/>
+      <FLAVOR rdf:resource="#STRONG"/>
+      <BODY rdf:resource="#FULL"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="CRAB">
+      <rdf:type rdf:resource="#NON-OYSTER-SHELLFISH"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="D-ANJOU">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="DUCK">
+      <rdf:type rdf:resource="#DARK-MEAT-FOWL"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="EDNA-VALLEY">
+      <rdf:type rdf:resource="#CALIFORNIAN-REGION"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="ELYSE">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="ELYSE-ZINFANDEL">
+      <rdf:type rdf:resource="#ZINFANDEL"/>
+      <REGION rdf:resource="#NAPA"/>
+      <MAKER rdf:resource="#ELYSE"/>
+      <SUGAR rdf:resource="#DRY"/>
+      <FLAVOR rdf:resource="#MODERATE"/>
+      <BODY rdf:resource="#FULL"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="FETTUCINE-ALFREDO">
+      <rdf:type rdf:resource="#PASTA-WITH-HEAVY-CREAM-SAUCE"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="FLOUNDER">
+      <rdf:type rdf:resource="#BLAND-FISH"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="FORMAN">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="FORMAN-CABERNET-SAUVIGNON">
+      <rdf:type rdf:resource="#CABERNET-SAUVIGNON"/>
+      <REGION rdf:resource="#NAPA"/>
+      <MAKER rdf:resource="#FORMAN"/>
+      <SUGAR rdf:resource="#DRY"/>
+      <FLAVOR rdf:resource="#STRONG"/>
+      <BODY rdf:resource="#MEDIUM"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="FORMAN-CHARDONNAY">
+      <rdf:type rdf:resource="#CHARDONNAY"/>
+      <REGION rdf:resource="#NAPA"/>
+      <MAKER rdf:resource="#FORMAN"/>
+      <SUGAR rdf:resource="#DRY"/>
+      <FLAVOR rdf:resource="#MODERATE"/>
+      <BODY rdf:resource="#FULL"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="FOXEN">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="FOXEN-CHENIN-BLANC">
+      <rdf:type rdf:resource="#CHENIN-BLANC"/>
+      <REGION rdf:resource="#SANTA-BARBARA"/>
+      <MAKER rdf:resource="#FOXEN"/>
+      <SUGAR rdf:resource="#DRY"/>
+      <FLAVOR rdf:resource="#MODERATE"/>
+      <BODY rdf:resource="#FULL"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="FRA-DIAVOLO">
+      <rdf:type rdf:resource="#PASTA-WITH-SPICY-RED-SAUCE"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="GAMAY-INDIVIDUAL">
+      <rdf:type rdf:resource="#WINE-GRAPE"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="GARLICKY-ROAST">
+      <rdf:type rdf:resource="#SPICY-RED-MEAT"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="GARY-FARRELL">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="GARY-FARRELL-MERLOT">
+      <rdf:type rdf:resource="#MERLOT"/>
+      <REGION rdf:resource="#SONOMA"/>
+      <MAKER rdf:resource="#GARY-FARRELL"/>
+      <SUGAR rdf:resource="#DRY"/>
+      <FLAVOR rdf:resource="#MODERATE"/>
+      <BODY rdf:resource="#MEDIUM"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="GERMANY">
+      <rdf:type rdf:resource="#WINE-REGION"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="GOOSE">
+      <rdf:type rdf:resource="#DARK-MEAT-FOWL"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="HALIBUT">
+      <rdf:type rdf:resource="#BLAND-FISH"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="HANDLEY">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="KALIN-CELLARS">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="KALIN-CELLARS-SEMILLON">
+      <rdf:type rdf:resource="#SEMILLON"/>
+      <MAKER rdf:resource="#KALIN-CELLARS"/>
+      <SUGAR rdf:resource="#DRY"/>
+      <FLAVOR rdf:resource="#STRONG"/>
+      <BODY rdf:resource="#FULL"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="KATHRYN-KENNEDY">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="KATHRYN-KENNEDY-LATERAL">
+      <rdf:type rdf:resource="#MERITAGE"/>
+      <MAKER rdf:resource="#KATHRYN-KENNEDY"/>
+      <SUGAR rdf:resource="#DRY"/>
+      <FLAVOR rdf:resource="#DELICATE"/>
+      <BODY rdf:resource="#MEDIUM"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="LANE-TANNER">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="LANE-TANNER-PINOT-NOIR">
+      <rdf:type rdf:resource="#PINOT-NOIR"/>
+      <REGION rdf:resource="#SANTA-BARBARA"/>
+      <MAKER rdf:resource="#LANE-TANNER"/>
+      <SUGAR rdf:resource="#DRY"/>
+      <FLAVOR rdf:resource="#DELICATE"/>
+      <BODY rdf:resource="#LIGHT"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="LOBSTER">
+      <rdf:type rdf:resource="#NON-OYSTER-SHELLFISH"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="LONGRIDGE">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="LONGRIDGE-MERLOT">
+      <rdf:type rdf:resource="#MERLOT"/>
+      <REGION rdf:resource="#NEW-ZEALAND"/>
+      <MAKER rdf:resource="#LONGRIDGE"/>
+      <SUGAR rdf:resource="#DRY"/>
+      <FLAVOR rdf:resource="#MODERATE"/>
+      <BODY rdf:resource="#LIGHT"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="MALBEC">
+      <rdf:type rdf:resource="#WINE-GRAPE"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="MARGAUX-INDIVIDUAL">
+      <rdf:type rdf:resource="#MEDOC-REGION"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="MARIETTA">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="MARIETTA-CABERNET-SAUVIGNON">
+      <rdf:type rdf:resource="#CABERNET-SAUVIGNON"/>
+      <REGION rdf:resource="#SONOMA"/>
+      <MAKER rdf:resource="#MARIETTA"/>
+      <SUGAR rdf:resource="#DRY"/>
+      <FLAVOR rdf:resource="#MODERATE"/>
+      <BODY rdf:resource="#MEDIUM"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="MARIETTA-OLD-VINES-RED">
+      <rdf:type rdf:resource="#RED-TABLE-WINE"/>
+      <REGION rdf:resource="#SONOMA"/>
+      <MAKER rdf:resource="#MARIETTA"/>
+      <SUGAR rdf:resource="#DRY"/>
+      <FLAVOR rdf:resource="#MODERATE"/>
+      <BODY rdf:resource="#MEDIUM"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="MARIETTA-PETITE-SYRAH">
+      <rdf:type rdf:resource="#PETITE-SYRAH"/>
+      <REGION rdf:resource="#SONOMA"/>
+      <MAKER rdf:resource="#MARIETTA"/>
+      <SUGAR rdf:resource="#DRY"/>
+      <FLAVOR rdf:resource="#MODERATE"/>
+      <BODY rdf:resource="#MEDIUM"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="MARIETTA-ZINFANDEL">
+      <rdf:type rdf:resource="#ZINFANDEL"/>
+      <REGION rdf:resource="#SONOMA"/>
+      <MAKER rdf:resource="#MARIETTA"/>
+      <SUGAR rdf:resource="#DRY"/>
+      <FLAVOR rdf:resource="#MODERATE"/>
+      <BODY rdf:resource="#MEDIUM"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="MCGUINNESSO">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="MENDOCINO">
+      <rdf:type rdf:resource="#CALIFORNIAN-REGION"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="MERLOT-INDIVIDUAL">
+      <rdf:type rdf:resource="#WINE-GRAPE"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="MEURSAULT-INDIVIDUAL">
+      <rdf:type rdf:resource="#BOURGOGNE-REGION"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="MIXED-FRUIT">
+      <rdf:type rdf:resource="#SWEET-FRUIT"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="MOUNT-EDEN-VINEYARD">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="MOUNT-EDEN-VINEYARD-EDNA-VALLEY-CHARDONNAY">
+      <rdf:type rdf:resource="#CHARDONNAY"/>
+      <REGION rdf:resource="#EDNA-VALLEY"/>
+      <MAKER rdf:resource="#MOUNT-EDEN-VINEYARD"/>
+      <SUGAR rdf:resource="#DRY"/>
+      <FLAVOR rdf:resource="#MODERATE"/>
+      <BODY rdf:resource="#MEDIUM"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="MOUNT-EDEN-VINEYARD-ESTATE-PINOT-NOIR">
+      <rdf:type rdf:resource="#PINOT-NOIR"/>
+      <REGION rdf:resource="#SANTA-CRUZ-MOUNTAINS"/>
+      <MAKER rdf:resource="#MOUNT-EDEN-VINEYARD"/>
+      <SUGAR rdf:resource="#DRY"/>
+      <FLAVOR rdf:resource="#STRONG"/>
+      <BODY rdf:resource="#FULL"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="MOUNTADAM">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="MOUNTADAM-CHARDONNAY">
+      <rdf:type rdf:resource="#CHARDONNAY"/>
+      <REGION rdf:resource="#SOUTH-AUSTRALIA"/>
+      <MAKER rdf:resource="#MOUNTADAM"/>
+      <SUGAR rdf:resource="#DRY"/>
+      <FLAVOR rdf:resource="#STRONG"/>
+      <BODY rdf:resource="#FULL"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="MOUNTADAM-PINOT-NOIR">
+      <rdf:type rdf:resource="#PINOT-NOIR"/>
+      <REGION rdf:resource="#SOUTH-AUSTRALIA"/>
+      <MAKER rdf:resource="#MOUNTADAM"/>
+      <SUGAR rdf:resource="#DRY"/>
+      <FLAVOR rdf:resource="#MODERATE"/>
+      <BODY rdf:resource="#MEDIUM"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="MOUNTADAM-RIESLING">
+      <rdf:type rdf:resource="#DRY-RIESLING"/>
+      <REGION rdf:resource="#SOUTH-AUSTRALIA"/>
+      <MAKER rdf:resource="#MOUNTADAM"/>
+      <SUGAR rdf:resource="#DRY"/>
+      <FLAVOR rdf:resource="#DELICATE"/>
+      <BODY rdf:resource="#MEDIUM"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="MUSCADET-INDIVIDUAL">
+      <rdf:type rdf:resource="#LOIRE-REGION"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="MUSSELS">
+      <rdf:type rdf:resource="#NON-OYSTER-SHELLFISH"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="NAPA">
+      <rdf:type rdf:resource="#CALIFORNIAN-REGION"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="NEW-ZEALAND">
+      <rdf:type rdf:resource="#WINE-REGION"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="NUTS">
+      <rdf:type rdf:resource="#CHEESE-NUTS-DESSERT"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="OYSTERS">
+      <rdf:type rdf:resource="#OYSTER-SHELLFISH"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="PAGE-MILL-WINERY">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="PAGE-MILL-WINERY-CABERNET-SAUVIGNON">
+      <rdf:type rdf:resource="#CABERNET-SAUVIGNON"/>
+      <REGION rdf:resource="#NAPA"/>
+      <MAKER rdf:resource="#PAGE-MILL-WINERY"/>
+      <SUGAR rdf:resource="#DRY"/>
+      <FLAVOR rdf:resource="#MODERATE"/>
+      <BODY rdf:resource="#MEDIUM"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="PASTA-WITH-WHITE-CLAM-SAUCE">
+      <rdf:type rdf:resource="#PASTA-WITH-LIGHT-CREAM-SAUCE"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="PAUILLAC-INDIVIDUAL">
+      <rdf:type rdf:resource="#MEDOC-REGION"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="PEACHES">
+      <rdf:type rdf:resource="#SWEET-FRUIT"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="PETER-MCCOY">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="PETER-MCCOY-CHARDONNAY">
+      <rdf:type rdf:resource="#CHARDONNAY"/>
+      <REGION rdf:resource="#SONOMA"/>
+      <MAKER rdf:resource="#PETER-MCCOY"/>
+      <SUGAR rdf:resource="#DRY"/>
+      <FLAVOR rdf:resource="#MODERATE"/>
+      <BODY rdf:resource="#MEDIUM"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="PETITE-SYRAH-INDIVIDUAL">
+      <rdf:type rdf:resource="#WINE-GRAPE"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="PETITE-VERDOT">
+      <rdf:type rdf:resource="#WINE-GRAPE"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="PIE">
+      <rdf:type rdf:resource="#SWEET-DESSERT"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="PINOT-BLANC-INDIVIDUAL">
+      <rdf:type rdf:resource="#WINE-GRAPE"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="PINOT-NOIR-INDIVIDUAL">
+      <rdf:type rdf:resource="#WINE-GRAPE"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="PIZZA">
+      <rdf:type rdf:resource="#OTHER-TOMATO-BASED-FOOD"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="PORK">
+      <rdf:type rdf:resource="#NON-RED-MEAT"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="PORTUGAL">
+      <rdf:type rdf:resource="#WINE-REGION"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="PULIGNY-MONTRACHET">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="PULIGNY-MONTRACHET-WHITE-BURGUNDY">
+      <rdf:type rdf:resource="#WHITE-BURGUNDY"/>
+      <MAKER rdf:resource="#PULIGNY-MONTRACHET"/>
+      <SUGAR rdf:resource="#DRY"/>
+      <FLAVOR rdf:resource="#MODERATE"/>
+      <BODY rdf:resource="#MEDIUM"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="RIESLING-INDIVIDUAL">
+      <rdf:type rdf:resource="#WINE-GRAPE"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="ROAST-BEEF">
+      <rdf:type rdf:resource="#NON-SPICY-RED-MEAT"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="ROSE-D-ANJOU">
+      <rdf:type rdf:resource="#ANJOU"/>
+      <MAKER rdf:resource="#D-ANJOU"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="SANCERRE-INDIVIDUAL">
+      <rdf:type rdf:resource="#LOIRE-REGION"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="SANGIOVESE">
+      <rdf:type rdf:resource="#WINE-GRAPE"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="SANTA-BARBARA">
+      <rdf:type rdf:resource="#CALIFORNIAN-REGION"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="SANTA-CRUZ-MOUNTAIN-VINEYARD">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="SANTA-CRUZ-MOUNTAIN-VINEYARD-CABERNET-SAUVIGNON">
+      <rdf:type rdf:resource="#CABERNET-SAUVIGNON"/>
+      <REGION rdf:resource="#SANTA-CRUZ-MOUNTAINS"/>
+      <MAKER rdf:resource="#SANTA-CRUZ-MOUNTAIN-VINEYARD"/>
+      <SUGAR rdf:resource="#DRY"/>
+      <FLAVOR rdf:resource="#STRONG"/>
+      <BODY rdf:resource="#FULL"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="SANTA-CRUZ-MOUNTAINS">
+      <rdf:type rdf:resource="#CALIFORNIAN-REGION"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="SAUCELITO-CANYON">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="SAUCELITO-CANYON-ZINFANDEL">
+      <rdf:type rdf:resource="#ZINFANDEL"/>
+      <REGION rdf:resource="#ARROYO-GRANDE"/>
+      <MAKER rdf:resource="#SAUCELITO-CANYON"/>
+      <SUGAR rdf:resource="#DRY"/>
+      <FLAVOR rdf:resource="#MODERATE"/>
+      <BODY rdf:resource="#MEDIUM"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="SAUTERNE-INDIVIDUAL">
+      <rdf:type rdf:resource="#BORDEAUX-REGION"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="SAUVIGNON-BLANC-INDIVIDUAL">
+      <rdf:type rdf:resource="#WINE-GRAPE"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="SCHLOSS-ROTHERMEL">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="SCHLOSS-ROTHERMEL-TROCHENBIERENAUSLESE-RIESLING">
+      <rdf:type rdf:resource="#SWEET-RIESLING"/>
+      <REGION rdf:resource="#GERMANY"/>
+      <MAKER rdf:resource="#SCHLOSS-ROTHERMEL"/>
+      <SUGAR rdf:resource="#SWEET"/>
+      <FLAVOR rdf:resource="#STRONG"/>
+      <BODY rdf:resource="#FULL"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="SCHLOSS-VOLRAD">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="SCHLOSS-VOLRAD-TROCHENBIERENAUSLESE-RIESLING">
+      <rdf:type rdf:resource="#SWEET-RIESLING"/>
+      <REGION rdf:resource="#GERMANY"/>
+      <MAKER rdf:resource="#SCHLOSS-VOLRAD"/>
+      <SUGAR rdf:resource="#SWEET"/>
+      <FLAVOR rdf:resource="#MODERATE"/>
+      <BODY rdf:resource="#FULL"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="SCROD">
+      <rdf:type rdf:resource="#BLAND-FISH"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="SEAN-THACKREY">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="SEAN-THACKREY-SIRIUS-PETITE-SYRAH">
+      <rdf:type rdf:resource="#PETITE-SYRAH"/>
+      <REGION rdf:resource="#NAPA"/>
+      <MAKER rdf:resource="#SEAN-THACKREY"/>
+      <SUGAR rdf:resource="#DRY"/>
+      <FLAVOR rdf:resource="#STRONG"/>
+      <BODY rdf:resource="#FULL"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="SELAKS">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="SELAKS-ICE-WINE">
+      <rdf:type rdf:resource="#ICE-WINE"/>
+      <REGION rdf:resource="#NEW-ZEALAND"/>
+      <MAKER rdf:resource="#SELAKS"/>
+      <FLAVOR rdf:resource="#MODERATE"/>
+      <BODY rdf:resource="#MEDIUM"/>
+      <COLOR rdf:resource="#WHITE"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="SELAKS-SAUVIGNON-BLANC">
+      <rdf:type rdf:resource="#SAUVIGNON-BLANC"/>
+      <REGION rdf:resource="#NEW-ZEALAND"/>
+      <MAKER rdf:resource="#SELAKS"/>
+      <SUGAR rdf:resource="#DRY"/>
+      <FLAVOR rdf:resource="#MODERATE"/>
+      <BODY rdf:resource="#MEDIUM"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="SEMILLON-INDIVIDUAL">
+      <rdf:type rdf:resource="#WINE-GRAPE"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="SEVRE-ET-MAINE">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="SEVRE-ET-MAINE-MUSCADET">
+      <rdf:type rdf:resource="#MUSCADET"/>
+      <MAKER rdf:resource="#SEVRE-ET-MAINE"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="SONOMA">
+      <rdf:type rdf:resource="#CALIFORNIAN-REGION"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="SOUTH-AUSTRALIA">
+      <rdf:type rdf:resource="#AUSTRALIAN-REGION"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="SPAGHETTI-WITH-TOMATO-SAUCE">
+      <rdf:type rdf:resource="#PASTA-WITH-NON-SPICY-RED-SAUCE"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="ST-EMILION-INDIVIDUAL">
+      <rdf:type rdf:resource="#BORDEAUX-REGION"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="STEAK">
+      <rdf:type rdf:resource="#NON-SPICY-RED-MEAT"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="STONLEIGH">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="STONLEIGH-SAUVIGNON-BLANC">
+      <rdf:type rdf:resource="#SAUVIGNON-BLANC"/>
+      <REGION rdf:resource="#NEW-ZEALAND"/>
+      <MAKER rdf:resource="#STONLEIGH"/>
+      <SUGAR rdf:resource="#DRY"/>
+      <FLAVOR rdf:resource="#DELICATE"/>
+      <BODY rdf:resource="#MEDIUM"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="SWORDFISH">
+      <rdf:type rdf:resource="#NON-BLAND-FISH"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="TAYLOR">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="TAYLOR-PORT">
+      <rdf:type rdf:resource="#PORT"/>
+      <MAKER rdf:resource="#TAYLOR"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="THOMPSON-SEEDLESS">
+      <rdf:type rdf:resource="#EATING-GRAPE"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="TOURS-INDIVIDUAL">
+      <rdf:type rdf:resource="#LOIRE-REGION"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="TUNA">
+      <rdf:type rdf:resource="#NON-BLAND-FISH"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="TURKEY">
+      <rdf:type rdf:resource="#LIGHT-MEAT-FOWL"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="VEAL">
+      <rdf:type rdf:resource="#NON-SPICY-RED-MEAT"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="VENTANA">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="VENTANA-CHENIN-BLANC">
+      <rdf:type rdf:resource="#CHENIN-BLANC"/>
+      <REGION rdf:resource="#CENTRAL-COAST"/>
+      <MAKER rdf:resource="#VENTANA"/>
+      <SUGAR rdf:resource="#OFF-DRY"/>
+      <FLAVOR rdf:resource="#MODERATE"/>
+      <BODY rdf:resource="#MEDIUM"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="WHITEHALL-LANE">
+      <rdf:type rdf:resource="#WINERY"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="WHITEHALL-LANE-CABERNET-FRANC">
+      <rdf:type rdf:resource="#CABERNET-FRANC"/>
+      <REGION rdf:resource="#NAPA"/>
+      <MAKER rdf:resource="#WHITEHALL-LANE"/>
+      <SUGAR rdf:resource="#DRY"/>
+      <FLAVOR rdf:resource="#MODERATE"/>
+      <BODY rdf:resource="#MEDIUM"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="WHITEHALL-LANE-PRIMAVERA">
+      <rdf:type rdf:resource="#DESSERT-WINE"/>
+      <REGION rdf:resource="#NAPA"/>
+      <MAKER rdf:resource="#WHITEHALL-LANE"/>
+      <SUGAR rdf:resource="#SWEET"/>
+      <FLAVOR rdf:resource="#DELICATE"/>
+      <BODY rdf:resource="#LIGHT"/>
+   </rdf:Description>
+   <rdf:Description rdf:ID="ZINFANDEL-INDIVIDUAL">
+      <rdf:type rdf:resource="#WINE-GRAPE"/>
+   </rdf:Description>
+ </rdf:RDF>

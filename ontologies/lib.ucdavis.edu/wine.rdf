@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE rdf:RDF [
+     <!ENTITY vin  "http://www.w3.org/TR/2003/PR-owl-guide-20031209/wine#" >
+     <!ENTITY food "http://www.w3.org/TR/2003/PR-owl-guide-20031209/food#" >
+     <!ENTITY owl  "http://www.w3.org/2002/07/owl#" >
+     <!ENTITY xsd  "http://www.w3.org/2001/XMLSchema#" >
+   ]>
+
+<rdf:RDF
+  xmlns     = "http://www.w3.org/TR/2003/PR-owl-guide-20031209/wine#"
+  xmlns:vin = "http://www.w3.org/TR/2003/PR-owl-guide-20031209/wine#"
+  xml:base  = "http://www.w3.org/TR/2003/PR-owl-guide-20031209/wine#"
+  xmlns:food= "http://www.w3.org/TR/2003/PR-owl-guide-20031209/food#"
+  xmlns:owl = "http://www.w3.org/2002/07/owl#"
+  xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rdfs= "http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:xsd = "http://www.w3.org/2001/XMLSchema#">
+
+  <owl:Ontology rdf:about="">
+    <rdfs:comment>Extension of Wine Ontology</rdfs:comment>
+    <owl:imports rdf:resource="http://www.w3.org/TR/2003/PR-owl-guide-20031209/food"/>
+    <owl:imports rdf:resource="http://www.w3.org/TR/2003/PR-owl-guide-20031209/wine"/>
+    <rdfs:comment>
+      This is a test extension of an existing ontology
+    </rdfs:comment>
+    <rdfs:label>UCD Wine Ontology</rdfs:label>
+  </owl:Ontology>
+
+    <owl:imports rdf:resource="http://www.w3.org/TR/2003/PR-owl-guide-20031209/food"/>
+
+<WineGrape rdf:ID="Quinn" />
+
+</rdf:RDF>

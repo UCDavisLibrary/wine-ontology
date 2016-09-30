@@ -1,0 +1,107 @@
+@prefix english: <http://www.atl.lmco.com/projects/ontology/ontologies/wine/WineA.n3#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix	rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix	rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<>     a owl:Ontology;
+	owl:versionInfo "10/03/2003" .
+
+english:Berbera     a owl:Class;
+	rdfs:subClassOf english:RedWine .
+
+english:CabernetMerlot     a owl:Class;
+	rdfs:subClassOf english:RedWine .
+
+english:CabernetSauvignon     a owl:Class;
+	rdfs:subClassOf english:RedWine .
+
+english:Chablis     a owl:Class;
+	rdfs:subClassOf english:WhiteWine .
+
+english:Chardonnay     a owl:Class;
+	rdfs:subClassOf english:WhiteWine .
+
+english:CheninBlanc     a owl:Class;
+	rdfs:subClassOf english:WhiteWine .
+
+english:Chianti     a owl:Class;
+	rdfs:subClassOf english:RedWine .
+
+english:Dolcetto     a owl:Class;
+	rdfs:subClassOf english:RedWine .
+
+english:Gewurztaminer     a owl:Class;
+	rdfs:subClassOf english:WhiteWine .
+
+english:ItalianRed     a owl:Class;
+	rdfs:subClassOf english:RedWine .
+
+english:ItialianWhite     a owl:Class;
+	rdfs:subClassOf english:WhiteWine .
+
+english:Merlot     a owl:Class;
+	rdfs:subClassOf english:RedWine .
+
+english:Muscat     a owl:Class;
+	rdfs:subClassOf english:WhiteWine .
+
+english:Nebbiolo     a owl:Class;
+	rdfs:subClassOf english:RedWine .
+
+english:PetiteSirah     a owl:Class;
+	rdfs:subClassOf english:RedWine .
+
+english:PinotBlanc     a owl:Class;
+	rdfs:subClassOf english:WhiteWine .
+
+english:PinotGris     a owl:Class;
+	rdfs:subClassOf english:WhiteWine .
+
+english:PinotNior     a owl:Class;
+	rdfs:subClassOf english:RedWine .
+
+english:RedBordeaux     a owl:Class;
+	rdfs:subClassOf english:RedWine .
+
+english:RedBurgundy     a owl:Class;
+	rdfs:subClassOf english:RedWine .
+
+english:RedWine     a owl:Class;
+	rdfs:subClassOf english:Wine .
+
+english:Riesling     a owl:Class;
+	rdfs:subClassOf english:WhiteWine .
+
+english:Sake     a owl:Class;
+	rdfs:subClassOf english:WhiteWine .
+
+english:Sangiovese     a owl:Class;
+	rdfs:subClassOf english:RedWine .
+
+english:SauvignonBlanc     a owl:Class;
+	rdfs:subClassOf english:WhiteWine .
+
+english:Semillon     a owl:Class;
+	rdfs:subClassOf english:WhiteWine .
+
+english:Syrah     a owl:Class;
+	rdfs:subClassOf english:RedWine .
+
+english:Tempranillo     a owl:Class;
+	rdfs:subClassOf english:RedWine .
+
+english:WhiteBordeaux     a owl:Class;
+	rdfs:subClassOf english:WhiteWine .
+
+english:WhiteBurgundy     a owl:Class;
+	rdfs:subClassOf english:WhiteWine .
+
+english:WhiteWine     a owl:Class;
+	rdfs:subClassOf english:Wine .
+
+english:Wine     a owl:Class .
+
+english:Zinfandel     a owl:Class;
+	rdfs:subClassOf english:RedWine .
+
+

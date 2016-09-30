@@ -1,0 +1,105 @@
+@prefix espanol: <http://www.atl.lmco.com/projects/ontology/ontologies/wine/WineB.n3#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix	rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix	rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<>     a owl:Ontology;
+	owl:versionInfo "10/03/2003" .
+
+espanol:Berbera     a owl:Class;
+	rdfs:subClassOf espanol:VinosRojos .
+
+espanol:BlancoItaliano     a owl:Class;
+	rdfs:subClassOf espanol:VinosBlancos .
+
+espanol:BorgonaBlanca     a owl:Class;
+	rdfs:subClassOf espanol:VinosBlancos .
+
+espanol:BurdeosBlanco     a owl:Class;
+	rdfs:subClassOf espanol:VinosBlancos .
+
+espanol:BurdeosRojo     a owl:Class;
+	rdfs:subClassOf espanol:VinosRojos .
+
+espanol:BurgonaRoja     a owl:Class;
+	rdfs:subClassOf espanol:VinosRojos .
+
+espanol:CabernetSauvignon     a owl:Class;
+	rdfs:subClassOf espanol:VinosRojos .
+
+espanol:Chablis     a owl:Class;
+	rdfs:subClassOf espanol:VinosBlancos .
+
+espanol:Chardonnay     a owl:Class;
+	rdfs:subClassOf espanol:VinosBlancos .
+
+espanol:CheninBlanc     a owl:Class;
+	rdfs:subClassOf espanol:VinosBlancos .
+
+espanol:Chianti     a owl:Class;
+	rdfs:subClassOf espanol:VinosRojos .
+
+espanol:Dolcetto     a owl:Class;
+	rdfs:subClassOf espanol:VinosRojos .
+
+espanol:Gewurztaminer     a owl:Class;
+	rdfs:subClassOf espanol:VinosBlancos .
+
+espanol:Merlot     a owl:Class;
+	rdfs:subClassOf espanol:VinosRojos .
+
+espanol:MezclaDeCabernet     a owl:Class;
+	rdfs:subClassOf espanol:VinosRojos .
+
+espanol:Muscat     a owl:Class;
+	rdfs:subClassOf espanol:VinosBlancos .
+
+espanol:Nebbiolo     a owl:Class;
+	rdfs:subClassOf espanol:VinosRojos .
+
+espanol:PetiteSirah     a owl:Class;
+	rdfs:subClassOf espanol:VinosRojos .
+
+espanol:PinotBlanc     a owl:Class;
+	rdfs:subClassOf espanol:VinosBlancos .
+
+espanol:PinotGris     a owl:Class;
+	rdfs:subClassOf espanol:VinosBlancos .
+
+espanol:PinotNior     a owl:Class;
+	rdfs:subClassOf espanol:VinosRojos .
+
+espanol:Riesling     a owl:Class;
+	rdfs:subClassOf espanol:VinosBlancos .
+
+espanol:RojoItaliano     a owl:Class;
+	rdfs:subClassOf espanol:VinosRojos .
+
+espanol:Sake     a owl:Class;
+	rdfs:subClassOf espanol:VinosBlancos .
+
+espanol:Sangiovese     a owl:Class;
+	rdfs:subClassOf espanol:VinosRojos .
+
+espanol:SauvignonBlanc     a owl:Class;
+	rdfs:subClassOf espanol:VinosBlancos .
+
+espanol:Semillon     a owl:Class;
+	rdfs:subClassOf espanol:VinosBlancos .
+
+espanol:Syrah     a owl:Class;
+	rdfs:subClassOf espanol:VinosRojos .
+
+espanol:Tempranillo     a owl:Class;
+	rdfs:subClassOf espanol:VinosRojos .
+
+espanol:Vino     a owl:Class .
+
+espanol:VinosBlancos     a owl:Class;
+	rdfs:subClassOf espanol:Vino .
+
+espanol:VinosRojos     a owl:Class;
+	rdfs:subClassOf espanol:Vino .
+
+espanol:Zinfandel     a owl:Class;
+	rdfs:subClassOf espanol:VinosRojos .
