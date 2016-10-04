@@ -36,10 +36,10 @@ ava.csv:
 	${PG} -c '\COPY (select ava_name as ava,st_asKML(boundary) as boundary from ava_napa_county) to ava.csv with csv header'
 
 ava.geojson:
-	ogr2ogr -f "GeoJSON" ava.geojson -t_srs epsg:4269 -sql  'select ava_name as ava,boundary from ava_napa_county' PG:"service=wine"
+	ogr2ogr -f "GeoJSON" ava.geojson -t_srs WGS84 -sql  'select ava_name as ava,boundary from ava_napa_county' PG:"service=wine"
 
 wineries.csv:
 	${PG} -c '\COPY (select name,status,prod_orig,prod_curr,estab_date,total_size,ava,st_asKML(boundary) as boundary from wineries) to wineries.csv with csv header'
 
 wineries.geojson:
-	ogr2ogr -f "GeoJSON" wineries.geojson -t_srs epsg:4269 -select name,status,prod_orig,prod_curr,estab_date,total_size,ava PG:"service=wine" "wineries"
+	ogr2ogr -f "GeoJSON" wineries.geojson -t_srs WGS84 -select name,status,prod_orig,prod_curr,estab_date,total_size,ava PG:"service=wine" "wineries"
