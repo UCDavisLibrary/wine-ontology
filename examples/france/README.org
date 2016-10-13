@@ -1,0 +1,152 @@
+
+We've decided on using the Bordeux (Burgandy?) region of france as our
+Humanities example for the wind label app.  In order to do these, I need to do
+the following:
+
+ * Get a set of wine regions
+ * Get a set of vineyards.
+ * Get a set of labels
+
+For the vineyard data, I was able to retrieve [[http://www.eea.europa.eu/data-and-maps/data/clc-2006-vector-data-version-3][Corine 2006 Land Use]] data.
+I downloaded the for vineyards clc06_c221.zip.  This includes vineyards for
+all of the EU, so it's a good source for later, and trying to define regions.
+
+For AOCs, I found this [[http://www.arcgis.com/home/item.html?id%3Df00e59695c114bcc8b88dd3c93437c52][ESRI Map]] which is someone's hand drawn regions of France regions.
+The License seems to indicate fine for public use, so I'll use that.
+
+#+BEGIN_SRC sql :engine postgresql :database wine-ontology
+CREATE OR REPLACE FUNCTION
+lt_url(label text,type text default '2048x') RETURNS text
+LANGUAGE sql AS $_$
+select format('http://labelthis.lib.ucdavis.edu/images/labels/%s/%s/%s.jpg',
+$2,split_part($1,'-',2)::integer/1000,$1)
+$_$;
+
+select lt_url('foo-300','thumb')
+#+END_SRC
+
+#+RESULTS:
+| CREATE FUNCTION                                                    |
+|--------------------------------------------------------------------|
+| lt_url                                                             |
+| [[http://labelthis.lib.ucdavis.edu/images/labels/thumb/0/foo-300.jpg]] |
+
+
+To limit the size of the tables, lets remove vineyards not in any france region.
+
+
+#+header: :engine postgresql
+#+header: :database wine-ontology
+#+BEGIN_SRC sql
+create table france.vineyards as
+select v.*,r.region
+from vineyards v join france.regions r
+on st_within(v.boundary,r.wkb_geometry);
+#+END_SRC
+
+That leaves only about 1800 vineyards.  300 in Bordeaux.
+
+#+BEGIN_SRC sql :engine postgresql :database wine-ontology
+select region,count(*)
+from france.vineyards
+group by 1 order by 1
+#+END_SRC
+
+#+RESULTS:
+| region                      | count |
+|-----------------------------+-------|
+| region Alsace               |    33 |
+| region Bordeaux             |   311 |
+| region Bourgogne            |   167 |
+| region Champagne            |   142 |
+| region Dordogne             |    71 |
+| region Languedoc-Roussillon |   271 |
+| region Loire                |   437 |
+| region Provence             |   317 |
+| Region Rhône                |   149 |
+
+To make the vineyards look more distributed however, We'll locate them within these big vineyard areas.  I'll do
+that by generating a set of points for the region.
+
+#+BEGIN_SRC sql :engine postgresql :database wine-ontology
+drop table if exists france.pseudo_vineyards;
+create table france.pseudo_vineyards as
+  with b as (
+      select
+      ((min(st_xmin(boundary))*100)::integer/100.0)::decimal(6,2) as xmin,
+      ((max(st_xmax(boundary))*100)::integer/100.0)::decimal(6,2) as xmax,
+      ((min(st_ymin(boundary))*100)::integer/100.0)::decimal(6,2) as ymin,
+      ((max(st_ymax(boundary))*100)::integer/100.0)::decimal(6,2) as ymax
+      from france.vineyards
+      where region='region Bordeaux'
+  ),
+  p as (
+    select
+    generate_series(xmin,xmax,0.01) as x,
+    generate_series(ymin,ymax,0.01) as y
+    from b
+    ),
+  q as (
+    select
+    st_setsrid(st_makepoint(x,y),4326) as pt
+    from p
+  )
+  select row_number() OVER () as gid,pt
+  from q
+  join france.vineyards on st_within(pt,boundary)
+#+END_SRC
+
+#+RESULTS:
+| DROP TABLE |
+|------------|
+| SELECT 829 |
+
+Now, we can make our pretend pseudo-wineries, by joining some labels from
+bordeaux, to some pretend vineyards.
+
+#+BEGIN_SRC sql :engine postgresql :database wine-ontology
+drop table if exists france.pseudo_wineries ;
+create table france.pseudo_wineries as
+with p as (
+select
+label,
+lower(jsonb_array_elements(vision->'text')->>'desc') as phrase
+from labels
+),
+q as (
+ select distinct
+ label
+from p
+where phrase like 'bordea%'
+),
+g as (
+select label,(random()*830)::integer as gid
+from q
+)
+select
+label,
+pt as centroid
+from
+g join france.pseudo_vineyards using (gid)
+#+END_SRC
+
+#+RESULTS:
+
+Now let's make all these available.
+
+#+BEGIN_SRC sql :engine postgresql :database wine-ontology
+select label as id,
+lt_url(label) as label,
+lt_url(label,'200x') as thumbnail,
+centroid
+#+END_SRC
+
+#+BEGIN_SRC bash
+rm -f labels.geojson;
+	ogr2ogr -f "GeoJSON" labels.geojson  -sql  \
+"select label as id,lt_url(label) as label,lt_url(label,'200x') as thumbnail,centroid from france.pseudo_wineries" PG:"service=wine"
+rm -f vineyards.geojson;
+	ogr2ogr -f "GeoJSON" regions.geojson PG:"service=wine table=france.vineyards"
+#+END_SRC
+
+#+RESULTS:
