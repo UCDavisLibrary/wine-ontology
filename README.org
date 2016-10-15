@@ -1,0 +1,27 @@
+* Tooling
+
+Potential RDF database
+
+
+from [[http://ehneilsen.net/notebook/orgExamples/org-examples.html#sec-21][PlantUml]]
+
+#+begin_src plantuml :file class_diagram.png
+skinparam monochrome true
+FitsHdu <|-- PrimaryHdu
+FitsHdu <|-- ExtensionHdu
+
+FitsHdu : header
+FitsHdu : getHeaderKeyword()
+
+ExtensionHdu <|-- ImageHdu
+ImageHdu : image
+ImageHdu : getPixel(row, column)
+
+ExtensionHdu <|-- BinaryTableHdu
+BinaryTableHdu : table
+BinaryTableHdu : getRow(row)
+BinaryTableHdu : getColumn(column)
+#+end_src
+
+#+RESULTS:
+[[file:class_diagram.png]]

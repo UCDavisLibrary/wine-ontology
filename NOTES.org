@@ -1,0 +1,349 @@
+* Wine Labels
+
+
+
+* Tooling
+
+On thing that's hard to do is get the right tools for looking at this data.
+There are some super cool commandline tools that can help with this. These very
+execllent tools include:
++ wikidata-cli = Easy access to wiki data things
++ wikidata-taxonomy - Show parentage of objects and properities
++ wikidata-filter - Filter n3 files
++
+
+Note, that if you want the colors to pipe to less, you need to fake the tool
+into thinking it's going to the terminal, with something like:
+
+#+BEGIN_SRC bash
+0<&- script -qfc 'wdtaxonomy -i wd:Q630531 -l fr' /dev/null | less -R
+#+END_SRC
+
+#+RESULTS:
+
+#+BEGIN_SRC bash :results raw
+wdtaxonomy -i wd:Q630531 -l fr
+#+END_SRC
+
+#+RESULTS:
+vin français (Q630531) •21 ↑↑
+|-Saint-pourçain (AOC) (Q10214)
+|-Juliénas (Q662738)
+|-Vignoble de Bourgogne (Q1016093)
+|-Bordeaux-côtes-de-francs (Q2910681)
+|-Vignoble du Beaujolais (Q3558198)
+├──Beaujolais (Q616) •18
+│   -Beaujolais nouveau (Q1640404)
+╞══Saint-pourçain (AOC) (Q10214) •4 …
+├──Muscadet-sèvre-et-maine (Q179245) •2
+├──Montagne-saint-émilion (Q282021) •3
+├──Sancerre (Q282221) •8
+├──Puisseguin-saint-émilion (Q283918) •4
+├──Saint-julien (Q382471) •5 ↑
+├──Gaillac (Q392242) •5
+├──Minervois (Q441995) •5
+├──Rivesaltes (Q455197) •5
+├──Luberon (Q458070) •4
+├──Grignan-les-adhémar (Q458075) •5
+├──Pécharmant (Q461047) •4
+├──Côte-de-brouilly (Q461328) •4
+├──Brouilly (Q461400) •4
+├──Pacherenc-du-vic-bilh (Q462134) •5
+├──Côtes-du-marmandais (Q462248) •4
+├──Buzet (Q462636) •5
+├──Côtes-de-duras (Q464317) •5
+├──Crozes-hermitage (Q465180) •5
+├──Saint-joseph (Q465202) •4
+├──Barsac (Q465286) •4
+├──Côtes-du-roussillon villages (Q469048) •4
+├──Fitou (Q470974) •6
+├──Palette (Q471013) •4
+├──Muscat de Rivesaltes (Q474278) •5
+├──Fronsac (Q489244) •4
+├──Vinsobres (Q507055) •4
+├──Margaux (Q532734) •6
+├──Anjou (AOC) (Q551484) •5
+├──Médoc (Q592785) •6
+├──Morgon (Q601758) •3
+├──Corbières (Q650077) •6
+├──Lalande-de-pomerol (Q669737) •5
+├──pauillac (Q770230) •2
+├──Sauternes (Q771636) •11
+├──Canon-fronsac (Q775950) •2
+├──Estaing (Q788511) •2
+├──Banyuls (AOC) (Q807022) •7
+├──Cabardès (Q844467) •5
+├──blanquette de Limoux (Q881685) •6 ↑
+├──Bonnezeaux (Q892806) •2
+├──Jurançon (Q921560) •7
+├──Ventoux (Q973682) •5
+├──Béarn (AOC) (Q1019358) •4
+├──Cadillac (AOC) (Q1025147) •3
+├──Cahors (AOC) (Q1025792) •14
+├──Chaume (AOC) (Q1068372) •2
+├──Chiroubles (AOC) (Q1074779) •3
+├──Château-chalon (AOC) (Q1090298) •3
+├──Château-grillet (AOC) (Q1090303) •4
+├──Châtillon-en-diois (AOC) (Q1090846) •2
+├──Chénas (AOC) (Q1090927) •3
+├──Clairette de Bellegarde (Q1094843) •2
+├──Clairette de Die (Q1094848) •5
+├──Clairette du Languedoc (Q1094850) •5
+├──Coteaux-de-die (Q1136584) •2
+├──Coteaux-de-l'aubance (Q1136588) •2
+├──Coteaux-du-layon (Q1136591) •5
+├──Coteaux-varois-en-provence (Q1136596) •2
+├──Pierrevert (AOC) (Q1136597) •3
+├──Coteaux-du-giennois (Q1136598) •3
+├──Coteaux-du-loir (Q1136602) •2
+├──Coteaux-du-languedoc (Q1136603) •2
+├──Bellet (AOC) (Q1136605) •2
+├──Coteaux-du-lyonnais (Q1136606) •3
+├──Coteaux-d'ancenis (Q1136610) •2
+├──Cour-cheverny (AOC) (Q1137604) •2
+├──Crémant de Limoux (Q1142485) •2
+├──Crémant de Loire (Q1142487) •2
+├──Côte-rôtie (AOC) (Q1150915) •5
+├──Côte-roannaise (Q1150937) •2
+├──Côtes-de-blaye (Q1150971) •3
+├──Côtes-de-bordeaux-saint-macaire (Q1150976) •3
+├──Côtes-de-bourg (Q1150979) •5
+├──Côtes-de-castillon (Q1150981) •4
+├──Côtes-de-millau (Q1150985) •3
+├──Côtes-de-saint-mont (Q1150988) •3
+├──Côtes-de-provence (Q1150990) •2
+├──Côtes-du-forez (Q1150991) •2
+├──Côtes-du-jura (Q1150995) •2
+├──Fronton (AOC) (Q1150996) •4
+├──Côtes-du-rhône (Q1151005) •10
+│  ├──Costières-de-nîmes (Q470355) •4
+│  ├──Muscat de Beaumes-de-Venise (Q1236939) •3
+│  └──Gigondas (Q1332577) •4
+├──Côtes-du-roussillon (Q1151010) •5
+├──Côtes-du-vivarais (Q1151015) •3
+├──Côtes-d'auvergne (Q1151017) •3
+├──Sainte-croix-du-mont (Q1257375) •4
+├──Entre-deux-mers (AOC) (Q1345117) •6
+├──Lussac-saint-émilion (Q1383154) •5
+├──Faugères (AOC) (Q1398382) •4
+├──Fiefs-vendéens (Q1411525) •2
+├──Côtes-du-rhône villages (Q1422135) •3
+├──Bordeaux-clairet (Q1427324) •5
+├──Monbazillac (Q1430928) •5
+├──Hermitage (Q1431347) •5
+├──Marcillac (Q1435070) •5
+├──Graves-de-vayres (Q1456194) •5
+├──Montravel (Q1461917) •2
+├──Listrac-médoc (Q1516318) •4
+├──Graves (AOC) (Q1543969) •9
+├──Gros-plant-du-pays-nantais (Q1547447) •2
+├──Haut-médoc (Q1591387) •6
+├──Entraygues-et-du-fel (Q1639157) •2
+├──Saint-estèphe (Q1640145) •6
+├──Saint-chinian (Q1658461) •4
+├──Jasnières (Q1683850) •3
+├──Régnié (Q1684463) •2
+├──Pessac-léognan (Q1760220) •6
+├──Saussignac (Q1779391) •3
+├──Loupiac (Q1797824) •4
+├──Montlouis-sur-loire (Q1805052) •2
+├──Les-baux-de-provence (AOC) (Q1820443) •2
+├──Malepère (AOC) (Q1887161) •4
+├──Moulin-à-vent (AOC) (Q1950238) •3
+├──Muscadet-coteaux-de-la-loire (Q1954013) •2
+├──Muscadet-côtes-de-grandlieu (Q1954017) •2
+├──Muscadet (AOC) (Q1954034) •9
+├──Muscat de Frontignan (Q1954036) •4
+├──Muscat de Lunel (Q1954038) •4
+├──Muscat de Mireval (Q1954039) •4
+├──Pouilly-fumé (Q2106740) •6
+├──Premières-côtes-de-bordeaux (Q2108715) •4
+├──Maury (Q2120260) •5
+├──Quarts-de-chaume (Q2122401) •2
+├──Quincy (Q2123199) •3
+├──Reuilly (Q2146579) •3
+├──Rosette (AOC) (Q2167339) •2
+├──Rosé de Loire (Q2167976) •2
+├──Rosé des Riceys (Q2167983) •4
+├──Saint-georges-saint-émilion (AOC) (Q2212445) •3
+├──Sainte-foy-bordeaux (Q2213019) •3
+├──Touraine-amboise (Q2446577) •3
+├──Madiran (Q2516636) •5
+├──L'étoile (Q2647023) •2
+├──Blaye-côtes-de-bordeaux (Q2655967) •4
+├──Châteaumeillant (AOC) (Q2669603) •2
+├──Crémant du Jura (Q2713334) •2
+├──Saint-émilion (Q2715616) •8
+├──Bordeaux (Q2743615) •4
+├──Anjou-coteaux-de-la-loire (Q2850251) •1
+├──Anjou fines bulles (Q2850257) •1
+├──Anjou villages (Q2850259) •1
+├──Anjou villages brissac (Q2850261) •1
+├──Arbois (AOC) (Q2859682) •1
+├──Bandol (AOC) (Q2882372) •4
+├──Bergerac (AOC) (Q2897081) •1
+╞══Bordeaux-côtes-de-francs (Q2910681) •2 …
+├──Bordeaux-supérieur (Q2910687) •2
+├──Châteauneuf-du-pape (Q2914687) •8
+├──Bourgueil (AOC) (Q2922370) •2
+├──Brulhois (AOC) (Q2926548) •2
+├──Brézème (Q2927317) •1
+├──Cabernet de Saumur (Q2932293) •1
+├──Cairanne (Côtes-du-rhône villages) (Q2933220) •1
+├──Cassis (AOC) (Q2941302) •3
+├──Cerdon (AOC) (Q2946608) •2
+├──Chinon (AOC) (Q2963789) •2
+├──Chusclan (Côtes-du-rhône villages) (Q2967687) •1
+├──Cornas (Q2973323) •4
+├──Condrieu (Q2992326) •3
+├──Corbières-boutenac (Q2997071) •2
+├──Coteaux-d'aix-en-provence (Q2998538) •1
+├──Coteaux-de-saumur (Q2998545) •1
+├──Coteaux-du-vendômois (Q2998556) •2
+├──Cérons (Q3010331) •3
+├──Côtes-de-bordeaux (Q3010713) •1
+├──Côtes-de-montravel (Q3010718) •1
+├──Côtes-de-provence Sainte-Victoire (Q3010719) •1
+├──Côtes-du-tarn (Q3010726) •1
+├──Côtes-de-toul (Q3010732) •3
+├──Irouléguy (Q3058542) •7
+├──Gaillac-premières-côtes (Q3094372) •1
+├──Grès-de-montpellier (Q3118343) •1
+├──Haut-montravel (Q3128436) •1
+├──Haut-poitou (Q3128437) •2
+├──La-clape (Q3206239) •2
+├──Languedoc (Q3217353) •2
+├──Laudun (Q3218598) •1
+├──Lavilledieu (Q3219822) •1
+├──Lirac (Q3242328) •2
+├──Macvin du Jura (Q3275065) •4
+├──Madargue (Q3275425) •1
+├──Manicle (Q3285873) •1
+├──Massif-d'uchaux (Q3297590) •1
+├──Montagnieu (Q3322365) •1
+├──Moulis-en-médoc (Q3325895) •3
+├──Orléans-cléry (Q3356495) •1
+├──Orléans (Q3356496) •2
+├──Pic-saint-loup (Q3382279) •2
+├──Plan-de-dieu (Q3391095) •1
+├──Pouilly-sur-loire (Q3400220) •2
+├──Puyméras (Q3411115) •1
+├──Pézenas (Q3412100) •1
+├──Quatourze (Q3413422) •1
+├──Rasteau (Q3419962) •2
+├──Rimage (Q3432083) •1
+├──Roaix (Q3434115) •1
+├──Rochegude (Q3437571) •1
+├──Rousset-les-vignes (Q3443452) •1
+├──Roussette du Bugey (Q3443460) •1
+├──Sablet (Q3460618) •1
+├──Saint-drézéry (Q3463543) •1
+├──Saint-gervais (Q3463546) •1
+├──Saint-maurice-sur-eygues (Q3463550) •1
+├──Saint-nicolas-de-bourgueil (Q3463552) •2
+├──Saint-pantaléon-les-vignes (Q3463553) •1
+├──Saint-péray (Q3463557) •2
+├──Saint-sardos (Q3463560) •1
+├──Saint-émilion grand cru (Q3463623) •1
+├──Saumur-champigny (Q3474235) •1
+├──Saumur brut (Q3474236) •1
+├──Saumur (Q3474241) •3
+├──Savennières (Q3474522) •2
+├──Signargues (Q3483631) •1
+├──Sommières (Q3489962) •1
+├──Séguret (Q3510557) •1
+├──Tavel (Q3516286) •5
+├──Terrasses-de-béziers (Q3518585) •1
+├──Terrasses-du-larzac (Q3518588) •2
+├──Touraine-azay-le-rideau (Q3533887) •1
+├──Touraine-mesland (Q3533888) •1
+├──Touraine-noble-joué (Q3533889) •1
+├──Touraine (Q3533893) •3
+├──Valençay (Q3553671) •2
+├──Valréas (Q3554135) •1
+├──Virieu-le-grand (Q3560814) •1
+├──Visan (Q3560995) •1
+├──Vacqueyras (Q7888536) •2
+├──Picpoul de Pinet (Q9298961) •3
+├──Vouvray (Q13420363) •3
+├──Cheverny (Q13420375) •2
+├──Menetou-salon (AOC) (Q15690458) •2
+├──Blaye (Q16532973) •1
+├──Côte du Rhône (Q16545618) •1
+├──Côtes-de-provence Fréjus (Q16545622) •1
+├──Côtes-de-provence La Londe (Q16545626) •1
+├──domaine de La Rectorie (Q16629611) •1
+├──Beaumes-de-venise (Q17174701) •1
+├──Bartissol (Q17354008) •2
+├──Côtes-de-bergerac (Q17354353) •1
+├──Caramany (Q17623738) •1
+├──Vabé (Q17640352) •1
+├──Moselle (Q18221760) •1
+├──Muscat de Saint-Jean-de-Minervois (Q18414851) •2
+├──Rasteau (Q18745419) •1
+├──saint-saturnin (Q18745456) •1
+├──Duché-d'uzès (Q19952392) •1
+├──vins de Limoux (Q20724665) •2
+│  ╞══blanquette de Limoux (Q881685) •6 ↑ …
+│  └──Limoux (Q20724666) •1
+╘══Limoux (Q20724666) •1 …
+
+* Wine Ontology
+
+The basic premise of this is to create an ontology of wine terms, that we can
+hang a number of tools from.  Most notably, we want to use it for our wine label
+application, to add markup to, but we also want to use it for our social network
+if we end up doing that.  There have a been a few ideas put forth for where we
+should start with that.
+
+Countries with wine
+
+SELECT ?_country ?_countryLabel ?item ?itemLabel ?_product_certification ?_product_certificationLabel WHERE {
+  ?item wdt:P31 wd:Q282.
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+  OPTIONAL { ?item wdt:P1389 ?_product_certification. }
+  OPTIONAL { ?item wdt:P17 ?_country. }
+}
+
+Number of Countries with wine:
+
+#+BEGIN_SRC sparql :url https://query.wikidata.org/
+SELECT ?_country ?_countryLabel (count(*) as ?count) WHERE {
+  ?item wdt:P31 wd:Q282.
+  OPTIONAL { ?item wdt:P17 ?_country. }
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+} GROUP BY ?_country ?_countryLabel
+#+END_SRC
+
+
+** DBPedia
+
+Ok, lets begin with some simple questions, about dbpedia and wine.  There are about 328 Wineries in dbpedia.
+
+#+BEGIN_SRC sparql :url http://dbpedia.org/sparql
+PREFIX dbpedia0: <http://dbpedia.org/ontology/>
+SELECT (count(?body) as ?count) WHERE {
+?body a dbpedia0:Winery.
+}
+#+END_SRC
+
+#+RESULTS:
+
+Wineries make _signatureWines_. There are about 212 of these.  These are primarily simple string values, but they don't have to be.
+
+SELECT count(*) as ?count
+WHERE { ?resource dbpedia2:signatureWine ?value. }
+
+*Grapes* Make notableWines.  There are about 79 notableWines,  These are always proper resources.  These resources not in the dbpedia ontology, but in the yago class type.  There are about 13 subclasses of notableWines.
+
+PREFIX yago: http://dbpedia.org/class/yago
+SELECT ?type
+WHERE {
+  ?type a yago:Wine107891726 }
+
+
+** Simplified T-box Drawing
+
+We need to make some more simple interfaces to the tbox part, something that can be easily understood and diagrammed quickly.  Matt suggested CMAPS, but I  think I prefer using YUML style descriptions, they are so much more concise.
+
+**

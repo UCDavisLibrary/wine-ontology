@@ -134,19 +134,40 @@ g join france.pseudo_vineyards using (gid)
 
 Now let's make all these available.
 
-#+BEGIN_SRC sql :engine postgresql :database wine-ontology
-select label as id,
-lt_url(label) as label,
-lt_url(label,'200x') as thumbnail,
-centroid
-#+END_SRC
-
 #+BEGIN_SRC bash
 rm -f labels.geojson;
 	ogr2ogr -f "GeoJSON" labels.geojson  -sql  \
 "select label as id,lt_url(label) as label,lt_url(label,'200x') as thumbnail,centroid from france.pseudo_wineries" PG:"service=wine"
 rm -f vineyards.geojson;
-	ogr2ogr -f "GeoJSON" regions.geojson PG:"service=wine table=france.vineyards"
+	ogr2ogr -f "GeoJSON" vineyards.geojson PG:"service=wine" france.vineyards
+rm -f regions.geojson;
+	ogr2ogr -f "GeoJSON" aocs.geojson PG:"service=wine" france.regions
 #+END_SRC
+
+
+#+BEGIN_SRC sql :engine postgresql :database wine-ontology
+create temp view wineries_csv as
+select label as id,
+lt_url(label) as label,
+lt_url(label,'200x') as thumbnail,
+st_asKML(centroid) as centroid
+from france.pseudo_wineries;
+create temp view vineyards_csv as
+select region,
+st_asKML(boundary) as boundary
+from france.vineyards;
+create temp view regions_csv as
+select
+name,
+url1,url2,region,grapes,
+st_asKML(wkb_geometry) as boundary
+from france.regions;
+
+\COPY (select * from wineries_csv) to wineries.csv with CSV HEADER
+\COPY (select * from vineyards_csv) to vineyards.csv with CSV HEADER
+\COPY (select * from regions_csv) to regions.csv with CSV HEADER
+
+#+END_SRC
+
 
 #+RESULTS:
