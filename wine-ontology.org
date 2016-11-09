@@ -156,9 +156,13 @@ Right now, I'm allowing some of these attributes to be used on general wine labe
 * Examples
 
 Below are a few examples of some wine definitions.  We include a number of wine
-labels from the Amarine collection, as well as an example from Opus One.
+labels from the Amarine collection, as well as an example from Opus One.  The
+examples below use the [[https://www.w3.org/TeamSubmission/n3/][Notation3 (N3)]] format.  This about the most clear syntax
+that I could find for this linked data markup.  If you are interested in how it
+may look in other formats, you can see this [[http://rdf-translator.appspot.com/][RDF Translator]] to modify it.
 
-First, we need to define our prefixes.  Since are are
+First, we need to define our prefixes.  Since we are using two different
+collections, there are two different prefixes in the examples below.
 
 #+BEGIN_SRC n3 :tangle wine-example.owl
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
