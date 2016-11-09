@@ -173,6 +173,11 @@ First, we need to define our prefixes.  Since are are
 
 ** Hotel Del Monte Selections, California Burgandy
 
+#+CAPTION: Hotel Del Monte Selections, California Burgandy
+#+NAME:   fig:hdm_burgandy
+[[https://labelthis.lib.ucdavis.edu/images/labels/2048x/0/Amerine-0172.jpg]]
+
+
 This is from the Amerine collection, [[https://labelthis.lib.ucdavis.edu/view/0172][Label 0172]]. Note that this example has the
 Sonoma Winery identified as a anonymous winery.   This is another method of
 markup, but we can't know when we are talking about the same winery in that case.
@@ -200,6 +205,10 @@ markup, but we can't know when we are talking about the same winery in that case
 
 
 ** BV California Burgandy
+
+#+CAPTION: BV, California Burgandy
+#+NAME:   fig:bv_burgandy
+[[https://labelthis.lib.ucdavis.edu/images/labels/2048x/0/Amerine-0162.jpg]]
 
 This is one of the earliest wines in the Amerine collection, pre-prohibition.  It
 corresponds to [[https://labelthis.lib.ucdavis.edu/view/0162][Label 0162]].  In addition to the label, Ive taken some information
@@ -231,6 +240,11 @@ from Amerine's notes on the label.
 
 ** Inglenook Cabernet and Pinot Noir
 
+#+CAPTION: Inglenook Cabernet
+#+NAME:   fig:ing_cab
+[[https://labelthis.lib.ucdavis.edu/view/0207]]
+
+
 Here's some examples from wines that come from the same winery; a Burgandy,
 [[https://labelthis.lib.ucdavis.edu/view/0207][Label 0207]] and a Pinot Noir,  [[https://labelthis.lib.ucdavis.edu/view/0250][Label 0250]].  We can see
 below, that we can share the winery information between these two examples.
@@ -257,7 +271,14 @@ below, that we can share the winery information between these two examples.
                         w:varietal w:CabernetSavignon;
                         w:blend "Prominent"@en
                         ].
+#+END_SRC
 
+
+#+CAPTION: Inglenook Pinot Noir
+#+NAME:   fig:ing_pn
+[[https://labelthis.lib.ucdavis.edu/view/0250]]
+
+#+BEGIN_SRC n3 :tangle example.owl
 
   a:0250 a w:Wine;
          w:type w:Still;
