@@ -170,64 +170,6 @@ First, we need to define our prefixes.  Since are are
 @prefix o:  <http://library.ucdavis.edu/wine/OpusOne#> .
 #+END_SRC
 
-** BV California Burgandy
-
-This is one of the earliest wines in the Amerine collection, pre-prohibition.  It
-corresponds to [[https://labelthis.lib.ucdavis.edu/view/0162][Label 0162]].
-
-#+BEGIN_SRC n3 :tangle example.owl
-  a:bv_winery a w:Winery;
-  rdf:label "Beaulieu Vineyard"@en;
-  w:address "Rutherford, Napa County, CA"@en;
-  ];
-
-  a:0172 a w:Wine;
-         w:type w:Still;
-         w:color w:Red;
-         w:brandName "Beaulieu Vineyard"@en;
-         w:otherDesignation "California Burgandy"@en;
-         w:nameAndAddress a:bv_winery
-         w:alcohol "12%"@en;
-         w:addressQualification w:ProducedAndBottled;
-         w:vintage [
-                   w:year 1919;
-                   w:image <https://labelthis.lib.ucdavis.edu/images/labels/2048x/0/Amerine-0162.jpg>
-                   ];
-         w:constituent [
-                        w:varietal w:CabernetSauvignon;
-                        w:blend "80%"@en
-                        ];
-#+END_SRC
-
-** Inglenook Burgandy and Pinot Noir
-
-Here's some examples from wines that come from the same winery.  We can see
-below, that we can share the winery information between these two examples.
-
-#+BEGIN_SRC n3 :tangle example.owl
-  a:inglenook_winery a w:Winery;
-  rdf:label "Beaulieu Vineyard"@en;
-  w:address "Rutherford, Napa County, CA"@en;
-  ];
-
-  a:0172 a w:Wine;
-         w:type w:Still;
-         w:color w:Red;
-         w:brandName "Beaulieu Vineyard"@en;
-         w:otherDesignation "California Burgandy"@en;
-         w:nameAndAddress a:bv_winery
-         w:alcohol "12%"@en;
-         w:addressQualification w:ProducedAndBottled;
-         w:vintage [
-                   w:year 1919;
-                   w:image <https://labelthis.lib.ucdavis.edu/images/labels/2048x/0/Amerine-0162.jpg>
-                   ];
-         w:constituent [
-                        w:varietal w:CabernetSauvignon;
-                        w:blend "80%"@en
-                        ];
-#+END_SRC
-
 
 ** Hotel Del Monte Selections, California Burgandy
 
@@ -256,10 +198,95 @@ markup, but we can't know when we are talking about the same winery in that case
 
 #+END_SRC
 
+
+** BV California Burgandy
+
+This is one of the earliest wines in the Amerine collection, pre-prohibition.  It
+corresponds to [[https://labelthis.lib.ucdavis.edu/view/0162][Label 0162]].  In addition to the label, Ive taken some information
+from Amerine's notes on the label.
+
+#+BEGIN_SRC n3 :tangle example.owl
+  a:bv_winery a w:Winery;
+  rdf:label "Beaulieu Vineyard"@en;
+  w:address "Rutherford, Napa County, CA"@en;
+  ];
+
+  a:0172 a w:Wine;
+         w:type w:Still;
+         w:color w:Red;
+         w:brandName "Beaulieu Vineyard"@en;
+         w:otherDesignation "California Burgandy"@en;
+         w:nameAndAddress a:bv_winery
+         w:alcohol "12%"@en;
+         w:addressQualification w:ProducedAndBottled;
+         w:vintage [
+                   w:year 1919;
+                   w:image <https://labelthis.lib.ucdavis.edu/images/labels/2048x/0/Amerine-0162.jpg>
+                   ];
+         w:constituent [
+                        w:varietal w:CabernetSauvignon;
+                        w:blend "Prominent"@en
+                        ];
+#+END_SRC
+
+** Inglenook Cabernet and Pinot Noir
+
+Here's some examples from wines that come from the same winery; a Burgandy,
+[[https://labelthis.lib.ucdavis.edu/view/0207][Label 0207]] and a Pinot Noir,  [[https://labelthis.lib.ucdavis.edu/view/0250][Label 0250]].  We can see
+below, that we can share the winery information between these two examples.
+
+#+BEGIN_SRC n3 :tangle example.owl
+  a:inglenook_winery a w:Winery;
+  rdf:label "Inglenook Vineyard Co"@en;
+  w:address "Rutherford, Napa County, CA"@en;
+  w:established "1879"@en.
+
+  a:0207 a w:Wine;
+         w:type w:Still;
+         w:color w:Red;
+         w:brandName "Inglenook"@en;
+         w:otherDesignation "Napa Valley Cabernet"@en;
+         w:nameAndAddress a:inglenook_winery;
+         w:alcohol "12%"@en;
+         w:addressQualification w:ProducedAndBottled;
+         w:vintage [
+                   w:year 1934;
+                   w:image <https://labelthis.lib.ucdavis.edu/images/labels/2048x/0/Amerine-0207.jpg>
+                   ];
+         w:constituent [
+                        w:varietal w:CabernetSavignon;
+                        w:blend "Prominent"@en
+                        ].
+
+
+  a:0250 a w:Wine;
+         w:type w:Still;
+         w:color w:Red;
+         w:brandName "Inglenook"@en;
+         w:otherDesignation "Napa Valley Pinot Noir"@en;
+         w:nameAndAddress a:inglenook_winery;
+         w:alcohol "12.5%"@en;
+         w:addressQualification w:ProducedAndBottled;
+         w:vintage [
+                   w:year 1943;
+                   w:image <https://labelthis.lib.ucdavis.edu/images/labels/2048x/0/Amerine-0250.jpg>
+                   ];
+         w:constituent [
+                        w:varietal w:PinotNoir;
+                        w:blend "Prominent"@en
+                        ].
+
+#+END_SRC
+
 ** Opus One
 
 Our Opus One example has a number of vintages starting in 1979, of one of the
-most famous wines from the United States.
+most famous wines from the United States.  Here, much of the information comes
+from the website, in particular the vintage blends as it does from the the label
+itself.  Also note that the vintage blends can take precedent over the label
+constituents.
+
+This example starts to examine the wine maker as well, though only briefly.
 
 #+BEGIN_SRC n3 :tangle example.owl
   o:opus_one a w:US_Wine_1978;
