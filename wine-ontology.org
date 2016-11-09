@@ -242,7 +242,7 @@ from Amerine's notes on the label.
 
 #+CAPTION: Inglenook Cabernet
 #+NAME:   fig:ing_cab
-[[https://labelthis.lib.ucdavis.edu/view/0207]]
+[[https://labelthis.lib.ucdavis.edu/images/labels/2048x/0/Amerine-0207.jpg]]
 
 
 Here's some examples from wines that come from the same winery; a Burgandy,
@@ -276,7 +276,7 @@ below, that we can share the winery information between these two examples.
 
 #+CAPTION: Inglenook Pinot Noir
 #+NAME:   fig:ing_pn
-[[https://labelthis.lib.ucdavis.edu/view/0250]]
+[[https://labelthis.lib.ucdavis.edu/images/labels/2048x/0/Amerine-0250.jpg]]
 
 #+BEGIN_SRC n3 :tangle example.owl
 
