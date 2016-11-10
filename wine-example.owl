@@ -1,0 +1,169 @@
+
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+# UC Davis Wine Ontology
+@prefix w:  <http://library.ucdavis.edu/wine-ontology#> .
+# Amerine Collection
+@prefix a:  <http://library.ucdavis.edu/wine/Amerine#> .
+# Opus One
+@prefix o:  <http://library.ucdavis.edu/wine/OpusOne#> .
+
+a:0172 a w:Wine;
+       w:type w:Still;
+       w:color w:Red;
+       w:brandName "Hotel Del Monte Selections"@en;
+       w:otherDesignation "California Burgandy"@en;
+       w:nameAndAddress [
+                  a w:Winery;
+                  rdf:label "Sonoma Winery"@en;
+                  w:address "Healdsburg, Sonoma, CA"@en;
+                  w:established 1897
+                  ];
+       w:alcohol "13%"@en;
+       w:addressQualification w:ProducedAndBottled;
+       w:vintage [
+                 w:year 1941;
+                 w:image <https://labelthis.lib.ucdavis.edu/images/labels/2048x/0/Amerine-0172.jpg>
+                 ].
+
+a:bv_winery a w:Winery;
+rdf:label "Beaulieu Vineyard"@en;
+w:address "Rutherford, Napa County, CA"@en.
+
+a:0172 a w:Wine;
+       w:type w:Still;
+       w:color w:Red;
+       w:brandName "Beaulieu Vineyard"@en;
+       w:otherDesignation "California Burgandy"@en;
+       w:nameAndAddress a:bv_winery;
+       w:alcohol "12%"@en;
+       w:addressQualification w:ProducedAndBottled;
+       w:vintage [
+                 w:year 1919;
+                 w:image <https://labelthis.lib.ucdavis.edu/images/labels/2048x/0/Amerine-0162.jpg>
+                 ];
+       w:constituent [
+                      w:varietal w:CabernetSauvignon;
+                      w:blend "Prominent"@en
+                      ].
+
+a:inglenook_winery a w:Winery;
+rdf:label "Inglenook Vineyard Co"@en;
+w:address "Rutherford, Napa County, CA"@en;
+w:established "1879"@en.
+
+a:0207 a w:Wine;
+       w:type w:Still;
+       w:color w:Red;
+       w:brandName "Inglenook"@en;
+       w:otherDesignation "Napa Valley Cabernet"@en;
+       w:nameAndAddress a:inglenook_winery;
+       w:alcohol "12%"@en;
+       w:addressQualification w:ProducedAndBottled;
+       w:vintage [
+                 w:year 1934;
+                 w:image <https://labelthis.lib.ucdavis.edu/images/labels/2048x/0/Amerine-0207.jpg>
+                 ];
+       w:constituent [
+                      w:varietal w:CabernetSavignon;
+                      w:blend "Prominent"@en
+                      ].
+
+a:0250 a w:Wine;
+       w:type w:Still;
+       w:color w:Red;
+       w:brandName "Inglenook"@en;
+       w:otherDesignation "Napa Valley Pinot Noir"@en;
+       w:nameAndAddress a:inglenook_winery;
+       w:alcohol "12.5%"@en;
+       w:addressQualification w:ProducedAndBottled;
+       w:vintage [
+                 w:year 1943;
+                 w:image <https://labelthis.lib.ucdavis.edu/images/labels/2048x/0/Amerine-0250.jpg>
+                 ];
+       w:constituent [
+                      w:varietal w:PinotNoir;
+                      w:blend "Prominent"@en
+                      ].
+
+o:opus_one a w:US_Wine_1978;
+       w:type w:Still;
+       w:color w:Red;
+       w:brandName "Opus One"@en;
+       w:otherDesignation "A Napa Valley Red Wine"@en;
+       w:nameAndAddress o:winery;
+       w:alcohol "13%"@en;
+       w:addressQualification w:ProducedAndBottled;
+       w:vintage o:Vintage_1979, o:Vintage_1980, o:Vintage_1981, o:Vintage_1982.
+
+o:winery a w:Winery;
+           rdf:label "Opus One"@en;
+           w:address "Oakville, CA"@en;
+           w:established 1977;
+           w:wineMaker o:robert_mondavi;
+           w:wineMaker o:phillpe_de_rothschild.
+
+o:robert_mondavi a w:WineMaker;
+                 rdf:label "Robert Mondavi"@en.
+
+o:phillpe_de_rothschild a w:WineMaker;
+                        rdf:label "Baron Philippe de Rothschild"@en.
+
+o:vintage_1979 a w:Vintage;
+               w:year 1979;
+               w:constituent [
+                              w:varietal w:CabernetSauvignon;
+                              w:blend "80%"@en
+                              ];
+               w:constituent [
+                              w:varietal w:CabernetFranc;
+                              w:blend "16%"@en
+                              ];
+               w:constituent [
+                              w:varietal w:Merlot;
+                              w:blend "4%"@en
+                              ];
+              w:skinContact "10 days";
+              w:barrelAging "24 months in new French Oak"@en.
+
+o:vintage_1980 a w:Vintage;
+               w:year 1980;
+               w:constituent [
+                              w:varietal w:CabernetSauvignon;
+                              w:blend "96%"@en
+                              ];
+               w:constituent [
+                              w:varietal w:CabernetFranc;
+                              w:blend "4%"@en
+                              ];
+              w:skinContact "10 days";
+              w:barrelAging "25 months in new French Oak"@en.
+
+o:vintage_1981 a w:Vintage;
+               w:year 1981;
+               w:constituent [
+                              w:varietal w:CabernetSauvignon;
+                              w:blend "93%"@en
+                              ];
+               w:constituent [
+                              w:varietal w:CabernetFranc;
+                              w:blend "7%"@en
+                              ];
+              w:skinContact "10 days";
+              w:barrelAging "22 months in new French Oak"@en.
+
+o:vintage_1982 a w:Vintage;
+               w:year 1982;
+               w:constituent [
+                              w:varietal w:CabernetSauvignon;
+                              w:blend "82%"@en
+                              ];
+               w:constituent [
+                              w:varietal w:CabernetFranc;
+                              w:blend "16%"@en
+                              ];
+               w:constituent [
+                              w:varietal w:Merlot;
+                              w:blend "2%"@en
+                              ];
+              w:skinContact "9 days";
+              w:barrelAging "23 months in new French Oak"@en.

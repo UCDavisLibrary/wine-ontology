@@ -186,7 +186,7 @@ This is from the Amerine collection, [[https://labelthis.lib.ucdavis.edu/view/01
 Sonoma Winery identified as a anonymous winery.   This is another method of
 markup, but we can't know when we are talking about the same winery in that case.
 
-#+BEGIN_SRC n3 :tangle example.owl
+#+BEGIN_SRC n3 :tangle wine-example.owl
   a:0172 a w:Wine;
          w:type w:Still;
          w:color w:Red;
@@ -218,18 +218,17 @@ This is one of the earliest wines in the Amerine collection, pre-prohibition.  I
 corresponds to [[https://labelthis.lib.ucdavis.edu/view/0162][Label 0162]].  In addition to the label, Ive taken some information
 from Amerine's notes on the label.
 
-#+BEGIN_SRC n3 :tangle example.owl
+#+BEGIN_SRC n3 :tangle wine-example.owl
   a:bv_winery a w:Winery;
   rdf:label "Beaulieu Vineyard"@en;
-  w:address "Rutherford, Napa County, CA"@en;
-  ];
+  w:address "Rutherford, Napa County, CA"@en.
 
   a:0172 a w:Wine;
          w:type w:Still;
          w:color w:Red;
          w:brandName "Beaulieu Vineyard"@en;
          w:otherDesignation "California Burgandy"@en;
-         w:nameAndAddress a:bv_winery
+         w:nameAndAddress a:bv_winery;
          w:alcohol "12%"@en;
          w:addressQualification w:ProducedAndBottled;
          w:vintage [
@@ -239,7 +238,7 @@ from Amerine's notes on the label.
          w:constituent [
                         w:varietal w:CabernetSauvignon;
                         w:blend "Prominent"@en
-                        ];
+                        ].
 #+END_SRC
 
 ** Inglenook Cabernet and Pinot Noir
@@ -253,7 +252,7 @@ Here's some examples from wines that come from the same winery; a Burgandy,
 [[https://labelthis.lib.ucdavis.edu/view/0207][Label 0207]] and a Pinot Noir,  [[https://labelthis.lib.ucdavis.edu/view/0250][Label 0250]].  We can see
 below, that we can share the winery information between these two examples.
 
-#+BEGIN_SRC n3 :tangle example.owl
+#+BEGIN_SRC n3 :tangle wine-example.owl
   a:inglenook_winery a w:Winery;
   rdf:label "Inglenook Vineyard Co"@en;
   w:address "Rutherford, Napa County, CA"@en;
@@ -282,7 +281,7 @@ below, that we can share the winery information between these two examples.
 #+NAME:   fig:ing_pn
 [[https://labelthis.lib.ucdavis.edu/images/labels/2048x/0/Amerine-0250.jpg]]
 
-#+BEGIN_SRC n3 :tangle example.owl
+#+BEGIN_SRC n3 :tangle wine-example.owl
 
   a:0250 a w:Wine;
          w:type w:Still;
@@ -313,7 +312,7 @@ constituents.
 
 This example starts to examine the wine maker as well, though only briefly.
 
-#+BEGIN_SRC n3 :tangle example.owl
+#+BEGIN_SRC n3 :tangle wine-example.owl
   o:opus_one a w:US_Wine_1978;
          w:type w:Still;
          w:color w:Red;
