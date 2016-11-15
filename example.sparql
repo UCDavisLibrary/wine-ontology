@@ -1,0 +1,4 @@
+PREFIX dbpedia0: <http://dbpedia.org/ontology/>
+SELECT count(?body) as ?count WHERE {
+?body a dbpedia0:Wine.
+}

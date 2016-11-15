@@ -1,0 +1,416 @@
+#+STARTUP: showall
+#+STARTUP: inlineimages
+
+#+BEGIN_SRC plantuml :file edit.png
+@startuml
+left to right direction
+skinparam packageStyle rect
+title Users and Overall Use Cases
+:Crowd-Source User: as User << Human >>
+:Curator: as Cur <<Human>>
+:Google Image Detection: as Decode <<Agent>>
+:Linked Database: as Rdf << Application >>
+rectangle Use {
+(Use the application) as (Use) <<wine-label-app>>
+(Label View/Edit) as (label) <<wine-label>>
+(Markup Approval) as (approve) <<wine-label-update>>
+(Query By Example) as (qbe) <<wine-label-qbe>>
+Use .> qbe : include
+Use .> label : include
+Use .> approve : include
+approve .> label : include
+}
+User -- Use
+'User --> (get-Label)
+'User --> (qbe)
+'User --> (Add Label Entry)
+'User --> label
+Decode --> label
+Decode --|> User
+'User <|-- Decode
+User <|-- Cur
+approve -- Cur
+'Cur --> approve
+Use -- Rdf
+'Rdf --> Use
+'Rdf --> (get-Label)
+'Rdf --> qbe
+'Rdf --> approve
+@enduml
+#+END_SRC
+
+#+RESULTS:
+[[file:edit.png]]
+
+#+BEGIN_SRC plantuml :file foo.png
+class Car
+Driver - Car : drives >
+Car *- Wheel : have 4 >
+Car -- Person : < owns
+Person -- Cats : > has
+#+END_SRC
+
+#+RESULTS:
+[[file:foo.png]]
+
+* Wine Ontology
+
+The basic premise of this is to create an ontology of wine terms, that we can
+hang a number of tools from.  Most notably, we want to use it for our wine label
+application, to add markup to, but we also want to use it for our social network
+if we end up doing that.  There have a been a few ideas put forth for where we
+should start with that.  We will start with a comparison of wikidata and
+dbpedia, and see how similar they are.  We will be using primarily sparql
+queries for both of these.  However, for wikidata, we will be using some
+commandline tools as well as they can be quite handy, and learning them is nice.
+
+
+** Wikidata
+
+First, for everything in wikidata, we have
+
+*** Tooling
+
+A quick note on tooling. On thing that's hard to do is get the right tools for
+looking at this data. Most of the examples here will be using wikidata's sparql
+query endpoint. However, there are some nice commandline tools that can help
+with this. These very excellent tools include:
+
++ wikidata-cli = Easy access to wiki data things
++ wikidata-taxonomy - Show parentage of objects and properities
++ wikidata-filter - Filter n3 files.  This is a way to  filter larger files
+  without adding them into a database.  Not so useful for this part.
+
+One nice thing about these tools are the colors.  However, if you want the colors to pipe to less, you need to fake the tool
+into thinking it's going to the terminal, with something like.  This is not
+how you  get colors into emacs however.
+
+#+BEGIN_SRC bash
+0<&- script -qfc 'wdtaxonomy -i wd:Q630531 -l fr' /dev/null | less -R
+#+END_SRC
+
+
+#+BEGIN_SRC bash :results raw
+wdtaxonomy -i wd:Q630531 -l fr
+#+END_SRC
+
+#+RESULTS:
+
+
+Let's just start by looking at how many instances of wine there are in wikidata.
+The [[https://www.wikidata.org/wiki/Wikidata:Main_Page][WikiData]] page is a good place to start with finding identifiers used in
+wikidata queries. Looking up wine, we see it has an identifier of _Q282_.  The
+overview [[https://www.wikidata.org/wiki/Q282][wine wiki]] page gives some information about that.  Now, how many things
+are wine in wikidata?
+
+We can ask two different questions.  First, how many things are instances of
+wine.  The simple query to that is:
+
+#+BEGIN_SRC sparql :url https://query.wikidata.org/sparql?query=SPARQL
+  SELECT ?instance ?instanceLabel WHERE {
+      ?instance wdt:P31 wd:Q282 .
+      SERVICE wikibase:label {
+          bd:serviceParam wikibase:language "en" .
+      }
+  }
+#+END_SRC
+
+This shows that there are about 2238 things that are instances of wine in
+wikidata.  However, that doesn't show us everything.
+
+#+BEGIN_SRC sparql :url https://query.wikidata.org/sparql/
+SELECT ?instance ?instanceLabel WHERE {
+    ?instance wdt:P31* wd:Q282 .
+    SERVICE wikibase:label {
+        bd:serviceParam wikibase:language "en" .
+    }
+}
+#+END_SRC
+
+Shows us about 2241 items, and these include items that are paths of zero or
+more than one instance.  What does that mean?   Look at this query:
+
+  SELECT ?i2 ?i2Label ?instance ?instanceLabel WHERE {
+      ?instance wdt:P31 wd:Q282 .
+      ?i2 wdt:P31+ ?instance
+      SERVICE wikibase:label {
+          bd:serviceParam wikibase:language "en" .
+      }
+  }
+
+This shows us the 4 items that are instances (wdt:P31) of something that is
+itself an instance of wine.  These are chamgpagnes and one italian wine.  OK, of
+or all those, something like "Dom Perignon" is singular designation, but the
+others are really just types of wine.  The other way to look for that would be
+looking at subclasses of wine.
+
+This shows the direct subclasses of wine,of which there are 72.
+
+SELECT ?item ?itemLabel ?parents
+WHERE {
+    {
+        SELECT ?item (count(distinct ?parent) as ?parents) {
+            ?item wdt:P279 wd:Q282
+            OPTIONAL { ?item wdt:P279 ?parent }
+        } GROUP BY ?item
+    }
+    SERVICE wikibase:label {
+        bd:serviceParam wikibase:language "en" .
+    }
+}
+
+But, if we include all subclasses for wine, (with the *) then there are 2881 of
+these.
+
+SELECT ?item ?itemLabel ?parents
+WHERE {
+    {
+        SELECT ?item (count(distinct ?parent) as ?parents) {
+            ?item wdt:P279+ wd:Q282
+            OPTIONAL { ?item wdt:P279 ?parent }
+        } GROUP BY ?item
+    }
+    SERVICE wikibase:label {
+        bd:serviceParam wikibase:language "en" .
+    }
+}
+
+How many are both a subclass and an instance?
+
+
+If you look at a wdtaxonomy query, you can see the queries they use to retrieve
+all instances and all subclasses of a particular item.
+
+#+BEGIN_SRC sparql :url https://query.wikidata.org/sparql/
+SELECT ?item ?itemLabel ?broader ?parents ?instances ?sites
+WHERE {
+    {
+        SELECT ?item (count(distinct ?parent) as ?parents) {
+            ?item wdt:P279* wd:Q282
+            OPTIONAL { ?item wdt:P279 ?parent }
+        } GROUP BY ?item
+    }
+    {
+        SELECT ?item (count(distinct ?element) as ?instances) {
+            ?item wdt:P279* wd:Q282
+            OPTIONAL { ?element wdt:P31 ?item }
+        } GROUP BY ?item
+    }
+    {
+        SELECT ?item (count(distinct ?site) as ?sites) {
+            ?item wdt:P279* wd:Q282
+            OPTIONAL { ?site schema:about ?item }
+        } GROUP BY ?item
+    }
+    OPTIONAL { ?item wdt:P279 ?broader }
+    SERVICE wikibase:label {
+        bd:serviceParam wikibase:language "en" .
+#+END_SRC
+
+
+#+BEGIN_SRC sparql :url https://query.wikidata.org/sparql/
+SELECT ?_country ?_countryLabel (count(*) as ?count) WHERE {
+  ?item wdt:P31 wd:Q282.
+  OPTIONAL { ?item wdt:P17 ?_country. }
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+} GROUP BY ?_country ?_countryLabel
+#+END_SRC
+
+** Properties that have Wine as an answer.
+
+# What properties have the answer of wine?
+SELECT ?p ?pLabel (count(?s) as ?count)
+WHERE
+{
+    ?s ?p ?o.
+	?o wdt:P279* wd:Q282 .
+    FILTER(?p not in (wdt:P31,schema:about,p:statement\/P31, wdt:P279, p:statement\/P279))
+	SERVICE wikibase:label { bd:serviceParam wikibase:language "en" }
+}
+GROUP BY ?p ?pLabel
+
+Here are some interesting outputs
+
+wdt:P31 instanceOf
+wdt:P101 Field of work
+wdt:P131 located in the administrative territorial entity
+wdt:P136 genre
+wdt:P162 producer
+wdt:P180 depicts
+wdt:P186 material Used
+wdt:P279 = subClassOf
+wdt:P301 mainCategory
+wdt:P452 industry
+wdt:P527  hasPart
+p:qualifier/P642 of
+wdt:P706 located on terrain feature
+wdt:P921 main subject
+wdt:P971 category combines topics
+wdt:P1056 product
+wdt:P1855 example
+owl:sameAs
+
+
+# Some Properties Less usual that have a wine as an example
+select ?s ?sLabel ?pLabel ?oLabel
+WHERE
+{
+    ?s ?p ?o.
+	?o wdt:P279* wd:Q282 .
+    FILTER(?p in (wdt:P101,wdt:P131, wdt:P136, wdt:P162 ,wdt:P186,wdt:P301,wdt:P452,wdt:P527,p:qualifier\/P642,
+wdt:P706,wdt:P921,wdt:P971,wdt:P1056,wdt:P1855)
+	SERVICE wikibase:label { bd:serviceParam wikibase:language "en, fr".}
+}
+ORDER BY ?pLabel
+ORDER BY DESC(?count)
+
+# Wine producing Regions, but there are not a lot of controlled designations here.
+# Examples of wine producing Areas /Instances of Wine Producing Regions AVAs
+SELECT ?cLabel ?sLabel ?s ?rLabel ?r
+WHERE {
+  ?r wdt:P279* wd:Q2140699 .
+  ?s wdt:P31* ?r .
+#  { ?s wdt:P31* wd:Q166247. }
+#  UNION
+#  { ?s wdt:P31* wd:Q2140699 . }
+  OPTIONAL {?s wdt:P17 ?c }
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en, fr". }
+}
+order by ?cLabel ?sLabel
+
+Here is an example of a good AVA: https://www.wikidata.org/wiki/Q1261546
+
+
+
+*** Countries with wine
+
+#+BEGIN_SRC sparql :url http://dbpedia.org/sparql
+SELECT ?_country ?_countryLabel ?item ?itemLabel ?_product_certification ?_product_certificationLabel WHERE {
+  ?item wdt:P31 wd:Q282.
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+  OPTIONAL { ?item wdt:P1389 ?_product_certification. }
+  OPTIONAL { ?item wdt:P17 ?_country. }
+}
+#+END_SRC
+
+
+** DBPedia
+
+DBPedia is quite different, There are only a few instances of wines or subclasses to
+wines.
+
+#+BEGIN_SRC sparql :url http://dbpedia.org/sparql
+PREFIX dbpedia0: <http://dbpedia.org/ontology/>
+SELECT distinct ?body ?prop ?o WHERE {{
+?body rdfs:subClassOf*  dbpedia0:Wine.
+?body rdfs:subClassOf* ?o
+}}
+#+END_SRC
+
+#+RESULTS:
+
+This doesn't make a lot of sense, since if we look at  *Grapes*, they make
+notableWines.  There are about 79 notableWines,
+
+#+BEGIN_SRC sparql :url http://dbpedia.org/sparql
+PREFIX dbpedia0: <http://dbpedia.org/ontology/>
+SELECT ?s ?p ?o
+WHERE {
+  { dbpedia0:notableWine ?p ?o }
+  UNION
+  { ?s ?p dbpedia0:notableWine}
+  UNION
+  { ?s dbpedia0:notableWine ?o }
+}
+#+END_SRC
+
+#+RESULTS:
+
+#+BEGIN_SRC sparql :url http://dbpedia.org/sparql
+  PREFIX dbo: <http://dbpedia.org/ontology/>
+  SELECT ?p, (count(?w) as ?count)
+  WHERE {
+    ?s dbo:notableWine+ ?w.
+    ?w ?p ?o
+  }
+#+END_SRC
+
+dbo:area
+dbo:areaTotal
+dbo:arrondissement
+dbo:canton
+dbo:country
+dbo:elevation
+dbo:growingGrape
+dbo:intercommunality
+dbo:isPartOfWineRegion
+dbo:location
+dbo:numberOfVineyards
+dbo:numberOfWineries
+dbo:subregion
+dbo:varietals
+dbpedia2:grapes
+dbpedia2:intercommunality
+dbpedia2:name
+dbpedia2:officialName
+dbpedia2:partOf
+dbpedia2:subRegions
+dbpedia2:type
+dbpedia2:varietals
+dbpedia2:vineyards
+dbpedia2:wineries
+owl:sameAs
+foaf:isPrimaryTopicOf
+
+
+These are always proper resources.  These resources not in the dbpedia ontology,
+but in the yago class type.
+There are about 13 subclasses of notableWines.
+
+
+#+BEGIN_SRC sparql :url http://dbpedia.org/sparql
+PREFIX yago: http://dbpedia.org/class/yago
+SELECT ?type
+WHERE {
+  ?type a yago:Wine107891726 }
+#+END_SRC
+
+
+
+Ok, lets begin with some simple questions, about dbpedia and wine. There
+are about 328 Wineries in dbpedia.
+
+#+BEGIN_SRC sparql :url http://dbpedia.org/sparql
+PREFIX dbpedia0: <http://dbpedia.org/ontology/>
+SELECT (count(?body) as ?count) WHERE {
+?body a dbpedia0:Winery.
+}
+#+END_SRC
+
+#+RESULTS:
+| count |
+|-------|
+|   334 |
+
+Wineries make _signatureWines_. There are about 212 of these.  These are
+primarily simple string values, but they don't have to be. Strange, I don't
+see these anymore.
+
+#+BEGIN_SRC sparql :url http://dbpedia.org/sparql
+PREFIX dbpedia0: <http://dbpedia.org/ontology/>
+PREFIX dbpedia2: <http://dbpedia.org/property/>
+SELECT (count(*) as ?count)
+WHERE { ?resource dbpedia2:signatureWines ?value. }
+#+END_SRC
+
+#+RESULTS:
+| count |
+|-------|
+|     0 |
+
+
+** Simplified T-box Drawing
+
+We need to make some more simple interfaces to the tbox part, something that can be easily understood and diagrammed quickly.  Matt suggested CMAPS, but I  think I prefer using YUML style descriptions, they are so much more concise.
+
+**
