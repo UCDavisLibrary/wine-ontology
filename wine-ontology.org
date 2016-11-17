@@ -1,12 +1,15 @@
 #+SETUPFILE: /home/quinn/org-html-themes/setup/theme-bigblow.setup
-#+TITLE: Wine Ontology
+#+TITLE: Wine Linked Data
 
-This document describes the UC Davis Wine ontology.  The first item of business
-is some standard prefixes for our ontology.  We will be using some owl
+This document describes the UC Davis Wine linked database  This includes the
+ontology, some examples, and some workflow information.
+
+* Wine Ontology
+
+The first item of business is some standard prefixes for our ontology.  We will be using some owl
 reasoning, so we include that.  We will also be comparing this to some dbpedia
 objects as well, so those need to be included.
 
-This ontology will be identified as the default ontology in this file.
 
 #+BEGIN_SRC n3 :tangle wine-ontology.owl
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -19,6 +22,7 @@ This ontology will be identified as the default ontology in this file.
 # UC Davis Wine Ontology
 @prefix :  <http://library.ucdavis.edu/wine-ontology#> .
 #+END_SRC
+
 
 OK, let's start with some of the most basic aspects of Wine. Here we will define
 the Wine class, and identify is as being the same as some other examples,
@@ -206,7 +210,6 @@ markup, but we can't know when we are talking about the same winery in that case
                    ].
 
 #+END_SRC
-
 
 ** BV California Burgandy
 
@@ -397,4 +400,367 @@ This example starts to examine the wine maker as well, though only briefly.
                 w:barrelAging "23 months in new French Oak"@en.
 
 
+#+END_SRC
+
+* Processing Workflow
+
+In addition to the information related to the wine itself, we also need to
+include information about the workflow that in the end determines the data in
+the database.  This is especially important in the context where some of the
+data is derived from crowd sourced data.  In addition, some of this information
+can be used by other utilities.
+
+** Ontology
+
+#+BEGIN_SRC n3 :tangle wine-example.owl
+  a:0172 a w:Wine;
+         w:type w:Still;
+         w:color w:Red;
+         w:brandName "Hotel Del Monte Selections"@en;
+
+         w:otherDesignation "California Burgandy"@en;
+         w:nameAndAddress [
+                    a w:Winery;
+                    rdf:label "Sonoma Winery"@en;
+                    w:address "Healdsburg, Sonoma, CA"@en;
+                    w:established 1897
+                    ];
+         w:alcohol "13%"@en;
+         w:addressQualification w:ProducedAndBottled;
+         w:vintage [
+                   w:year 1941;
+                   w:image <https://labelthis.lib.ucdavis.edu/images/labels/2048x/0/Amerine-0172.jpg>
+                   ].
+
+#+END_SRC
+
+
+
+*** Suggestions
+
+In a crowd sourced environment, a single user will make a suggestion on the
+potential markup for a particular label.  We will encompass this information in
+a separate rdf graph.  When the suggestion is made to the server, the graph designation
+separates that data from all other suggestions, and makes uniquely identifies
+the suggestions.
+
+Inside the suggestions, properties are identified in a manner similar to that as
+defined in [[https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4350149/][this paper about singleton properties]], where in this case, the
+properties are all anonymous.  Each anonymous property contains the property it
+is a sub property of, as well as information about how this property was
+determined.  In our case, this latter part comes from the process, textOnLabel,
+which identifies the part of the label where the text was found.
+
+Here is a more complete example of a previous example as a suggestion made
+regarding a particular label.
+
+
+** Examples
+
+**
+
+
+#+BEGIN_SRC n3 :tangle wine-suggestion-example.owl
+  @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+  @prefix w:  <http://library.ucdavis.edu/wine-ontology#> .
+  @prefix a:  <http://library.ucdavis.edu/wine/Amerine#> .
+# The markup ontology could belong in another schema
+  @prefix m:  <http://library.ucdavis.edu/wine/wine-ontology#> .
+
+  a:inglenook_winery a w:Winery;
+                       rdf:label "Inglenook Vineyard Co"@en;
+                       [ w:subPropertyOf w:address ;
+                       m:textOnLabel [
+                          m:img w:Amerine-0250;
+                          m:toolName m:rectangleTool;
+                          m:ul "[775,1046]"; m:size "[486,26]";
+                          ]] "Rutherford, Napa County, CA"@en;
+                        [
+                        w:subPropertyOf w:established;
+                        m:textOnLabel [
+                          m:img w:Amerine-0250;
+                          m:toolName  m:rectangleTool;
+                          m:ul:"[908,1023]"; m:size "[232,19]";
+                        ]] "1879"@en.
+
+    a:0250 a w:Wine;
+           w:type w:Still;
+           w:color w:Red;
+           [ w:subPropertyOf w:brandName;
+             m:textOnLabel [
+                          m:img w:Amerine-250;
+                          m:toolname m:rectangleTool;
+                          m:ul "[546,320]"; m:size "[928,249]";
+                          ]] "Inglenook"@en;
+           [ w:subPropertyOf w:otherDesignation;
+             m:textOnLabel [
+                          m:img w:Amerine-250;
+                          m:toolName  m:rectangleTool;
+                          m:ul "[743,827]"; m:size "[546,53]";
+                          m:ul "[813,885]"; m:size "[410,74]";
+                          ] ] "Napa Valley Pinot Noir"@en;
+           w:nameAndAddress a:inglenook_winery;
+           [ w:subPropertyOf w:alcohol;
+             m:textOnLabel [
+                          m:img w:Amerine-250;
+                          m:toolName  m:rectangleTool;
+                          m:ul "[542,771]"; m:size "[257,44]";
+                          ] ] "12.5%"@en;
+           [ w:subPropertyOf w:addressQualification;
+             m:textOnLabel [
+                          m:img w:Amerine-250;
+                          m:toolName  m:rectangleTool;
+                          m:ul "[790,957]"; m:size "[445,68]";
+                          ] ] w:ProducedAndBottled;
+           w:vintage [
+                     [ w:subPropertyOf w:year;
+                       m:textOnLabel [
+                           m:img w:Amerine-250;
+                           m:toolName  m:rectangleTool;
+                           m:ul "[928,217]"; m:size "[176,81]";
+                          ] ] 1943;
+                     w:image w:Amerine-0250;
+                     ];
+           w:constituent [
+                          w:varietal w:PinotNoir;
+                          w:blend "Prominent"@en;
+                          ].
+
+#+END_SRC
+
+Note, when transferring this information to a web application, we could consider
+using the standard JSON.  As an aside, a nice tool for translating between
+different formats is the application, [[http://rdf-translator.appspot.com/]].  This
+also has a nice API,
+
+#+BEGIN_SRC bash
+curl --data-urlencode content@wine-suggestion-example.owl http://rdf-translator.appspot.com/convert/n3/json-ld/content
+#+END_SRC
+
+#+BEGIN_SRC js
+  {
+    "@context": {
+      "a": "http://library.ucdavis.edu/wine/Amerine#",
+      "m": "http://library.ucdavis.edu/wine/wine-ontology#",
+      "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+      "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+      "w": "http://library.ucdavis.edu/wine-ontology#",
+      "xsd": "http://www.w3.org/2001/XMLSchema#"
+    },
+    "@graph": [
+      {
+        "@id": "a:0250",
+        "@type": "w:Wine",
+        "ub43bL25C12": {
+          "@language": "en",
+          "@value": "Inglenook"
+        },
+        "ub43bL31C12": {
+          "@language": "en",
+          "@value": "Napa Valley Pinot Noir"
+        },
+        "ub43bL39C12": {
+          "@language": "en",
+          "@value": "12.5%"
+        },
+        "ub43bL45C12": {
+          "@id": "w:ProducedAndBottled"
+        },
+        "w:color": {
+          "@id": "w:Red"
+        },
+        "w:constituent": {
+          "@id": "_:ub43bL60C26"
+        },
+        "w:nameAndAddress": {
+          "@id": "a:inglenook_winery"
+        },
+        "w:type": {
+          "@id": "w:Still"
+        },
+        "w:vintage": {
+          "@id": "_:ub43bL51C22"
+        }
+      },
+      {
+        "@id": "_:ub43bL52C22",
+        "m:textOnLabel": {
+          "@id": "_:ub43bL53C38"
+        },
+        "w:subPropertyOf": {
+          "@id": "w:year"
+        }
+      },
+      {
+        "@id": "_:ub43bL51C22",
+        "ub43bL52C22": 1943,
+        "w:image": {
+          "@id": "w:Amerine-0250"
+        }
+      },
+      {
+        "@id": "_:ub43bL31C12",
+        "m:textOnLabel": {
+          "@id": "_:ub43bL32C28"
+        },
+        "w:subPropertyOf": {
+          "@id": "w:otherDesignation"
+        }
+      },
+      {
+        "@id": "_:ub43bL32C28",
+        "m:img": {
+          "@id": "w:Amerine-250"
+        },
+        "m:size": [
+          "[410,74]",
+          "[546,53]"
+        ],
+        "m:toolName": {
+          "@id": "m:rectangleTool"
+        },
+        "m:ul": [
+          "[743,827]",
+          "[813,885]"
+        ]
+      },
+      {
+        "@id": "_:ub43bL60C26",
+        "w:blend": {
+          "@language": "en",
+          "@value": "Prominent"
+        },
+        "w:varietal": {
+          "@id": "w:PinotNoir"
+        }
+      },
+      {
+        "@id": "_:ub43bL8C24",
+        "m:textOnLabel": {
+          "@id": "_:ub43bL9C38"
+        },
+        "w:subPropertyOf": {
+          "@id": "w:address"
+        }
+      },
+      {
+        "@id": "_:ub43bL9C38",
+        "m:img": {
+          "@id": "w:Amerine-0250"
+        },
+        "m:size": "[486,26]",
+        "m:toolName": {
+          "@id": "m:rectangleTool"
+        },
+        "m:ul": "[775,1046]"
+      },
+      {
+        "@id": "_:ub43bL39C12",
+        "m:textOnLabel": {
+          "@id": "_:ub43bL40C28"
+        },
+        "w:subPropertyOf": {
+          "@id": "w:alcohol"
+        }
+      },
+      {
+        "@id": "_:ub43bL26C28",
+        "m:img": {
+          "@id": "w:Amerine-250"
+        },
+        "m:size": "[928,249]",
+        "m:toolname": {
+          "@id": "m:rectangleTool"
+        },
+        "m:ul": "[546,320]"
+      },
+      {
+        "@id": "_:ub43bL45C12",
+        "m:textOnLabel": {
+          "@id": "_:ub43bL46C28"
+        },
+        "w:subPropertyOf": {
+          "@id": "w:addressQualification"
+        }
+      },
+      {
+        "@id": "_:ub43bL25C12",
+        "m:textOnLabel": {
+          "@id": "_:ub43bL26C28"
+        },
+        "w:subPropertyOf": {
+          "@id": "w:brandName"
+        }
+      },
+      {
+        "@id": "_:ub43bL16C39",
+        "m:img": {
+          "@id": "w:Amerine-0250"
+        },
+        "m:size": "[232,19]",
+        "m:toolName": {
+          "@id": "m:rectangleTool"
+        },
+        "m:ul:": "[908,1023]"
+      },
+      {
+        "@id": "a:inglenook_winery",
+        "@type": "w:Winery",
+        "rdf:label": {
+          "@language": "en",
+          "@value": "Inglenook Vineyard Co"
+        },
+        "ub43bL14C25": {
+          "@language": "en",
+          "@value": "1879"
+        },
+        "ub43bL8C24": {
+          "@language": "en",
+          "@value": "Rutherford, Napa County, CA"
+        }
+      },
+      {
+        "@id": "_:ub43bL46C28",
+        "m:img": {
+          "@id": "w:Amerine-250"
+        },
+        "m:size": "[445,68]",
+        "m:toolName": {
+          "@id": "m:rectangleTool"
+        },
+        "m:ul": "[790,957]"
+      },
+      {
+        "@id": "_:ub43bL40C28",
+        "m:img": {
+          "@id": "w:Amerine-250"
+        },
+        "m:size": "[257,44]",
+        "m:toolName": {
+          "@id": "m:rectangleTool"
+        },
+        "m:ul": "[542,771]"
+      },
+      {
+        "@id": "_:ub43bL53C38",
+        "m:img": {
+          "@id": "w:Amerine-250"
+        },
+        "m:size": "[176,81]",
+        "m:toolName": {
+          "@id": "m:rectangleTool"
+        },
+        "m:ul": "[928,217]"
+      },
+      {
+        "@id": "_:ub43bL14C25",
+        "m:textOnLabel": {
+          "@id": "_:ub43bL16C39"
+        },
+        "w:subPropertyOf": {
+          "@id": "w:established"
+        }
+      }
+    ]
+  }
 #+END_SRC

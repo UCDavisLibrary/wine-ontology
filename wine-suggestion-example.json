@@ -1,0 +1,225 @@
+{
+  "@context": {
+    "a": "http://library.ucdavis.edu/wine/Amerine#",
+    "m": "http://library.ucdavis.edu/wine/wine-ontology#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "w": "http://library.ucdavis.edu/wine-ontology#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "a:0250",
+      "@type": "w:Wine",
+      "ub43bL25C12": {
+        "@language": "en",
+        "@value": "Inglenook"
+      },
+      "ub43bL31C12": {
+        "@language": "en",
+        "@value": "Napa Valley Pinot Noir"
+      },
+      "ub43bL39C12": {
+        "@language": "en",
+        "@value": "12.5%"
+      },
+      "ub43bL45C12": {
+        "@id": "w:ProducedAndBottled"
+      },
+      "w:color": {
+        "@id": "w:Red"
+      },
+      "w:constituent": {
+        "@id": "_:ub43bL60C26"
+      },
+      "w:nameAndAddress": {
+        "@id": "a:inglenook_winery"
+      },
+      "w:type": {
+        "@id": "w:Still"
+      },
+      "w:vintage": {
+        "@id": "_:ub43bL51C22"
+      }
+    },
+    {
+      "@id": "_:ub43bL52C22",
+      "m:textOnLabel": {
+        "@id": "_:ub43bL53C38"
+      },
+      "w:subPropertyOf": {
+        "@id": "w:year"
+      }
+    },
+    {
+      "@id": "_:ub43bL51C22",
+      "ub43bL52C22": 1943,
+      "w:image": {
+        "@id": "w:Amerine-0250"
+      }
+    },
+    {
+      "@id": "_:ub43bL31C12",
+      "m:textOnLabel": {
+        "@id": "_:ub43bL32C28"
+      },
+      "w:subPropertyOf": {
+        "@id": "w:otherDesignation"
+      }
+    },
+    {
+      "@id": "_:ub43bL32C28",
+      "m:img": {
+        "@id": "w:Amerine-250"
+      },
+      "m:size": [
+        "[410,74]",
+        "[546,53]"
+      ],
+      "m:toolName": {
+        "@id": "m:rectangleTool"
+      },
+      "m:ul": [
+        "[743,827]",
+        "[813,885]"
+      ]
+    },
+    {
+      "@id": "_:ub43bL60C26",
+      "w:blend": {
+        "@language": "en",
+        "@value": "Prominent"
+      },
+      "w:varietal": {
+        "@id": "w:PinotNoir"
+      }
+    },
+    {
+      "@id": "_:ub43bL8C24",
+      "m:textOnLabel": {
+        "@id": "_:ub43bL9C38"
+      },
+      "w:subPropertyOf": {
+        "@id": "w:address"
+      }
+    },
+    {
+      "@id": "_:ub43bL9C38",
+      "m:img": {
+        "@id": "w:Amerine-0250"
+      },
+      "m:size": "[486,26]",
+      "m:toolName": {
+        "@id": "m:rectangleTool"
+      },
+      "m:ul": "[775,1046]"
+    },
+    {
+      "@id": "_:ub43bL39C12",
+      "m:textOnLabel": {
+        "@id": "_:ub43bL40C28"
+      },
+      "w:subPropertyOf": {
+        "@id": "w:alcohol"
+      }
+    },
+    {
+      "@id": "_:ub43bL26C28",
+      "m:img": {
+        "@id": "w:Amerine-250"
+      },
+      "m:size": "[928,249]",
+      "m:toolname": {
+        "@id": "m:rectangleTool"
+      },
+      "m:ul": "[546,320]"
+    },
+    {
+      "@id": "_:ub43bL45C12",
+      "m:textOnLabel": {
+        "@id": "_:ub43bL46C28"
+      },
+      "w:subPropertyOf": {
+        "@id": "w:addressQualification"
+      }
+    },
+    {
+      "@id": "_:ub43bL25C12",
+      "m:textOnLabel": {
+        "@id": "_:ub43bL26C28"
+      },
+      "w:subPropertyOf": {
+        "@id": "w:brandName"
+      }
+    },
+    {
+      "@id": "_:ub43bL16C39",
+      "m:img": {
+        "@id": "w:Amerine-0250"
+      },
+      "m:size": "[232,19]",
+      "m:toolName": {
+        "@id": "m:rectangleTool"
+      },
+      "m:ul:": "[908,1023]"
+    },
+    {
+      "@id": "a:inglenook_winery",
+      "@type": "w:Winery",
+      "rdf:label": {
+        "@language": "en",
+        "@value": "Inglenook Vineyard Co"
+      },
+      "ub43bL14C25": {
+        "@language": "en",
+        "@value": "1879"
+      },
+      "ub43bL8C24": {
+        "@language": "en",
+        "@value": "Rutherford, Napa County, CA"
+      }
+    },
+    {
+      "@id": "_:ub43bL46C28",
+      "m:img": {
+        "@id": "w:Amerine-250"
+      },
+      "m:size": "[445,68]",
+      "m:toolName": {
+        "@id": "m:rectangleTool"
+      },
+      "m:ul": "[790,957]"
+    },
+    {
+      "@id": "_:ub43bL40C28",
+      "m:img": {
+        "@id": "w:Amerine-250"
+      },
+      "m:size": "[257,44]",
+      "m:toolName": {
+        "@id": "m:rectangleTool"
+      },
+      "m:ul": "[542,771]"
+    },
+    {
+      "@id": "_:ub43bL53C38",
+      "m:img": {
+        "@id": "w:Amerine-250"
+      },
+      "m:size": "[176,81]",
+      "m:toolName": {
+        "@id": "m:rectangleTool"
+      },
+      "m:ul": "[928,217]"
+    },
+    {
+      "@id": "_:ub43bL14C25",
+      "m:textOnLabel": {
+        "@id": "_:ub43bL16C39"
+      },
+      "w:subPropertyOf": {
+        "@id": "w:established"
+      }
+    }
+  ]
+}

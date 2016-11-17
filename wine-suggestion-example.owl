@@ -1,0 +1,64 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+  @prefix w:  <http://library.ucdavis.edu/wine-ontology#> .
+  @prefix a:  <http://library.ucdavis.edu/wine/Amerine#> .
+# The markup ontology could belong in another schema
+  @prefix m:  <http://library.ucdavis.edu/wine/wine-ontology#> .
+
+  a:inglenook_winery a w:Winery;
+                       rdf:label "Inglenook Vineyard Co"@en;
+                       [ w:subPropertyOf w:address ;
+                       m:textOnLabel [
+                          m:img w:Amerine-0250;
+                          m:toolName m:rectangleTool;
+                          m:ul "[775,1046]"; m:size "[486,26]";
+                          ]] "Rutherford, Napa County, CA"@en;
+                        [
+                        w:subPropertyOf w:established;
+                        m:textOnLabel [
+                          m:img w:Amerine-0250;
+                          m:toolName  m:rectangleTool;
+                          m:ul:"[908,1023]"; m:size "[232,19]";
+                        ]] "1879"@en.
+
+    a:0250 a w:Wine;
+           w:type w:Still;
+           w:color w:Red;
+           [ w:subPropertyOf w:brandName;
+             m:textOnLabel [
+                          m:img w:Amerine-250;
+                          m:toolname m:rectangleTool;
+                          m:ul "[546,320]"; m:size "[928,249]";
+                          ]] "Inglenook"@en;
+           [ w:subPropertyOf w:otherDesignation;
+             m:textOnLabel [
+                          m:img w:Amerine-250;
+                          m:toolName  m:rectangleTool;
+                          m:ul "[743,827]"; m:size "[546,53]";
+                          m:ul "[813,885]"; m:size "[410,74]";
+                          ] ] "Napa Valley Pinot Noir"@en;
+           w:nameAndAddress a:inglenook_winery;
+           [ w:subPropertyOf w:alcohol;
+             m:textOnLabel [
+                          m:img w:Amerine-250;
+                          m:toolName  m:rectangleTool;
+                          m:ul "[542,771]"; m:size "[257,44]";
+                          ] ] "12.5%"@en;
+           [ w:subPropertyOf w:addressQualification;
+             m:textOnLabel [
+                          m:img w:Amerine-250;
+                          m:toolName  m:rectangleTool;
+                          m:ul "[790,957]"; m:size "[445,68]";
+                          ] ] w:ProducedAndBottled;
+           w:vintage [
+                     [ w:subPropertyOf w:year;
+                       m:textOnLabel [
+                           m:img w:Amerine-250;
+                           m:toolName  m:rectangleTool;
+                           m:ul "[928,217]"; m:size "[176,81]";
+                          ] ] 1943;
+                     w:image w:Amerine-0250;
+                     ];
+           w:constituent [
+                          w:varietal w:PinotNoir;
+                          w:blend "Prominent"@en;
+                          ].

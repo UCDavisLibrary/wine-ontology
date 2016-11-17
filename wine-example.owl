@@ -1,4 +1,3 @@
-
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 # UC Davis Wine Ontology
 @prefix w:  <http://library.ucdavis.edu/wine-ontology#> .
@@ -167,3 +166,22 @@ o:vintage_1982 a w:Vintage;
                               ];
               w:skinContact "9 days";
               w:barrelAging "23 months in new French Oak"@en.
+
+a:0172 a w:Wine;
+       w:type w:Still;
+       w:color w:Red;
+       w:brandName "Hotel Del Monte Selections"@en;
+
+       w:otherDesignation "California Burgandy"@en;
+       w:nameAndAddress [
+                  a w:Winery;
+                  rdf:label "Sonoma Winery"@en;
+                  w:address "Healdsburg, Sonoma, CA"@en;
+                  w:established 1897
+                  ];
+       w:alcohol "13%"@en;
+       w:addressQualification w:ProducedAndBottled;
+       w:vintage [
+                 w:year 1941;
+                 w:image <https://labelthis.lib.ucdavis.edu/images/labels/2048x/0/Amerine-0172.jpg>
+                 ].
