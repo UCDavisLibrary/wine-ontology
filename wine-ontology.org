@@ -226,7 +226,7 @@ from Amerine's notes on the label.
   rdf:label "Beaulieu Vineyard"@en;
   w:address "Rutherford, Napa County, CA"@en.
 
-  a:0172 a w:Wine;
+  a:0162 a w:Wine;
          w:type w:Still;
          w:color w:Red;
          w:brandName "Beaulieu Vineyard"@en;
@@ -445,9 +445,11 @@ separates that data from all other suggestions, and makes uniquely identifies
 the suggestions.
 
 Inside the suggestions, properties are identified in a manner similar to that as
-defined in [[https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4350149/][this paper about singleton properties]], where in this case, the
-properties are all anonymous.  Each anonymous property contains the property it
-is a sub property of, as well as information about how this property was
+defined in [[https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4350149/][this paper about singleton properties]].  Because, by the RDF standard,
+properties are not allowed to be blank/anonymous nodes, we seperate out the
+singletonProperties as names items with local counter to designate all the
+different components.  Each property contains the property it
+is a singletonPropertyOf, as well as information about how this property was
 determined.  In our case, this latter part comes from the process, textOnLabel,
 which identifies the part of the label where the text was found.
 
@@ -455,76 +457,80 @@ Here is a more complete example of a previous example as a suggestion made
 regarding a particular label.
 
 
-** Examples
-
-**
-
-
 #+BEGIN_SRC n3 :tangle wine-suggestion-example.owl
   @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
   @prefix w:  <http://library.ucdavis.edu/wine-ontology#> .
   @prefix a:  <http://library.ucdavis.edu/wine/Amerine#> .
-# The markup ontology could belong in another schema
+  # The suggestion ontology could be different, than the metadata
   @prefix m:  <http://library.ucdavis.edu/wine/wine-ontology#> .
+  # The suggestion data includes UUID specified singletons
+  @prefix s:  <http://library.ucdavis.edu/wine-ontology/[uuid]/#> .
 
   a:inglenook_winery a w:Winery;
-                       rdf:label "Inglenook Vineyard Co"@en;
-                       [ w:subPropertyOf w:address ;
-                       m:textOnLabel [
-                          m:img w:Amerine-0250;
-                          m:toolName m:rectangleTool;
-                          m:ul "[775,1046]"; m:size "[486,26]";
-                          ]] "Rutherford, Napa County, CA"@en;
-                        [
-                        w:subPropertyOf w:established;
-                        m:textOnLabel [
-                          m:img w:Amerine-0250;
-                          m:toolName  m:rectangleTool;
-                          m:ul:"[908,1023]"; m:size "[232,19]";
-                        ]] "1879"@en.
+                     rdf:label "Inglenook Vineyard Co"@en;
+                     s:established_0 "1879"@en;
+                     s:address_1 "Rutherford, Napa County, CA"@en.
 
     a:0250 a w:Wine;
            w:type w:Still;
            w:color w:Red;
-           [ w:subPropertyOf w:brandName;
+           s:brandName_3 "Inglenook"@en;
+           s:otherDesignation_4 "Napa Valley Pinot Noir"@en;
+           s:nameAndAddress_5 a:inglenook_winery;
+           s:alcohol_6 "12.5%"@en;
+           s:addressQualification_7 w:ProducedAndBottled;
+           s:vintage [
+                     s:year_8 1943;
+                     w:image w:Amerine-0250;
+                     ];
+           s:constituent [
+                          w:varietal w:PinotNoir;
+                          w:blend "Prominent"@en;
+                          ].
+
+  s:address_1 rdf:singletonPropertyOf w:address;
+            m:textOnLabel [
+                          m:img w:Amerine-0250;
+                          m:toolName m:rectangleTool;
+                          m:ul "[775,1046]"; m:size "[486,26]";
+                          ].
+  s:established_2 rdf:singletonPropertyOf w:established;
+                m:textOnLabel [
+                              m:img w:Amerine-0250;
+                              m:toolName  m:rectangleTool;
+                              m:ul:"[908,1023]"; m:size "[232,19]";
+                              ].
+
+  s:brandname_3 rdf:subPropertyOf w:brandName;
              m:textOnLabel [
                           m:img w:Amerine-250;
                           m:toolname m:rectangleTool;
                           m:ul "[546,320]"; m:size "[928,249]";
-                          ]] "Inglenook"@en;
-           [ w:subPropertyOf w:otherDesignation;
+                          ].
+  s:otherDesignation_4 rdf:subPropertyOf w:otherDesignation;
              m:textOnLabel [
                           m:img w:Amerine-250;
                           m:toolName  m:rectangleTool;
-                          m:ul "[743,827]"; m:size "[546,53]";
                           m:ul "[813,885]"; m:size "[410,74]";
-                          ] ] "Napa Valley Pinot Noir"@en;
-           w:nameAndAddress a:inglenook_winery;
-           [ w:subPropertyOf w:alcohol;
+                          ].
+  s:alcohol_5 rdf:subPropertyOf w:alcohol;
              m:textOnLabel [
                           m:img w:Amerine-250;
                           m:toolName  m:rectangleTool;
                           m:ul "[542,771]"; m:size "[257,44]";
-                          ] ] "12.5%"@en;
-           [ w:subPropertyOf w:addressQualification;
+                          ].
+  s:addressQualification_6 rdf:subPropertyOf w:addressQualification;
              m:textOnLabel [
                           m:img w:Amerine-250;
                           m:toolName  m:rectangleTool;
                           m:ul "[790,957]"; m:size "[445,68]";
-                          ] ] w:ProducedAndBottled;
-           w:vintage [
-                     [ w:subPropertyOf w:year;
-                       m:textOnLabel [
-                           m:img w:Amerine-250;
-                           m:toolName  m:rectangleTool;
-                           m:ul "[928,217]"; m:size "[176,81]";
-                          ] ] 1943;
-                     w:image w:Amerine-0250;
-                     ];
-           w:constituent [
-                          w:varietal w:PinotNoir;
-                          w:blend "Prominent"@en;
                           ].
+  s:year_7 rdf:subPropertyOf w:year;
+             m:textOnLabel [
+                 m:img w:Amerine-250;
+                 m:toolName  m:rectangleTool;
+                 m:ul "[928,217]"; m:size "[176,81]";
+                ].
 
 #+END_SRC
 

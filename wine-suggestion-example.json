@@ -4,88 +4,103 @@
     "m": "http://library.ucdavis.edu/wine/wine-ontology#",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "s": "http://library.ucdavis.edu/wine-ontology/[uuid]/#",
     "w": "http://library.ucdavis.edu/wine-ontology#",
     "xsd": "http://www.w3.org/2001/XMLSchema#"
   },
   "@graph": [
     {
+      "@id": "s:addressQualification_6",
+      "m:textOnLabel": {
+        "@id": "_:ub844bL63C26"
+      },
+      "rdf:subPropertyOf": {
+        "@id": "w:addressQualification"
+      }
+    },
+    {
       "@id": "a:0250",
       "@type": "w:Wine",
-      "ub43bL25C12": {
-        "@language": "en",
-        "@value": "Inglenook"
+      "s:addressQualification_7": {
+        "@id": "w:ProducedAndBottled"
       },
-      "ub43bL31C12": {
-        "@language": "en",
-        "@value": "Napa Valley Pinot Noir"
-      },
-      "ub43bL39C12": {
+      "s:alcohol_6": {
         "@language": "en",
         "@value": "12.5%"
       },
-      "ub43bL45C12": {
-        "@id": "w:ProducedAndBottled"
+      "s:brandName_3": {
+        "@language": "en",
+        "@value": "Inglenook"
+      },
+      "s:constituent": {
+        "@id": "_:ub844bL26C24"
+      },
+      "s:nameAndAddress_5": {
+        "@id": "a:inglenook_winery"
+      },
+      "s:otherDesignation_4": {
+        "@language": "en",
+        "@value": "Napa Valley Pinot Noir"
+      },
+      "s:vintage": {
+        "@id": "_:ub844bL22C20"
       },
       "w:color": {
         "@id": "w:Red"
       },
-      "w:constituent": {
-        "@id": "_:ub43bL60C26"
-      },
-      "w:nameAndAddress": {
-        "@id": "a:inglenook_winery"
-      },
       "w:type": {
         "@id": "w:Still"
-      },
-      "w:vintage": {
-        "@id": "_:ub43bL51C22"
       }
     },
     {
-      "@id": "_:ub43bL52C22",
+      "@id": "s:established_2",
       "m:textOnLabel": {
-        "@id": "_:ub43bL53C38"
+        "@id": "_:ub844bL38C29"
       },
-      "w:subPropertyOf": {
+      "rdf:singletonPropertyOf": {
+        "@id": "w:established"
+      }
+    },
+    {
+      "@id": "s:year_7",
+      "m:textOnLabel": {
+        "@id": "_:ub844bL69C26"
+      },
+      "rdf:subPropertyOf": {
         "@id": "w:year"
       }
     },
     {
-      "@id": "_:ub43bL51C22",
-      "ub43bL52C22": 1943,
-      "w:image": {
-        "@id": "w:Amerine-0250"
-      }
-    },
-    {
-      "@id": "_:ub43bL31C12",
-      "m:textOnLabel": {
-        "@id": "_:ub43bL32C28"
-      },
-      "w:subPropertyOf": {
-        "@id": "w:otherDesignation"
-      }
-    },
-    {
-      "@id": "_:ub43bL32C28",
+      "@id": "_:ub844bL51C26",
       "m:img": {
         "@id": "w:Amerine-250"
       },
-      "m:size": [
-        "[410,74]",
-        "[546,53]"
-      ],
+      "m:size": "[410,74]",
       "m:toolName": {
         "@id": "m:rectangleTool"
       },
-      "m:ul": [
-        "[743,827]",
-        "[813,885]"
-      ]
+      "m:ul": "[813,885]"
     },
     {
-      "@id": "_:ub43bL60C26",
+      "@id": "s:alcohol_5",
+      "m:textOnLabel": {
+        "@id": "_:ub844bL57C26"
+      },
+      "rdf:subPropertyOf": {
+        "@id": "w:alcohol"
+      }
+    },
+    {
+      "@id": "s:address_1",
+      "m:textOnLabel": {
+        "@id": "_:ub844bL32C25"
+      },
+      "rdf:singletonPropertyOf": {
+        "@id": "w:address"
+      }
+    },
+    {
+      "@id": "_:ub844bL26C24",
       "w:blend": {
         "@language": "en",
         "@value": "Prominent"
@@ -95,36 +110,18 @@
       }
     },
     {
-      "@id": "_:ub43bL8C24",
-      "m:textOnLabel": {
-        "@id": "_:ub43bL9C38"
-      },
-      "w:subPropertyOf": {
-        "@id": "w:address"
-      }
-    },
-    {
-      "@id": "_:ub43bL9C38",
+      "@id": "_:ub844bL63C26",
       "m:img": {
-        "@id": "w:Amerine-0250"
+        "@id": "w:Amerine-250"
       },
-      "m:size": "[486,26]",
+      "m:size": "[445,68]",
       "m:toolName": {
         "@id": "m:rectangleTool"
       },
-      "m:ul": "[775,1046]"
+      "m:ul": "[790,957]"
     },
     {
-      "@id": "_:ub43bL39C12",
-      "m:textOnLabel": {
-        "@id": "_:ub43bL40C28"
-      },
-      "w:subPropertyOf": {
-        "@id": "w:alcohol"
-      }
-    },
-    {
-      "@id": "_:ub43bL26C28",
+      "@id": "_:ub844bL45C26",
       "m:img": {
         "@id": "w:Amerine-250"
       },
@@ -135,25 +132,18 @@
       "m:ul": "[546,320]"
     },
     {
-      "@id": "_:ub43bL45C12",
-      "m:textOnLabel": {
-        "@id": "_:ub43bL46C28"
+      "@id": "_:ub844bL32C25",
+      "m:img": {
+        "@id": "w:Amerine-0250"
       },
-      "w:subPropertyOf": {
-        "@id": "w:addressQualification"
-      }
+      "m:size": "[486,26]",
+      "m:toolName": {
+        "@id": "m:rectangleTool"
+      },
+      "m:ul": "[775,1046]"
     },
     {
-      "@id": "_:ub43bL25C12",
-      "m:textOnLabel": {
-        "@id": "_:ub43bL26C28"
-      },
-      "w:subPropertyOf": {
-        "@id": "w:brandName"
-      }
-    },
-    {
-      "@id": "_:ub43bL16C39",
+      "@id": "_:ub844bL38C29",
       "m:img": {
         "@id": "w:Amerine-0250"
       },
@@ -170,39 +160,24 @@
         "@language": "en",
         "@value": "Inglenook Vineyard Co"
       },
-      "ub43bL14C25": {
-        "@language": "en",
-        "@value": "1879"
-      },
-      "ub43bL8C24": {
+      "s:address_1": {
         "@language": "en",
         "@value": "Rutherford, Napa County, CA"
+      },
+      "s:established_0": {
+        "@language": "en",
+        "@value": "1879"
       }
     },
     {
-      "@id": "_:ub43bL46C28",
-      "m:img": {
-        "@id": "w:Amerine-250"
-      },
-      "m:size": "[445,68]",
-      "m:toolName": {
-        "@id": "m:rectangleTool"
-      },
-      "m:ul": "[790,957]"
+      "@id": "_:ub844bL22C20",
+      "s:year_8": 1943,
+      "w:image": {
+        "@id": "w:Amerine-0250"
+      }
     },
     {
-      "@id": "_:ub43bL40C28",
-      "m:img": {
-        "@id": "w:Amerine-250"
-      },
-      "m:size": "[257,44]",
-      "m:toolName": {
-        "@id": "m:rectangleTool"
-      },
-      "m:ul": "[542,771]"
-    },
-    {
-      "@id": "_:ub43bL53C38",
+      "@id": "_:ub844bL69C26",
       "m:img": {
         "@id": "w:Amerine-250"
       },
@@ -213,12 +188,32 @@
       "m:ul": "[928,217]"
     },
     {
-      "@id": "_:ub43bL14C25",
+      "@id": "s:brandname_3",
       "m:textOnLabel": {
-        "@id": "_:ub43bL16C39"
+        "@id": "_:ub844bL45C26"
       },
-      "w:subPropertyOf": {
-        "@id": "w:established"
+      "rdf:subPropertyOf": {
+        "@id": "w:brandName"
+      }
+    },
+    {
+      "@id": "_:ub844bL57C26",
+      "m:img": {
+        "@id": "w:Amerine-250"
+      },
+      "m:size": "[257,44]",
+      "m:toolName": {
+        "@id": "m:rectangleTool"
+      },
+      "m:ul": "[542,771]"
+    },
+    {
+      "@id": "s:otherDesignation_4",
+      "m:textOnLabel": {
+        "@id": "_:ub844bL51C26"
+      },
+      "rdf:subPropertyOf": {
+        "@id": "w:otherDesignation"
       }
     }
   ]

@@ -1,3 +1,4 @@
+
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 # UC Davis Wine Ontology
 @prefix w:  <http://library.ucdavis.edu/wine-ontology#> .
@@ -28,7 +29,7 @@ a:bv_winery a w:Winery;
 rdf:label "Beaulieu Vineyard"@en;
 w:address "Rutherford, Napa County, CA"@en.
 
-a:0172 a w:Wine;
+a:0162 a w:Wine;
        w:type w:Still;
        w:color w:Red;
        w:brandName "Beaulieu Vineyard"@en;

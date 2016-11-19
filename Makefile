@@ -28,3 +28,10 @@ ontologies/linkedgeodata.org/ontology.rdf:ontologies/%:
 ontologies/openwines.eu/Winemaker.md:ontologies/%:
 	mkdir -p $(dir $@)
 	wget -O $@ https://raw.githubusercontent.com/OpenWines/Ontology/master/1.0/Winemaker.md
+
+
+##
+# Create JSON-LD using RDF translator
+wine-example.json:tr:=http://rdf-translator.appspot.com/convert
+wine-example.json:wine-example.owl
+	curl --data-urlencode content@$< ${tr}/n3/json-ld/content > $@
