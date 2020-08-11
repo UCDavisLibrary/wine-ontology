@@ -1,3 +1,4 @@
+
 #+SETUPFILE: /home/quinn/org-html-themes/setup/theme-bigblow.setup
 #+TITLE: Wine Linked Data
 
@@ -129,7 +130,7 @@ Right now, I'm allowing some of these attributes to be used on general wine labe
                   rdfs:domain :US_Wine_1978;
                   rdf:label "Other Desigation";
 
-:varietalDesignation a rdf:Property;
+:varietal a rdf:Property;
                   rdfs:domain :US_Wine_1978;
                   rdf:label "Varietal Desigation";
                   rdf:description "Varietal designations are the names of the dominant grapes used in the wine. Cabernet Sauvignon, Chardonnay, Zinfandel, and Merlot are examples of grape varieties. A varietal designation on the label requires an appellation of origin and means that at least 75 percent of the grapes used to make the wine are of that variety, and that the entire 75 percent were grown in the labeled appellation (except "Vitis labrusca" grapes, such as Concord, which require at least 51 percent)."@en.
@@ -139,7 +140,7 @@ Right now, I'm allowing some of these attributes to be used on general wine labe
          rdfs:range :AddressQualification;
          rdf:label "Address Qualification"@en;
 
-:AddressQualication a rdf:Class;
+:AddressQualification a rdf:Class;
                     rdf:label "Address Qualifcation"@en;
                       rdf:description "Domestic wines may have this statement further qualified with terms such as Produced meaning that not less than 75 percent of the wine was fermented at the stated address, or Vinted, which means that the wine was subjected to cellar treatment at the stated address.
 
@@ -402,6 +403,8 @@ This example starts to examine the wine maker as well, though only briefly.
 
 #+END_SRC
 
+
+
 * Processing Workflow
 
 In addition to the information related to the wine itself, we also need to
@@ -443,6 +446,7 @@ potential markup for a particular label.  We will encompass this information in
 a separate rdf graph.  When the suggestion is made to the server, the graph designation
 separates that data from all other suggestions, and makes uniquely identifies
 the suggestions.
+
 
 Inside the suggestions, properties are identified in a manner similar to that as
 defined in [[https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4350149/][this paper about singleton properties]].  Because, by the RDF standard,

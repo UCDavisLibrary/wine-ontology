@@ -1,0 +1,34 @@
+SET
+SET
+            dropgeometrycolumn             
+-------------------------------------------
+ public.avas.boundary effectively removed.
+(1 row)
+
+DROP TABLE
+BEGIN
+CREATE TABLE
+ALTER TABLE
+                  addgeometrycolumn                  
+-----------------------------------------------------
+ public.avas.boundary SRID:2226 TYPE:POLYGON DIMS:2 
+(1 row)
+
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+COMMIT
+ANALYZE

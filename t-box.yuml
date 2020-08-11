@@ -1,0 +1,7 @@
+[note: You can stick notes on diagrams too!{bg:cornsilk}],
+[WineRegion|+isPartOfWineRegion;+numberOfVineyards;+numberOfWineries;+varietals(string);+wineProduced;+Year],
+[WineRegion]-varitals>[string],
+[Wine]-wineProduced>[WineRegion],
+[WineRegion]-subclassOf>[Place],
+[Grape]-wineRegion>[WineRegion]
+[Grape]-notableWine>[Wine?]

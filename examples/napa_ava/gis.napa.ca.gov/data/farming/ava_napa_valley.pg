@@ -1,0 +1,19 @@
+SET
+SET
+                  dropgeometrycolumn                  
+------------------------------------------------------
+ public.ava_napa_valley.boundary effectively removed.
+(1 row)
+
+DROP TABLE
+BEGIN
+CREATE TABLE
+ALTER TABLE
+                       addgeometrycolumn                        
+----------------------------------------------------------------
+ public.ava_napa_valley.boundary SRID:2226 TYPE:POLYGON DIMS:2 
+(1 row)
+
+INSERT 0 1
+COMMIT
+ANALYZE

@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="ISO-8859-1"?><!DOCTYPE metadata SYSTEM "http://www.fgdc.gov/metadata/fgdc-std-001-1998.dtd"><metadata>
+<idinfo>
+<citation>
+<citeinfo>
+<origin>Napa County Conservation, Development &amp; Planning</origin>
+<pubdate>20070221</pubdate>
+<title>Napa Valley American Viticultural Area (AVA)</title>
+<geoform>vector digital data</geoform>
+<onlink>http://gis.napa.ca.gov/giscatalog/catalog.asp</onlink>
+<onlink>http://www.wineinstitute.org/industry/fedlaw/table_of_contents.html#part_09</onlink>
+<onlink>http://www.wineinstitute.org/industry/fedlaw/regs/27cfr_part09/9_023.htm</onlink>
+</citeinfo>
+</citation>
+<descript>
+<abstract>Napa Valley American Viticultural Area (AVA)
+This layer is composed of a polygon that depicts the land in Napa VALLEY that is part of the Napa Valley Viticultural Area</abstract>
+<purpose>To provide the Napa County GIS Staff with a coverage showing the Viticultural Area in the Napa Valley</purpose>
+</descript>
+<timeperd>
+<timeinfo>
+<sngdate>
+<caldate>20070221</caldate>
+</sngdate>
+</timeinfo>
+<current>publication date</current>
+</timeperd>
+<status>
+<progress>Complete</progress>
+<update>As needed</update>
+</status>
+<spdom>
+<bounding>
+<westbc>
+-122.648225</westbc>
+<eastbc>
+-122.061242</eastbc>
+<northbc>
+38.769096</northbc>
+<southbc>
+38.153304</southbc>
+</bounding>
+</spdom>
+<keywords>
+<theme>
+<themekt>ISO 19115 Topic Category</themekt>
+<themekey>farming</themekey>
+</theme>
+<theme>
+<themekt>none</themekt>
+<themekey>Wine</themekey>
+<themekey>Viticulture</themekey>
+<themekey>Agriculture</themekey>
+<themekey>Appellation</themekey>
+</theme>
+<place>
+<placekt>none</placekt>
+<placekey>Atlas Peak</placekey>
+<placekey>Chiles Valley</placekey>
+<placekey>Diamond Mountain</placekey>
+<placekey>Howell Mountain</placekey>
+<placekey>Los Carneros</placekey>
+<placekey>Mount Veeder</placekey>
+<placekey>Oak Knoll</placekey>
+<placekey>Oakville</placekey>
+<placekey>Calistoga</placekey>
+<placekey>Tulocay</placekey>
+<placekey>Rutherford</placekey>
+<placekey>Spring Mountain District</placekey>
+<placekey>St. Helena</placekey>
+<placekey>Stags Leap</placekey>
+<placekey>Wild Horse Valley</placekey>
+<placekey>Yountville</placekey>
+</place>
+</keywords>
+<accconst>None.  Data is available from the County of Napa by registering at website:  http://gis.napa.ca.gov/giscatalog/catalog.asp</accconst>
+<useconst>Disclaimer: This GIS data is intended to provide a visual display of data for the user's convenience. Users of this data are hereby notified that the appropriate public primary information sources should be consulted for verification of the information.  Although every reasonable effort has been made to assure the accuracy of this data, the County of Napa makes no warranty, representation or guaranty as to the content, sequence, accuracy, timeliness or completeness of any of the data provided herein and explicitly disclaims any representations and warranties, including, without limitation, the implied warranties of merchantability and fitness for a particular purpose. The County of Napa assumes no liability for any errors, omissions, or inaccuracies in the information provided regardless of how caused and assumes no liability for any decisions made or actions taken or not taken by the user of the data in reliance upon any information or data furnished hereunder. Because the GIS data provided is not warranted to be up-to-date, the user should check with the County staff for updated information.</useconst>
+<ptcontac>
+<cntinfo>
+<cntorgp>
+<cntorg>Napa County Conservation, Development &amp; Planning</cntorg>
+<cntper>Lynsey Kelly</cntper>
+</cntorgp>
+<cntpos>GIS Specialist</cntpos>
+<cntaddr>
+<addrtype>mailing and physical address</addrtype>
+<address>1195 Third St, Suite 210</address>
+<city>Napa</city>
+<state>CA</state>
+<postal>94559</postal>
+<country>USA</country>
+</cntaddr>
+<cntvoice>707-253-4417</cntvoice>
+<cntemail>lkelly@co.napa.ca.us</cntemail>
+</cntinfo>
+</ptcontac>
+<datacred>Napa County Conservation, Development &amp; Planning</datacred>
+<native>Microsoft Windows XP Version 5.1 (Build 2600) Service Pack 2; ESRI ArcCatalog 9.1.0.722</native>
+</idinfo>
+<dataqual>
+<lineage>
+<srcinfo>
+<srcscale>Unknown</srcscale>
+<typesrc>paper</typesrc>
+<srccitea>Napa County</srccitea>
+<srccontr>This layer was created by Napa County Conservation, Development &amp; Planning from downloading the definition from the internet.</srccontr>
+</srcinfo>
+<procstep>
+<procdesc>http://www.wineinstitute.org/industry/fedlaw/regs/27cfr_part09/9_023.htm - got the definition from the website and heads-up digitized the boundary.</procdesc>
+<srcused>http://www.wineinstitute.org/industry/fedlaw/regs/27cfr_part09/9_023.htm</srcused>
+<procdate>20070221</procdate>
+<proccont>
+<cntinfo>
+<cntorgp>
+<cntorg>Napa County Conservation, Development &amp; Planning</cntorg>
+<cntper>Lynsey Kelly</cntper>
+</cntorgp>
+<cntpos>GIS Specialist</cntpos>
+<cntvoice>707-253-4417</cntvoice>
+<cntemail>lkelly@co.napa.ca.us</cntemail>
+</cntinfo>
+</proccont>
+</procstep>
+</lineage>
+</dataqual>
+<spdoinfo>
+<direct>Vector</direct>
+<ptvctinf>
+<sdtsterm>
+<sdtstype>G-polygon</sdtstype>
+<ptvctcnt>1</ptvctcnt>
+</sdtsterm>
+</ptvctinf>
+</spdoinfo>
+<spref>
+<horizsys>
+<planar>
+<mapproj>
+<mapprojn>Lambert Conformal Conic</mapprojn>
+<lambertc>
+<stdparll>38.333333</stdparll>
+<stdparll>39.833333</stdparll>
+<longcm>-122.000000</longcm>
+<latprjo>37.666667</latprjo>
+<feast>6561666.666667</feast>
+<fnorth>1640416.666667</fnorth>
+</lambertc>
+</mapproj>
+<planci>
+<plance>coordinate pair</plance>
+<coordrep>
+<absres>0.000512</absres>
+<ordres>0.000512</ordres>
+</coordrep>
+<plandu>survey feet</plandu>
+</planci>
+</planar>
+<geodetic>
+<horizdn>North American Datum of 1983</horizdn>
+<ellips>Geodetic Reference System 80</ellips>
+<semiaxis>6378137.000000</semiaxis>
+<denflat>298.257222</denflat>
+</geodetic>
+</horizsys>
+<vertdef>
+<altsys>
+<altres>1.000000</altres>
+<altenc>Explicit elevation coordinate included with horizontal coordinates</altenc>
+</altsys>
+</vertdef>
+</spref>
+<eainfo>
+<detailed>
+<enttyp>
+<enttypl>
+ava_napa_valley</enttypl>
+<enttypd>Napa Valley American Viticultural Area</enttypd>
+<enttypds>Dataset Developer</enttypds>
+</enttyp>
+<attr>
+<attrlabl>OBJECTID</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ID</attrlabl>
+</attr>
+<attr>
+<attrlabl>ACRES</attrlabl>
+</attr>
+<attr>
+<attrlabl>SHAPE</attrlabl>
+<attrdef>Feature geometry.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Coordinates defining the features.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE.area</attrlabl>
+</attr>
+<attr>
+<attrlabl>SHAPE.len</attrlabl>
+</attr>
+</detailed>
+</eainfo>
+<distinfo>
+<distrib>
+<cntinfo>
+<cntorgp>
+<cntorg>County of Napa ITS Department</cntorg>
+</cntorgp>
+<cntpos>GIS Coordinator</cntpos>
+<cntaddr>
+<addrtype>mailing and physical address</addrtype>
+<address>650 Imperial Way Suite 201</address>
+<city>Napa</city>
+<state>CA</state>
+<postal>94559</postal>
+<country>USA</country>
+</cntaddr>
+<cntvoice>(707) 259-8141</cntvoice>
+<cntfax>(707) 253-4824</cntfax>
+<cntemail>gisstaff@co.napa.ca.us</cntemail>
+<hours>M-F 8:00 am - 5:00 pm</hours>
+</cntinfo>
+</distrib>
+<resdesc>Definition available from:  http://www.wineinstitute.org/industry/fedlaw/regs/27cfr_part09/9_023.htm</resdesc>
+<distliab>Disclaimer: This GIS data is intended to provide a visual display of data for the user's convenience. Users of this data are hereby notified that the appropriate public primary information sources should be consulted for verification of the information.  Although every reasonable effort has been made to assure the accuracy of this data, the County of Napa makes no warranty, representation or guaranty as to the content, sequence, accuracy, timeliness or completeness of any of the data provided herein and explicitly disclaims any representations and warranties, including, without limitation, the implied warranties of merchantability and fitness for a particular purpose. The County of Napa assumes no liability for any errors, omissions, or inaccuracies in the information provided regardless of how caused and assumes no liability for any decisions made or actions taken or not taken by the user of the data in reliance upon any information or data furnished hereunder. Because the GIS data provided is not warranted to be up-to-date, the user should check with the County staff for updated information.</distliab>
+</distinfo>
+<metainfo>
+<metd>20070227</metd>
+<metc>
+<cntinfo>
+<cntorgp>
+<cntorg>Napa County Conservation, Development &amp; Planning</cntorg>
+<cntper>Lynsey Kelly</cntper>
+</cntorgp>
+<cntpos>GIS Specialist</cntpos>
+<cntaddr>
+<addrtype>mailing and physical address</addrtype>
+<address>1195 Third St, Suite 210</address>
+<city>Napa</city>
+<state>CA</state>
+<postal>94559</postal>
+<country>USA</country>
+</cntaddr>
+<cntvoice>707-253-4417</cntvoice>
+<cntemail>lkelly@co.napa.ca.us</cntemail>
+<hours>M-F 8:00 am - 5:00 pm</hours>
+</cntinfo>
+</metc>
+<metstdn>FGDC Content Standards for Digital Geospatial Metadata</metstdn>
+<metstdv>FGDC-STD-001-1998</metstdv>
+<mettc>local time</mettc>
+<metextns>
+<onlink>http://www.esri.com/metadata/esriprof80.html</onlink>
+<metprof>ESRI Metadata Profile</metprof>
+</metextns>
+</metainfo>
+</metadata>

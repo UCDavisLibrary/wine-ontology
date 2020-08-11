@@ -4,5 +4,11 @@
 \#*\#
 .\#*
 
+# Tmp files
+*-
+
 # Shapefiles
 clc06*
+
+# Backups
+labels.Fc
